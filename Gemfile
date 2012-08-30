@@ -27,6 +27,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'devise'
 
 group :test do
   gem 'capybara', '1.1.2'
