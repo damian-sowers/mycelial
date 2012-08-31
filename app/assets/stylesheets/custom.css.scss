@@ -2,7 +2,6 @@
 $iconSpritePath: image-path('glyphicons-halflings.png');
 $iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
 @import "bootstrap";
-@import "bootstrap-responsive";
 
 /* mixins, variables, etc. */
 
@@ -116,14 +115,14 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  padding: 10px;
-  height: auto;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
+// input, textarea, select, .uneditable-input {
+//   border: 1px solid #bbb;
+//   width: 100%;
+//   padding: 10px;
+//   height: auto;
+//   margin-bottom: 15px;
+//   @include box_sizing;
+// }
 
 #error_explanation {
   color: #f00;

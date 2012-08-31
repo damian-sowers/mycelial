@@ -5,6 +5,10 @@ CNN::Application.routes.draw do
   # first created -> highest priority.
   root to: 'home#index'
 
+  #get '/hackers/:username' => 'hackers#show', :as => 'vanity_url', :constrain => { :username => /^[a-z0-9\-_]+$/i }
+
+  resources :hackers
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
