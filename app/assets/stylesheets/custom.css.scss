@@ -20,6 +20,7 @@ html {
 }
 
 body {
+  background:url(image_path('bg-main.png')) repeat-x;
   padding-top: 60px;
 }
 
@@ -72,14 +73,13 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: #444;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   padding-top: 9px;
-  font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: #ccc;
     text-decoration: none;
   }
 }
@@ -161,6 +161,27 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+.navbar-inner{ 
+  min-height:40px;
+  padding-left:20px;
+  padding-right:20px;
+  background-color:#f3f3f3;
+  background-image:-moz-linear-gradient(top, #f3f3f3, #f3f3f3);
+  background-image:-ms-linear-gradient(top, #f3f3f3, #f3f3f3);
+  background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#f3f3f3));
+  background-image:-webkit-linear-gradient(top, #f3f3f3, #f3f3f3);
+  background-image:-o-linear-gradient(top, #f3f3f3, #f3f3f3);
+  background-image:linear-gradient(top, #f3f3f3, #f3f3f3);
+  background-repeat:repeat-x;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#f3f3f3', GradientType=0);
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:0 0px 0px rgba(0,0,0,0), inset 0 0px 0 rgba(0,0,0,.1);
+  -moz-box-shadow:0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
+  box-shadow:0 0px 0px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
 }
 
 /* miscellaneous */

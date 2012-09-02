@@ -20,6 +20,7 @@ class HackersController < ApplicationController
 	end
 
 	def edit
+		#edit needs the id to work. No vanity username here. Just give the user the link with the id. 
 		@hacker = Hacker.find(params[:id])
 	end
 
