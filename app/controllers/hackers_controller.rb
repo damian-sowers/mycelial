@@ -8,6 +8,11 @@ class HackersController < ApplicationController
 
 	def new 
 		@hacker = Hacker.new
+
+		#need to check if the user already has a page. if they do then redirect to edit
+		if @check = User.find(current_user.id).hacker
+			redirect_to :action => "edit", :id => @check.id
+		end
 	end
 
 	def show
