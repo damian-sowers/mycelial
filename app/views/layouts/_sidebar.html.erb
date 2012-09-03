@@ -10,13 +10,17 @@
     <!-- END #logo -->
     </div>
 
-<div class="seperator clearfix">
+<div class="separator clearfix">
    <div class="line"></div>
 </div>
 
 
 <div class="widget">
-    <h3 class="widget-title"><a href="#" <% if controller?('hackers') %>style="color:#333"<% end %>>My Projects <% if controller?('hackers') %>&rarr;<% end %></a></h3>
+    <% if user_signed_in? %>
+        <h3 class="widget-title"><a href="/hackers/<%= current_user.username %>" <% if controller?('hackers') %>style="color:#333"<% end %>>My Projects <% if controller?('hackers') %>&rarr;<% end %></a></h3>
+    <% else %>
+        <h3 class="widget-title"><a href="#">Build Your Page</a></h3>
+    <% end %>
 
     <div class="menu-main-container">
         <ul id="menu-main" class="menu">
@@ -44,7 +48,7 @@
     </div>
 </div>
 
-<div class="seperator clearfix">
+<div class="separator clearfix">
     <div class="line"></div>
 </div>
 
@@ -53,16 +57,24 @@
     <h3 class="widget-title">Also find me on:</h3>
     <div class="menu-type-container">
         <ul id="menu-type" class="menu">
-            <li style="padding-bottom:10px;"><a href="<%= @hacker.personal_site %>">My Personal Site</a></li>
-            <li style="margin-bottom:5px;"><a href="http://news.ycombinator.com/user?id=<%= @hacker.hnusername %>"><%= image_tag "y18.gif", :size => "16x16" %> Hacker News</a></li>
-            <li style="margin-bottom:5px;"><a href="https://github.com/<%= @hacker.github_username %>"><%= image_tag "github.png" %> Github</a></li>
-            <li style="margin-bottom:5px;"><a href="<%= @hacker.linkedin_username %>" style="padding-bottom:10px;"><%= image_tag "linkedin.jpeg" %> LinkedIn</a></li>
+            <% unless @hacker.personal_site.empty? %>
+                <li style="padding-bottom:10px;"><a href="<%= @hacker.personal_site %>">My Personal Site</a></li>
+            <% end %>
+            <% unless @hacker.hnusername.empty? %>
+                <li style="margin-bottom:5px;"><a href="http://news.ycombinator.com/user?id=<%= @hacker.hnusername %>"><%= image_tag "y18.gif", :size => "16x16" %> Hacker News</a></li>
+            <% end %>
+            <% unless @hacker.github_username.empty? %>
+                <li style="margin-bottom:5px;"><a href="https://github.com/<%= @hacker.github_username %>"><%= image_tag "github.png" %> Github</a></li>
+            <% end %>
+            <% unless @hacker.linkedin_username.empty? %>
+                <li style="margin-bottom:5px;"><a href="<%= @hacker.linkedin_username %>" style="padding-bottom:10px;"><%= image_tag "linkedin.jpeg" %> LinkedIn</a></li>
+            <% end %>
         </ul>
     </div>
 </div>
 
 
-<div class="seperator clearfix">
+<div class="separator clearfix">
     <div class="line"></div>
 </div>            
 <% end %>
