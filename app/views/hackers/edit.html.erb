@@ -1,7 +1,7 @@
 <div id="main">
   <div class="container">
     <div class="row">
-      <div class="span8 well">
+      <div class="span8">
         <%= render 'layouts/errors' %>
         <%= form_for(@hacker, :html => { :class => "form-horizontal" } ) do |f| %>
         <div class="control-group">
@@ -38,7 +38,7 @@
             <%= f.text_field :github_username, class: "input-xlarge" %>
           </div>
         </div>
-        <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

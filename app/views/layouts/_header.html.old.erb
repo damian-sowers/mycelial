@@ -1,0 +1,15 @@
+<div class="span3">
+  <div class="sidebar-nav">
+      <%= link_to "Git Stage", root_path, id: "logo" %>
+        <ul class="nav nav-list">
+          <% if user_signed_in? %>
+            <li><a href="#">Logged in as <strong><%= current_user.email %></strong></a></li>
+            <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to 'Register', new_user_registration_path %></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+        </ul>
+  </div>
+</div>
