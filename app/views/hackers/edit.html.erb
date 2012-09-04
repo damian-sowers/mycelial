@@ -36,8 +36,24 @@
       <%= f.text_field :github_username, class: "input-xlarge" %>
     </div>
   </div>
+  <%= f.submit "Save changes", class: "btn btn-info" %>
   <hr>
-  <h2>Select your project type:</h2>
-  <%= f.submit "Save changes", class: "btn btn-primary" %>
+  <% if @projects.empty? %>
+    <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
+  <% else %>
+  <div class="row">
+  <div style="float:right">
+    <a href="#" class="button orange">Add another project</a>
+  </div>
+  <div class="span6">
+  <h2>Your Projects</h2>
+  <p>Add another project with the button to the right, or click on a project to edit</p>
+  </div>
+  </div>
+  <hr style="margin-top:0;">
+    <% @projects.each do |p| %>
+      <b><%= p.project_name %></b>
+    <% end %>
   <% end %>
-</div>
+  <p></p>
+  <% end %>

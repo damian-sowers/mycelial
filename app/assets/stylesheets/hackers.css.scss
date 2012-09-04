@@ -1,3 +1,12 @@
 // Place all the styles related to the Hackers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.slides_container {
+	width:570px;
+	height:270px;
+}
+.slides_container div {
+	width:570px;
+	height:270px;
+	display:block;
+}

@@ -22,11 +22,14 @@ class HackersController < ApplicationController
 		else 
 			@hacker = User.find_by_username(params[:id]).hacker
 		end
+		#get the projects for this hacker from project model. 
 	end
 
 	def edit
 		#edit needs the id to work. No vanity username here. Just give the user the link with the id. 
 		@hacker = Hacker.find(params[:id])
+		#projects will return an array, since there can be many associated with each hacker. 
+		@projects = Hacker.find(params[:id]).projects
 	end
 
 	def create 

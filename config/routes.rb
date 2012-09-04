@@ -8,6 +8,7 @@ CNN::Application.routes.draw do
   #get '/hackers/:username' => 'hackers#show', :as => 'vanity_url', :constrain => { :username => /^[a-z0-9\-_]+$/i }
 
   resources :hackers
+  resources :projects
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

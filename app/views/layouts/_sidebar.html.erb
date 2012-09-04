@@ -3,9 +3,9 @@
 
    <!-- BEGIN #logo -->
    <div id="logo">
-    <a href="/"><%= image_tag "logo.png" %></a>
+    <!-- <a href="/"><%= image_tag "logo.png" %></a> -->
 
-    <p id="tagline"><h4 style="color:#666; font-size: 15px;"><i><% if controller.controller_name == 'hackers' %><%= @hacker.name %><% else %>Code is Art<% end %></i></h4></p>
+    <p id="tagline"><h1 style="color:#666; font-size: 35px; font-weight:bold"><i><% if controller.controller_name == 'hackers' %><%= @hacker.name %><% else %>Code is Art<% end %></i></h1></p>
 
     <!-- END #logo -->
     </div>
@@ -52,7 +52,7 @@
     <div class="line"></div>
 </div>
 
-<% if controller?('hackers') && action?('edit') %>
+<% if controller?('hackers') %>
 <div class="widget">
     <h3 class="widget-title">Also find me on:</h3>
     <div class="menu-type-container">
@@ -78,6 +78,8 @@
     <div class="line"></div>
 </div>            
 <% end %>
+
+<a href="/"><%= image_tag "logo-hi-res.png" %></a><br/><br/>
 
 <!-- BEGIN #back-to-top -->
 <div id="back-to-top">

@@ -1,7 +1,8 @@
 class Hacker < ActiveRecord::Base
-  attr_accessible :name, :hnusername, :linkedin_username, :personal_site, :github_username
+  attr_accessible :name, :hnusername, :linkedin_username, :personal_site, :github_username, :project_title
   belongs_to :user
-
+  has_many :projects
+  
   validates :name, presence: 	true
 end
 # == Schema Information
