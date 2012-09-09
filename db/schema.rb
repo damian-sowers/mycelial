@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904032949) do
+ActiveRecord::Schema.define(:version => 20120908180107) do
 
   create_table "hackers", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20120904032949) do
     t.string   "personal_site"
     t.string   "github_username"
     t.integer  "user_id"
+    t.text     "about_text"
+    t.string   "image"
   end
 
   create_table "projects", :force => true do |t|

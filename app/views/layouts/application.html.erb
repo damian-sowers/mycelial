@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <title>GitStage</title>
+  <title>Mycelial</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
 
@@ -25,7 +25,7 @@
         <!--BEGIN #masonry-->
         <div id="masonry">
           <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
+          <div class="span8 well alert alert-<%= key %>"><%= value %></div>
           <% end %>
 
           <%= yield %>

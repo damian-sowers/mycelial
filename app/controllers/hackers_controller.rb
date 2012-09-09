@@ -36,8 +36,12 @@ class HackersController < ApplicationController
 		@hacker = Hacker.new(params[:hacker])
 		@hacker.user_id = current_user.id
 		if @hacker.save
-			flash[:success] = "Your page has been created."
-			redirect_to @hacker
+			if params[:hacker][:image].present?
+				render 'crop'
+			else 
+				flash[:success] = "Your page has been created."
+				redirect_to @hacker
+			end
 		else 
 			render 'new'
 		end
@@ -47,8 +51,12 @@ class HackersController < ApplicationController
 		@hacker = Hacker.find(params[:id])
 		if @hacker.update_attributes(params[:hacker])
       #handle a successful update
-      flash[:success] = "Page updated"
-      redirect_to :action => "edit", :id => params[:id]
+      if params[:hacker][:image].present?
+				render 'crop'
+			else 
+      	flash[:success] = "Page updated"
+      	redirect_to :action => "edit", :id => params[:id]
+      end
     else 
       render 'edit'
     end

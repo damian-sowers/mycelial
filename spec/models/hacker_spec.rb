@@ -16,5 +16,6 @@ end
 #  personal_site     :string(255)
 #  github_username   :string(255)
 #  user_id           :integer
+#  about_text        :text
 #
 

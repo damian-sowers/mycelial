@@ -28,6 +28,8 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'rmagick'
+gem 'carrierwave'
 
 group :test do
   gem 'capybara', '1.1.2'

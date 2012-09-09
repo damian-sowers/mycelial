@@ -1,7 +1,7 @@
 
 <div class="span8 well">
   <%= render 'layouts/errors' %>
-  <%= form_for(@hacker, :html => { :class => "form-horizontal" } ) do |f| %>
+  <%= form_for(@hacker, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
   <div class="control-group">
     <%= f.label :name,  class: "control-label required" %>
     <div class="controls">
@@ -36,6 +36,29 @@
       <%= f.text_field :github_username, class: "input-xlarge" %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :about_text, "A Litte About Me", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :about_text, :cols => 80, :rows => 8%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :image, "Upload a Profile Picture", class: "control-label required" %>
+    <div class="controls">
+      <%= f.file_field :image %>
+      <%= image_tag @hacker.image_url(:thumb).to_s %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :remote_image_url, "Or enter the url of an image", class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :remote_image_url %>
+    </div>
+  </div>
+
   <%= f.submit "Save changes", class: "btn btn-info" %>
   <hr>
   <% if @projects.empty? %>
