@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   # attr_accessible :title, :body
-  belongs_to :hacker
+  belongs_to :page
 
   validates :project_name, presence: 	true
 end
@@ -19,6 +19,6 @@ end
 #  picture            :string(255)
 #  url                :string(255)
 #  github_repo        :string(255)
-#  hacker_id          :integer
+#  page_id            :integer
 #
 

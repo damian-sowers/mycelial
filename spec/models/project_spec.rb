@@ -18,6 +18,6 @@ end
 #  picture            :string(255)
 #  url                :string(255)
 #  github_repo        :string(255)
-#  hacker_id          :integer
+#  page_id            :integer
 #
 

@@ -1,0 +1,20 @@
+<div class="span8 well">
+	<h1>Crop Your Image</h1>
+	<p>Select the area below</p>
+
+	<%= image_tag @page.image_url(:large), id: "cropbox" %>
+
+	<h4>Preview</h4>
+	<div class="jcrop" style="width:100px; height:100px; overflow:hidden">
+		<%= image_tag @page.image_url(:large), :id => "preview1" %>
+	</div>
+
+	<%= form_for @page do |f| %>
+		<% %w[x y w h].each do |attribute| %>
+			<%= f.hidden_field "crop_#{attribute}" %><br/>
+		<% end %>
+		<div class="actions">
+			<%= f.submit "Crop" %>
+		</div>
+	<% end %>
+</div>
