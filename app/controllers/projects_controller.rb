@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def new
+		@project = Project.new
 	end
 
 	def create
@@ -18,10 +19,18 @@ class ProjectsController < ApplicationController
 	def update
 	end
 
-	def ajax_project_type
-		@project_number = params[:project_number]
-		if @project_number == 1
-			render 'programming_project'
-		end
+	def programming_project
+		@project = Project.new
+		respond_to do |format|
+      format.js { render :layout => false }
+    end
 	end
+
+	def blog_project
+		@project = Project.new
+		respond_to do |format|
+      format.js { render :layout => false }
+    end
+	end
+
 end

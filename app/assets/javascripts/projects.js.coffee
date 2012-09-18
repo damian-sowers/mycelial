@@ -2,17 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(document).ready ->
+jQuery(document).ready ->
+  $("#programming_project").click ->
+    $("#programming_form").show()
+    $("#blog_form").hide()
 
-new AjaxSelect()
-
-class AjaxSelect
-	constructor: ->
-	ajax_select_project_type: (project_number) ->
-		$.ajax
-			type: "GET"
-			url: "/projects#ajax_project_type"
-			data: "project_number=" + project_number
-			success: function(msg) 
-				$('#project_area').html(msg)
+  $("#blog_project").click ->
+   	$("#blog_form").show()
+   	$("#programming_form").hide()
 			

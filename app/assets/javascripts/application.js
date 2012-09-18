@@ -14,3 +14,4 @@
 //= require jquery.Jcrop
 //= require jquery_ujs
 //= require_tree .
+
