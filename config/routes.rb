@@ -10,10 +10,12 @@ CNN::Application.routes.draw do
   resources :pages
   resources :projects do 
     collection do
-      get 'programming_project'
-      get 'blog_project'
+      get 'project_type'
+      get 'project_layout'
     end
   end
+
+  match ':controller(/:action(/:id))'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

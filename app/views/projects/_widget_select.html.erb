@@ -1,0 +1,4 @@
+<p>Please select the format of this project:</p>
+<div class="ajax-select">
+<%= link_to "Picture Widget", project_layout_projects_path + "?project_type=#{@project_type}&widget_type=1", :remote => true, :update => { :success => "project_area" } %>
+</div>

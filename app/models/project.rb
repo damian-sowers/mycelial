@@ -1,8 +1,20 @@
 class Project < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :project_name, :short_description, :long_description, :main_language, :other_technologies, :picture, :url, :github_repo, :crop_x, :crop_y, :crop_w, :crop_h
+
   belongs_to :page
 
+  #carrierwave image uploader below
+  mount_uploader :picture, ImageUploader
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :crop_avatar
+
   validates :project_name, presence: 	true
+
+  def crop_avatar
+  	picture.recreate_versions! if crop_x.present?
+  end
+
 end
 # == Schema Information
 #

@@ -2,14 +2,14 @@
 	<h1>Crop Your Image</h1>
 	<p>Select the area below</p>
 
-	<%= image_tag @hacker.image_url(:large), id: "cropbox" %>
+	<%= image_tag @project.picture_url(:large), id: "cropbox2" %>
 
 	<h4>Preview</h4>
 	<div class="jcrop" style="width:100px; height:100px; overflow:hidden">
-		<%= image_tag @hacker.image_url(:large), :id => "preview1" %>
+		<%= image_tag @project.picture_url(:large), :id => "preview2" %>
 	</div>
 
-	<%= form_for @hacker do |f| %>
+	<%= form_for @project do |f| %>
 		<% %w[x y w h].each do |attribute| %>
 			<%= f.hidden_field "crop_#{attribute}" %><br/>
 		<% end %>

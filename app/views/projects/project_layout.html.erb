@@ -1,0 +1,74 @@
+<!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
+<br/>
+<div class="span8 well">
+  <h2 style="color:#777">Create your page:</h2>
+  <p>Fill in the fields below.</p>
+  <hr>
+  <%= form_for(@project, :html => { :class => "form-horizontal" } ) do |f| %>
+  <div class="control-group">
+    <%= f.label :project_name,  class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :project_name, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :short_description, "Short description", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :short_description, :cols => 80, :rows => 3%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :long_description, "Long Description", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :long_description, :cols => 80, :rows => 8%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :main_language, "Main Language (e.g Ruby, Python)", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :main_language, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :other_technologies, "Other Technologies", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :other_technologies, :cols => 80, :rows => 8%>
+    </div>
+  </div>
+
+  <div class="controls">
+  <% #image_tag @project.picture_url(:thumb).to_s %>
+  <br/><br/>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :picture, "Picture", class: "control-label required" %>
+    <div class="controls">
+      <%= f.file_field :picture %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :url, "Project URL", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :url, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :github_repo, "Github Repo", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :github_repo, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
+
