@@ -36,4 +36,6 @@ CNN::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV["REDISTOGO_URL"] = 'redis://0.0.0.0:6379' 
 end

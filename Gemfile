@@ -31,6 +31,8 @@ gem 'devise'
 gem 'rmagick'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"
+gem 'redis'
+gem 'redis-namespace'
 
 group :test do
   gem 'capybara', '1.1.2'
