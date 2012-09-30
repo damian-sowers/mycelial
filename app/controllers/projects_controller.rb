@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:edit, :update, :create]
+	before_filter :correct_user, only: [:edit, :update]
 
 	def index
 	end

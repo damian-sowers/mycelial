@@ -21,15 +21,20 @@
       
       <!--BEGIN #primary .hfeed-->
       <div id="primary" class="hfeed">
-
         <!--BEGIN #masonry-->
         <div id="masonry">
           <% flash.each do |key, value| %>
-          <div class="span8 well alert alert-<%= key %>"><%= value %></div>
+            <div class="span8 well alert alert-<%= key %>"><%= value %></div>
           <% end %>
 
-          <%= yield %>
-
+          <% if controller?('pages') && action?('show') %>
+            <%= yield %>
+          <% else %>
+            <!-- inner white page box for all pages other than homepage and show page -->
+            <div class="hentry page mycelial_page">
+              <%= yield %>
+            </div>
+          <% end %>
         </div>
         <% #render 'layouts/footer' %>
       </div>

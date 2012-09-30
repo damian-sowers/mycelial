@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 	def edit
 		#edit needs the id to work. No vanity username here. Just give the user the link with the id. 
 		@page = Page.find(params[:id])
-		#projects will return an array, since there can be many associated with each hacker. 
+		#projects will return an array, since there can be many associated with each page. 
 		@projects = Page.find(params[:id]).projects
 	end
 
@@ -36,6 +36,7 @@ class PagesController < ApplicationController
 		@page = Page.new(params[:page])
 		@page.user_id = current_user.id
 		if @page.save
+			session[:page_id] = @page.id
 			if params[:page][:image].present?
 				render 'crop'
 			else 
@@ -51,6 +52,8 @@ class PagesController < ApplicationController
 		@page = Page.find(params[:id])
 		if @page.update_attributes(params[:page])
       #handle a successful update
+      #get rid of this session variable in the update eventually. Need to figure out a way to get this upon login, and also assign it during create. 
+      session[:page_id] = @page.id
       if params[:page][:image].present?
 				render 'crop'
 			else 

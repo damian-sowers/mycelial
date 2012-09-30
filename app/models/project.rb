@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :project_name, :short_description, :long_description, :main_language, :other_technologies, :picture, :url, :github_repo, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :project_name, :short_description, :long_description, :main_language, :other_technologies, :picture, :url, :github_repo, :project_type, :widget_type, :crop_x, :crop_y, :crop_w, :crop_h
 
   belongs_to :page
 

@@ -1,44 +1,44 @@
 
-<div class="span8 well" >
-  <h2 style="color:#777">Create your page: <strong>Step 1</strong></h2>
-  <p>Allow people to see your presence around the web.</p>
-  <hr>
-  <%= render 'layouts/errors' %>
-  <%= form_for(@page, :html => { :class => "form-horizontal" } ) do |f| %>
-  <div class="control-group">
-    <%= f.label :name,  class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :name, class: "input-xlarge" %>
+  <%= render 'layouts/span8_well' %>
+    <h2 style="color:#777">Create your page: <strong>Step 1</strong></h2>
+    <p>Allow people to see your presence around the web.</p>
+    <hr>
+    <%= render 'layouts/errors' %>
+    <%= form_for(@page, :html => { :class => "form-horizontal" } ) do |f| %>
+    <div class="control-group">
+      <%= f.label :name,  class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :name, class: "input-xlarge" %>
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <%= f.label :hnusername, "HN Username", class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :hnusername, class: "input-xlarge" %>
+    <div class="control-group">
+      <%= f.label :hnusername, "HN Username", class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :hnusername, class: "input-xlarge" %>
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <%= f.label :linkedin_username, "LinkedIn username", class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :linkedin_username, class: "input-xlarge" %>
+    <div class="control-group">
+      <%= f.label :linkedin_username, "LinkedIn username", class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :linkedin_username, class: "input-xlarge" %>
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <%= f.label :personal_site,  class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :personal_site, class: "input-xlarge" %>
+    <div class="control-group">
+      <%= f.label :personal_site,  class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :personal_site, class: "input-xlarge" %>
+      </div>
     </div>
-  </div>
 
-  <div class="control-group">
-    <%= f.label :github_username, "GitHub username", class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :github_username, class: "input-xlarge" %>
+    <div class="control-group">
+      <%= f.label :github_username, "GitHub username", class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :github_username, class: "input-xlarge" %>
+      </div>
     </div>
+    <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-  <% end %>
-</div>

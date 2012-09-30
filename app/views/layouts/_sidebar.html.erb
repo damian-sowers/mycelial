@@ -26,6 +26,11 @@
         <ul id="menu-main" class="menu">
             <li><a href="http://demo.themezilla.com/gridlocked/elements/">About Me</a></li>
             <% if user_signed_in? %>
+            <li><%= link_to 'Edit Your Page', "/pages/#{session[:page_id]}/edit" %>
+                <% if controller?('devise/registrations') && action?('edit') %>
+                    &rarr;
+                <% end %>
+            </li>
             <li><%= link_to 'Account', edit_user_registration_path %>
                 <% if controller?('devise/registrations') && action?('edit') %>
                     &rarr;
