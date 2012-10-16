@@ -1,4 +1,5 @@
 <!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
+<div class="hentry page mycelial_page">
   <%= render 'layouts/span8_well' %>
     <h2 style="color:#777">Add a project to your page:</h2>
     <p>Fill in the fields below.</p>
@@ -33,9 +34,9 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :other_technologies, "Other Technologies", class: "control-label required" %>
+      <%= f.label :other_interesting, "Other Technologies", class: "control-label required" %>
       <div class="controls">
-        <%= f.text_area :other_technologies, :cols => 80, :rows => 8%>
+        <%= f.text_area :other_interesting, :cols => 80, :rows => 8%>
       </div>
     </div>
 
@@ -69,6 +70,6 @@
     <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
   </div>
-
+</div>
 
 

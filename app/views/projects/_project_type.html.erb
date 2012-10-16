@@ -1,0 +1,10 @@
+<p>Please select the format of this project:</p>
+<div class="ajax-select">
+<% if @project_type.to_i == 1 
+	 	project_type = 1
+	 elsif @project_type.to_i == 2
+	 	project_type =2
+	 end
+%>
+<%= link_to "Picture Widget", project_layout_projects_path + "?project_type=#{project_type}&widget_type=1", :remote => true, :update => { :success => "project_area" } %>
+</div>

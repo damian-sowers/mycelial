@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929132306) do
+ActiveRecord::Schema.define(:version => 20121015204806) do
 
   create_table "pages", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -27,19 +27,34 @@ ActiveRecord::Schema.define(:version => 20120929132306) do
   end
 
   create_table "projects", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "project_name"
     t.text     "short_description"
     t.text     "long_description"
     t.string   "main_language"
-    t.text     "other_technologies"
+    t.text     "other_interesting"
     t.string   "picture"
     t.string   "url"
     t.string   "github_repo"
     t.integer  "page_id"
     t.integer  "project_type"
     t.integer  "widget_type"
+  end
+
+  create_table "tagowners", :force => true do |t|
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "project_id"
+    t.integer  "tech_tag_id"
+  end
+
+  create_table "tech_tags", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "picture"
+    t.integer  "project_id"
   end
 
   create_table "users", :force => true do |t|

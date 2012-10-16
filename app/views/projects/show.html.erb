@@ -1,13 +1,74 @@
-			
-<!--BEGIN .hentry-->
-	
-	<h1 class="entry-title" style="font-size:25px;">Briarpatch: Share and follow bookmarks</h1>
+	<div class="mycelial_page page">
+		<h1 class="entry-title" style="font-size:25px; color:#333"><%= @project.project_name %></h1>
+		<div class="entry-content">
+			<div>
+				<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
+					<span class="overlay" style="display:none; ">
+						<span class="icon"></span>
+					</span>
+					<%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
+				</a>
+				
+				<div class="project_blocks">
+					<!-- <div id="short_description"> -->
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/1/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<p>
+						<b>Summary:</b><br/><br/>
+						<%= @project.short_description %>
+					</p>
+<!-- 					</div> -->
+				</div>
+				<br/>
+				<div class="project_blocks">
+					<div id="long_description">
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/1/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+					<p>
+						<b>Project Description:</b><br/><br/>
+						<%= @project.long_description %>
+					</p>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both"></div>
+			<div class="prog_language" style="margin-bottom:20px;">
+				<h3>Main Languages and Technologies:</h3>
+				<%= image_tag "ruby.jpg", style: "margin-right:15px;" %><%= image_tag "rails.jpg", style: "margin-right:15px;" %><%= image_tag "jquery.jpg", style: "margin-right:15px;" %><%= image_tag "postgres.jpg", style: "margin-right:15px;" %><%= image_tag "heroku.jpg", style: "margin-right:15px;" %>
+			</div>
+			<hr>
+			<% if !@project.other_interesting.empty? %>
+			<div class="other_interesting">
+				<h3>Other Interesting Things About This Project:</h3>
 
-	<!--BEGIN .entry-content -->
-	<div class="entry-content">
-		
-		
-		<!--END .entry-content -->
+				<p style="font-size:14px;">
+					<%= @project.other_interesting %>
+				</p>
+			</div>
+			<hr>
+			<% end %>
+			<div class="project_url">
+				<h3>Project Link: <a href="#">http://www.mycelial.com</a></h3>
+			</div>
+
+			<div class="github_link">
+				<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><h3>Check it out on Github: <br/><a href="#">http://www.mycelial.com</a></h3>
+			</div>
+		</div>
 	</div>
+	<div class="mycelial_sidebar">
+		<b>Back to All Projects?</b>       
+		<br/><br/>
+		<a href="/projects/new" class="button white">Visit Project Site</a>
+    <br/>
+		More of Damian's Projects:
+		<hr style="padding:0px; margin:0">
+		<% @user_projects.each do |f| %>
+		<div style="padding:5px;">
+			<a href="#"><%= f.project_name %></a>
+		</div>
+		<hr style="margin:0">
+		<% end %>
 
-	<!--END .hentry-->
+		<br/>
+    <a href="/projects/new" class="button orange">Like This Project</a>
+    <a href="/projects/new" class="button navy">Add a Comment</a>
+	</div>

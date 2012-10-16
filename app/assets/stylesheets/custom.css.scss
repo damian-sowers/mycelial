@@ -112,7 +112,7 @@ form,
   float: left;
   -webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
      -moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
-        box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
+        box-shadow:0 2px 1px rgba(0, 0, 0, 0.10);
 }
 
 .single .hentry {
@@ -244,14 +244,6 @@ h6 {
 }
 
 .single-portfolio #content { min-width: 1000px; }
-
-#bg-line {
-  position: fixed;
-  top: 0;
-  width: 980px;
-  height: 980px;
-  z-index: 1;
-}
 
 .layout-2cl #sidebar { float: left; }
 
@@ -508,12 +500,12 @@ td {
 
 .entry-content { line-height: 18px; }
 
-#overlay-inner a:hover,
-.comment-body p a:hover,
-.entry-content a:hover{ 
-  padding: 1px 3px; 
-  margin: -1px -3px; 
-}
+// #overlay-inner a:hover,
+// .comment-body p a:hover,
+// .entry-content a:hover{ 
+//   padding: 1px 3px; 
+//   margin: -1px -3px; 
+// }
 
 a > img { vertical-align: bottom; } 
 
@@ -621,7 +613,7 @@ button {
 
 #single-sidebar {
   width: 150px;
-  margin: 0 0 0 40px;
+  margin: 0 0 0 20px;
   float: left;
   position: relative;
   z-index: 998;
@@ -1793,16 +1785,16 @@ div.jp-type-single a.jp-pause {
   left: 0;
 }
 
-a.jp-play { background: url(image_path('jplayer-black-and-yellow.png')) 0 0 no-repeat; }
+// a.jp-play { background: url(image_path('jplayer-black-and-yellow.png')) 0 0 no-repeat; }
 
-a.jp-play:hover { background: url(image_path('jplayer-black-and-yellow.png')) -33px 0 no-repeat; }
+// a.jp-play:hover { background: url(image_path('jplayer-black-and-yellow.png')) -33px 0 no-repeat; }
 
-a.jp-pause {
-  background: url(image_path('jplayer-black-and-yellow.png')) 0 -30px no-repeat;
-  display: none;
-}
+// a.jp-pause {
+//   background: url(image_path('jplayer-black-and-yellow.png')) 0 -30px no-repeat;
+//   display: none;
+// }
 
-a.jp-pause:hover { background: url(image_path('jplayer-black-and-yellow.png')) -33px -30px no-repeat; }
+// a.jp-pause:hover { background: url(image_path('jplayer-black-and-yellow.png')) -33px -30px no-repeat; }
 
 div.jp-progress-container {
   position: absolute;
@@ -2050,16 +2042,18 @@ a:hover { color: #000; }
 
 .format-link .entry-title a:hover { color: #fff; }
 
-.contactform #submit:hover span.icon,
-.comment-body p a:hover,
-#submit:hover span.icon,
-.single-page-navigation a:hover,
+// .contactform #submit:hover span.icon,
+// .comment-body p a:hover,
+// #submit:hover span.icon,
+// .single-page-navigation a:hover,
+// #back-to-top a:hover .icon,
+// .entry-content a:hover,
+// #overlay-inner a:hover,
+// .current-cat a,
+// .current-page a,
+// .current-menu-item a { background-color: #feea36; }
 #back-to-top a:hover .icon,
-.entry-content a:hover,
-#overlay-inner a:hover,
-.current-cat a,
-.current-page a,
-.current-menu-item a { background-color: #feea36; }
+ { background-color: #feea36; }
 
 .comment-body p a:hover,
 .entry-content a:hover,
@@ -2137,7 +2131,7 @@ a .overlay .icon,
 blockquote,
 .format-link .entry-title a { border-left: 1px solid #4d4f51; }
 
-.overlay { background: url(image_path('light/overlay.png')) repeat; }
+// .overlay { background: url(image_path('light/overlay.png')) repeat; }
 
 .format-standard .entry-title,
 .page .entry-title { border-bottom: 1px solid #f3f3f3; }
@@ -3866,7 +3860,50 @@ legend + .control-group {
   padding-left: 160px;
 }
 .mycelial_page {
-  width:700px;
-  padding-top:20px;
+  position: relative;
+  width:730px;
+  margin: 0 20px 20px 10px;
+  float: left;
+  background-color:#ffffff;
+  -webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
+     -moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
+        box-shadow:0 2px 1px rgba(0, 0, 0, 0.10);
+  padding-top:10px;
 }
-
+.mycelial_page p {
+  font-size:14px;
+}
+.mycelial_sidebar {
+  margin-left:10px;
+  width:150px;
+  float:left;
+}
+.project_detail_image {
+  border:1px solid #ddd; 
+  float:left; 
+  margin-right:20px; 
+  margin-bottom:20px;
+}
+.project_detail_image:hover {
+  border:1px solid #F5B74E;
+}
+.field_with_errors .message {
+  color:#ff0000;
+}
+.short_description {
+  padding:10px;
+}
+.user_edit {
+  position:absolute;
+  margin-top:0px;
+  right:20px;
+}
+.user_edit a {
+  font-size:10px;
+}
+.ajax_test {
+  width: 300px;
+}
+.padding-15 {
+  padding:15px;
+}

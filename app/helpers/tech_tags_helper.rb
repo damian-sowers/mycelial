@@ -1,0 +1,2 @@
+module TechTagsHelper
+end

@@ -1,6 +1,11 @@
 class PagesController < ApplicationController
+
+	include Mycelial
+
 	before_filter :authenticate_user!, except: [:show, :index]
 	before_filter :correct_user, only: [:edit, :update]
+	#get the sidebar data from the session user id for the logged in methods
+	before_filter :get_sidebar_info, except: [:index, :show, :new, :create]
 
 	def index
 		@page = Page.all
@@ -8,10 +13,9 @@ class PagesController < ApplicationController
 
 	def new 
 		@page = Page.new
-
 		#need to check if the user already has a page. if they do then redirect to edit
 		if @check = User.find(current_user.id).page
-			redirect_to :action => "edit", :id => @check.id
+			redirect_to :action => "edit", :id => @check.id, only_path: true
 		end
 	end
 
@@ -26,9 +30,13 @@ class PagesController < ApplicationController
 	end
 
 	def edit
-		#edit needs the id to work. No vanity username here. Just give the user the link with the id. 
-		@page = Page.find(params[:id])
+		#@page is now being retrieved from the mycelial module and the get_sidebar_info method
+		#@page = Page.find(params[:id])
 		#projects will return an array, since there can be many associated with each page. 
+
+		#this method below now works due to the has_many through association in User. Don't need to use it this way, though. 
+		#@projects = User.find(current_user.id).projects
+
 		@projects = Page.find(params[:id]).projects
 	end
 
@@ -41,7 +49,7 @@ class PagesController < ApplicationController
 				render 'crop'
 			else 
 				flash[:success] = "Your page has been created."
-				redirect_to @page
+				redirect_to @page, only_path: true
 			end
 		else 
 			render 'new'
@@ -49,7 +57,8 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		@page = Page.find(params[:id])
+		#@page is now being retrieved from the mycelial module and the get_sidebar_info method
+		#@page = Page.find(params[:id])
 		if @page.update_attributes(params[:page])
       #handle a successful update
       #get rid of this session variable in the update eventually. Need to figure out a way to get this upon login, and also assign it during create. 
@@ -58,7 +67,7 @@ class PagesController < ApplicationController
 				render 'crop'
 			else 
       	flash[:success] = "Page updated"
-      	redirect_to :action => "edit", :id => params[:id]
+      	redirect_to :action => "edit", :id => params[:id], only_path: true
       end
     else 
       render 'edit'
@@ -82,5 +91,12 @@ class PagesController < ApplicationController
 
     def is_numeric?(obj) 
    		obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+		end
+
+		#only call this for the signed in methods. When they are editing their page. 
+		def get_sidebar_info
+			if user_signed_in?
+				@page = sidebar_data(current_user.id)
+			end
 		end
 end

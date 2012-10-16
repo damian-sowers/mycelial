@@ -11,18 +11,23 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.Jcrop
 //= require jquery_ujs
+//= require rails.validations
+//= require jquery.tokeninput
 //= require_tree .
-if (history && history.pushState) {
-  $(function() {
-    $(".ajax-select a").live("click", function(e) {
-      $.getScript(this.href);
-      history.pushState(null, document.title, this.href);
-      e.preventDefault();
-    });
-    $(window).bind("popstate", function() {
-      $.getScript(location.href);
-    });
-  });
-}
+//= require jquery.Jcrop
+
+
+
+// if (history && history.pushState) {
+//   $(function() {
+//     $(".ajax-select a").live("click", function(e) {
+//       $.getScript(this.href);
+//       history.pushState(null, document.title, this.href);
+//       e.preventDefault();
+//     });
+//     $(window).bind("popstate", function() {
+//       $.getScript(location.href);
+//     });
+//   });
+// }

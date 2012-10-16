@@ -1,5 +1,6 @@
+  <div class="hentry page mycelial_page">
   <%= render 'layouts/span8_well' %>
-    <%= render 'layouts/errors' %>
+    <%= render 'shared/errors', :target => @page %>
     <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
     <div class="control-group">
       <%= f.label :name,  class: "control-label required" %>
@@ -100,4 +101,5 @@
     <p></p>
     <% end %>
   </div>
+</div>
 </div>

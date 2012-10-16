@@ -5,7 +5,7 @@
    <div id="logo">
     <!-- <a href="/"><%= image_tag "logo.png" %></a> -->
 
-    <p id="tagline"><h1 style="color:#666; font-size: 35px; font-weight:bold"><i><% if controller.controller_name == 'pages' %><%= @page.name %><% else %>Display Your Projects<% end %></i></h1></p>
+    <p id="tagline"><h1 style="color:#666; font-size: 35px; font-weight:bold"><i><% if controller.controller_name == 'pages' || controller.controller_name == 'projects' %><%= @page.name %><% else %>Display Your Projects<% end %></i></h1></p>
 
     <!-- END #logo -->
     </div>
@@ -26,7 +26,7 @@
         <ul id="menu-main" class="menu">
             <li><a href="http://demo.themezilla.com/gridlocked/elements/">About Me</a></li>
             <% if user_signed_in? %>
-            <li><%= link_to 'Edit Your Page', "/pages/#{session[:page_id]}/edit" %>
+            <li><%= link_to 'Edit Your Page', "/pages/#{@page.id}/edit" %>
                 <% if controller?('devise/registrations') && action?('edit') %>
                     &rarr;
                 <% end %>
@@ -57,7 +57,7 @@
     <div class="line"></div>
 </div>
 
-<% if controller?('pages') %>
+<% if controller?('pages') || controller?('projects') %>
 <div class="widget">
     <h3 class="widget-title">Also find me on:</h3>
     <div class="menu-type-container">

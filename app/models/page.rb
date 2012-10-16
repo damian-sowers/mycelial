@@ -1,7 +1,8 @@
 class Page < ActiveRecord::Base
+
   attr_accessible :name, :hnusername, :linkedin_username, :personal_site, :github_username, :project_title, :about_text, :image, :remote_image_url, :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :user
-  has_many :projects
+  has_many :projects, :dependent => :destroy
   #carrierwave image uploader below
   mount_uploader :image, ImageUploader
 

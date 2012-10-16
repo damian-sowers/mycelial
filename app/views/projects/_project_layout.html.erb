@@ -26,16 +26,22 @@
   </div>
 
   <div class="control-group">
+      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)" %>
+      <div class="controls">
+        <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
+      </div>
+  </div>
+  <!-- <div class="control-group">
     <%= f.label :main_language, "Main Language (e.g Ruby, Python)", class: "control-label required" %>
     <div class="controls">
       <%= f.text_field :main_language, class: "input-xlarge" %>
     </div>
-  </div>
+  </div> -->
 
   <div class="control-group">
-    <%= f.label :other_technologies, "Other Technologies", class: "control-label required" %>
+    <%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
     <div class="controls">
-      <%= f.text_area :other_technologies, :cols => 80, :rows => 8%>
+      <%= f.text_area :other_interesting, :cols => 80, :rows => 8%>
     </div>
   </div>
 

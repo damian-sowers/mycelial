@@ -251,9 +251,9 @@ jQuery(document).ready(function() {
 
 	function tz_overlay() {
 		jQuery('.post-thumb a').hover( function() {
-			jQuery(this).find('.overlay').fadeIn(150);
+			jQuery(this).find('.overlay').fadeIn(250);
 		}, function() {
-			jQuery(this).find('.overlay').fadeOut(150);
+			jQuery(this).find('.overlay').fadeOut(250);
 		});
 	}
 	

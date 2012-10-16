@@ -38,19 +38,21 @@ class PictureUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
 
   version :large do
-    process :resize_to_limit => [600, 600]
+    process :resize_to_limit => [600, 0]
   end
 
+  #putting 0 in the second parameter makes it resize to the width only. Preservers aspect ratio,
   version :cover do
-    process :cover_crop
-    process :resize_to_limit => [360, 360]
+    #process :cover_crop
+    #not using the cropping right now. Might add this later.
+    process :resize_to_limit => [360, 0]
   end
 
   version :thumb do
     #resize_to_fill will also fill in the image if it is smaller than the parameters to begin with. 
     #adding in the cropping method below
-    process :crop
-    process :resize_to_limit => [150, 150]
+    #process :crop
+    process :resize_to_limit => [80, 80]
   end
 
   def crop
@@ -68,7 +70,7 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   def cover_crop
     if model.crop_x.present?
-      resize_to_limit(600, 600)
+      resize_to_limit(500, 500)
       manipulate! do |img|
         x = model.crop_x.to_i
         y = model.crop_y.to_i
@@ -87,9 +89,13 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   time_var = Time.now.to_i
-  #   "project-image-#{time_var}.png" if original_filename
-  # end
+  def filename
+    if original_filename 
+      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{@name}.#{file.extension}"
+    end
+    # time_var = Time.now.to_i
+    # "project-image-#{time_var}.png" if original_filename
+  end
 
 end

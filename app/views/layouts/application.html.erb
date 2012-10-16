@@ -7,7 +7,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body class="blog chrome layout-2cr">
+<body>
 
   <!-- BEGIN #container -->
   <div id="container" class="clearfix js-disabled">
@@ -23,17 +23,15 @@
       <div id="primary" class="hfeed">
         <!--BEGIN #masonry-->
         <div id="masonry">
-          <% flash.each do |key, value| %>
-            <div class="span8 well alert alert-<%= key %>"><%= value %></div>
-          <% end %>
 
           <% if controller?('pages') && action?('show') %>
             <%= yield %>
           <% else %>
             <!-- inner white page box for all pages other than homepage and show page -->
-            <div class="hentry page mycelial_page">
+              <% flash.each do |key, value| %>
+                <div class="span8 well alert alert-<%= key %>"><%= value %></div>
+              <% end %>
               <%= yield %>
-            </div>
           <% end %>
         </div>
         <% #render 'layouts/footer' %>
