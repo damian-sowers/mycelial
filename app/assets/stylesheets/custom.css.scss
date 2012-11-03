@@ -3907,3 +3907,50 @@ legend + .control-group {
 .padding-15 {
   padding:15px;
 }
+input, textarea {  
+  padding: 9px;  
+  border: solid 1px #E5E5E5;  
+  outline: 0;  
+  font: normal 13px/100% Verdana, Tahoma, sans-serif;  
+  width: 200px;  
+  background: #FFFFFF url('bg_form.png') left top repeat-x;  
+  background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));  
+  background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);  
+  box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+  -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+  -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
+}  
+textarea {  
+  width: 600px;  
+  max-width: 600px;  
+  height: 150px;  
+  line-height: 150%;  
+}  
+.input-xlarge {
+  width: 470px;
+}
+.token-input-list-facebook input{
+  background-color:#fff;
+  background:none;
+}
+.mycelial-page-header {
+  background:#444; 
+  height:70px; 
+  width:730px; 
+  margin-top:-25px; 
+  margin-left:-15px; 
+  margin-bottom:25px;
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f3f3f3'); /* for IE */
+  // background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f3f3f3)); /* for webkit browsers */
+  // background: -moz-linear-gradient(top,  #fff,  #f3f3f3); /* for firefox 3.6+ */
+}
+.mycelial-page-title {
+  color:#fff; 
+  font-size:25px; 
+  padding-top:25px; 
+  padding-left:20px;
+}
+ul .token-input-list-facebook {
+  padding-top:0;
+  margin-top:-20px;
+}

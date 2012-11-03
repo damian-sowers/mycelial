@@ -1,13 +1,79 @@
-<!--BEGIN .hentry-->
-<div class="hentry page mycelial_page">
-	<div id="project_area">
-	<h1 class="entry-title" style="font-size:25px;">Select Your Project Type:</h1>
-	<!--BEGIN .entry-content -->
-	<div class="entry-content">
-		<div class="ajax-select">
-		<%= link_to "Programming", project_type_projects_path + "/1", :remote => true , :update => { :success => "project_area" }
-		%> 
-		</div>
-		</div>
-	</div>
+<!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
+<div class="page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+    <%= render 'shared/errors', :target => @project %>
+    <div class="mycelial-page-header">
+  <h2 class="mycelial-page-title">Add a new project to your page</h2>
+  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
+    <p>Fill in the fields below.</p>
+    <hr>
+  <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true ) do |f| %>
+  <div class="control-group">
+    <%= f.label :project_name,  class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :project_name, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :short_description, "Short description", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :short_description, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :long_description, "Long Description", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :long_description, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label required" %>
+      <div class="controls tech_tags">
+        <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
+      </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_area :other_interesting, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="controls">
+  <% #image_tag @project.picture_url(:thumb).to_s %>
+  <br/><br/>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :picture, "Picture", class: "control-label required" %>
+    <div class="controls">
+      <%= f.file_field :picture %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :url, "Project URL", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :url, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :github_repo, "Github Repo", class: "control-label required" %>
+    <div class="controls">
+      <%= f.text_field :github_repo, class: "input-xlarge" %>
+    </div>
+  </div>
+  <%= f.hidden_field :project_type, value: @project_type %>
+  <%= f.hidden_field :widget_type, value: @widget_type %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
 </div>
+
+
+

@@ -5,7 +5,7 @@
    <div id="logo">
     <!-- <a href="/"><%= image_tag "logo.png" %></a> -->
 
-    <p id="tagline"><h1 style="color:#666; font-size: 35px; font-weight:bold"><i><% if controller.controller_name == 'pages' || controller.controller_name == 'projects' %><%= @page.name %><% else %>Display Your Projects<% end %></i></h1></p>
+    <p id="tagline"><h1 style="color:#333; font-size: 35px; font-weight:bold"><i><% if controller.controller_name == 'pages' || controller.controller_name == 'projects' %><%= @page.name %><% else %>Display Your Projects<% end %></i></h1></p>
 
     <!-- END #logo -->
     </div>
@@ -83,8 +83,8 @@
     <div class="line"></div>
 </div>            
 <% end %>
-
-<a href="/"><%= image_tag "logo-hi-res.png" %></a><br/><br/>
+<a class="brand" style="font-size:20px; color:#111">Mycelial</a>
+<br/><br/>
 
 <!-- BEGIN #back-to-top -->
 <div id="back-to-top">

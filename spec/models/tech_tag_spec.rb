@@ -12,6 +12,5 @@ end
 #  updated_at :datetime        not null
 #  name       :string(255)
 #  picture    :string(255)
-#  project_id :integer
 #
 

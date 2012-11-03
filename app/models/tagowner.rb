@@ -1,6 +1,7 @@
 class Tagowner < ActiveRecord::Base
+	#has_many :tech_tags
+	belongs_to :tech_tag
   belongs_to :project
-  belongs_to :tech_tag
 end
 # == Schema Information
 #

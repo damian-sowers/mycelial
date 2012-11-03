@@ -185,7 +185,7 @@ $.TokenList = function (input, url_or_data, settings) {
     var input_val;
 
     // Create a new text input an attach keyup events
-    var input_box = $("<input type=\"text\"  autocomplete=\"off\">")
+    var input_box = $("<input type=\"text\" autocomplete=\"off\">")
         .css({
             outline: "none"
         })
@@ -631,6 +631,7 @@ $.TokenList = function (input, url_or_data, settings) {
         dropdown
             .css({
                 position: "absolute",
+                //used to be outerHeight()
                 top: $(token_list).offset().top + $(token_list).innerHeight(),
                 left: $(token_list).offset().left,
                 zindex: 999

@@ -3,7 +3,7 @@
   <h2 style="color:#777">Add a project to your page:</h2>
   <p>Fill in the fields below.</p>
   <hr>
-  <%= form_for(@project, :html => { :class => "form-horizontal" } ) do |f| %>
+  <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true ) do |f| %>
   <div class="control-group">
     <%= f.label :project_name,  class: "control-label required" %>
     <div class="controls">
@@ -14,34 +14,28 @@
   <div class="control-group">
     <%= f.label :short_description, "Short description", class: "control-label required" %>
     <div class="controls">
-      <%= f.text_area :short_description, :cols => 80, :rows => 3%>
+      <%= f.text_area :short_description, class: "input-xlarge" %>
     </div>
   </div>
 
   <div class="control-group">
     <%= f.label :long_description, "Long Description", class: "control-label required" %>
     <div class="controls">
-      <%= f.text_area :long_description, :cols => 80, :rows => 8%>
+      <%= f.text_area :long_description, class: "input-xlarge" %>
     </div>
   </div>
 
   <div class="control-group">
-      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)" %>
+      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label required" %>
       <div class="controls">
         <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
       </div>
   </div>
-  <!-- <div class="control-group">
-    <%= f.label :main_language, "Main Language (e.g Ruby, Python)", class: "control-label required" %>
-    <div class="controls">
-      <%= f.text_field :main_language, class: "input-xlarge" %>
-    </div>
-  </div> -->
 
   <div class="control-group">
     <%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
     <div class="controls">
-      <%= f.text_area :other_interesting, :cols => 80, :rows => 8%>
+      <%= f.text_area :other_interesting, class: "input-xlarge" %>
     </div>
   </div>
 

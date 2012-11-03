@@ -1,0 +1,35 @@
+<div id="project_area">
+	<div class="page mycelial_page">
+		<%= render 'layouts/span8_well' %>
+		<div class="mycelial-page-header">
+			<h2 class="mycelial-page-title">Select a Project Type:</h2>
+			<span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+		</div>
+		<!--BEGIN .entry-content -->
+		<div class="entry-content">
+			<div class="row" style="padding-left:15px; padding-bottom:20px;">
+				<%= link_to(image_tag("code.png"), project_type_projects_path + "/1", class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				%> 
+				<h2><%= link_to "Programming Project", project_type_projects_path + "/1", :remote => true , :update => { :success => "project_area" } %></h2>
+				<p>Web app, Desktop software, open source, or anything programming related</p>
+			</div>
+
+			<div class="row" style="padding-left:15px; padding-bottom:20px;">
+				<%= link_to(image_tag("blog.png"), project_type_projects_path + "/2", class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				%> 
+				<h2><%= link_to "Blog Post", project_type_projects_path + "/2", :remote => true , :update => { :success => "project_area" } %></h2>
+				<p>Web app, Desktop software, open source, or anything programming related</p>
+			</div>
+
+			<div class="row" style="padding-left:15px;">
+				<%= link_to(image_tag("other.png"), project_type_projects_path + "/3", class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				%> 
+				<h2><%= link_to "Other", project_type_projects_path + "/3", :remote => true , :update => { :success => "project_area" } %></h2>
+				<p>Web app, Desktop software, open source, or anything programming related</p>
+			</div>
+		</div>
+	</div>
+</div>

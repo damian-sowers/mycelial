@@ -1,5 +1,9 @@
-  <div class="hentry page mycelial_page">
+  <div class="page mycelial_page">
   <%= render 'layouts/span8_well' %>
+  <div class="mycelial-page-header">
+  <h2 class="mycelial-page-title">Edit Your Page</h2>
+  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
     <%= render 'shared/errors', :target => @page %>
     <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
     <div class="control-group">
@@ -40,7 +44,7 @@
     <div class="control-group">
       <%= f.label :about_text, "A Litte About Me", class: "control-label required" %>
       <div class="controls">
-        <%= f.text_area :about_text, :cols => 80, :rows => 8%>
+        <%= f.text_area :about_text, class: "input-xlarge" %>
       </div>
     </div>
 
@@ -70,7 +74,7 @@
     <% else %>
     <div class="row">
     <div style="float:right">
-      <a href="/projects/new" class="button orange">Add another project</a>
+      <a href="/projects/new_project" class="button orange">Add another project</a>
     </div>
     <div class="span6">
     <h2>Your Projects</h2>

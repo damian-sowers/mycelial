@@ -1,10 +1,13 @@
 <!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
 <div class="page mycelial_page">
   <%= render 'layouts/span8_well' %>
-    <%= render 'shared/errors', :target => @project %>
-    <h1 style="color:#333">Edit this project:</h1>
+  <div class="mycelial-page-header">
+  <h2 class="mycelial-page-title"><%= @project.project_name %></h2>
+  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
     <p>Fill in the fields below.</p>
     <hr>
+    <%= render 'shared/errors', :target => @project %>
     <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
     <div class="control-group">
       <%= f.label :project_name,  class: "control-label required" %>
@@ -28,8 +31,8 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)" %>
-      <div class="controls">
+      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label required" %>
+      <div class="controls tech_tags">
           <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
       </div>
     </div>
@@ -37,7 +40,7 @@
     <div class="control-group">
       <%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
       <div class="controls">
-        <%= f.text_area :other_interesting, :cols => 80, :rows => 8, class: "input-xlarge"%>
+        <%= f.text_area :other_interesting, :cols => 80, :rows => 8, class: "input-xlarge" %>
       </div>
     </div>
 

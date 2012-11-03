@@ -1,0 +1,15 @@
+<div class="well">
+	<%= render 'shared/errors', :target => @project %>
+	<h2 style="color:#777">Edit this area:</h2>
+	<hr>
+	<%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
+
+	<div class="control-group">
+		<%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
+		<div class="controls">
+			<%= f.text_area :other_interesting, :cols => 80, :rows => 5, class: "input-xlarge"  %>
+		</div>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+</div>

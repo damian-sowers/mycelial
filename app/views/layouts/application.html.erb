@@ -3,11 +3,14 @@
 <head>
   <title>Mycelial</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Signika:400,600' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <% if !controller?('home')  %>
 
   <!-- BEGIN #container -->
   <div id="container" class="clearfix js-disabled">
@@ -38,5 +41,10 @@
       </div>
     </div>
   </div>
+
+  <% else %>
+    <%= yield %>
+  <% end %>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 class TechTag < ActiveRecord::Base
   attr_accessible :name
   has_many :tagowners
-  has_many :projects, through: :tagowners
+  #has_many :projects, through: :tagowners
 
 
 	def self.tokens(query)
@@ -29,6 +29,5 @@ end
 #  updated_at :datetime        not null
 #  name       :string(255)
 #  picture    :string(255)
-#  project_id :integer
 #
 

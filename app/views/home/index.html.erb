@@ -1,10 +1,51 @@
-<div class="span9 well">
-<div class="center hero-unit">
-  <h1 style="font-size:80px; color:#777; font-weight:bold">Mycelial</h1>
-
-  <h2>
-    Code is art. Display your work. 
-  </h2>
-
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">Mycelial</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav pull-right">
+					<li class="active"><a href="#">Register</a></li>
+					<li><a href="#about">Login</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
 </div>
+<div class="container">
+	<div class="title_text" style="margin-top:90px">
+		<h1>One Place for All of Your Projects</h1>
+		<p>A Portfolio for a <span class="orange-text">Hacker's</span> Life</p>
+		<br/>
+		<%= image_tag "landing-pic.png" %>
+	</div>
 </div>
+<div class="middle-landing" style="background-color:#fff; margin-top:-70px; border-top:1px solid #ddd; border-bottom:1px solid #ddd;">
+	<div class="container">
+		<div class="center">
+			<br/>
+			<% flash.each do |key, value| %>
+        <div class="well alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+			<a href="/pages/dsowers" class="btn btn-large btn-warning landing-btns">View the Demo Page</a> <a href="/users/sign_up" class="btn btn-large btn-info landing-btns">Build Your Page</a>
+			<%= image_tag "divider.png" %>
+			<h3 style="padding-bottom:20px;"><i>Post your Rails apps, blog posts, homemade telescopes and anything else that shows the <span class="orange-text">real you</span></i>.</h3>
+			<%= image_tag "bottom-divider.png" %>
+		</div>
+		<div class="anatomy">
+			<h3>Why use Mycelial?</h3>
+			<p> There are plenty of sites which allow us to share our code, designs and writing, but there was nothing that consolidates all of a hacker's projects into one portfolio. You can now display <b><i>all</i></b> of your interests and accomplishments with a Mycelial page. <br/>(much better than a resume for people who get stuff done)
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
+		<div class="container" style="margin-bottom:15px">
+			<div class="center">
+			Built by <a href="" style="color:#111">Damian Sowers</a> in Lake Tahoe. Copyright 2012. All Rights Reserved.
+			</div>
+		</div>

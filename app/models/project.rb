@@ -20,8 +20,11 @@ class Project < ActiveRecord::Base
   validates :project_name, presence: 	true,
                            :length => { :maximum => 50 }
   validates :short_description, :length => { :maximum => 500 }
-  validates_format_of :url, :with => URI::regexp(%w(http https))
-  validates_format_of :github_repo, :with => URI::regexp(%w(http https))
+   
+  #might need to fix these url validators. Can't use them until they can accept blank entries 
+  #validates_format_of :url, :with => URI::regexp(%w(http https)) 
+  #validates_format_of :github_repo, :with => URI::regexp(%w(http https))
+  
 
   # def crop_avatar
   # 	picture.recreate_versions! if crop_x.present?

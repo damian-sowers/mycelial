@@ -1,0 +1,22 @@
+<div class="well">
+	<%= render 'shared/errors', :target => @project %>
+	<h2 style="color:#777">Edit this area:</h2>
+	<hr>
+	<%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
+
+	<div class="control-group">
+		<%= f.label :url, "Project Link", class: "control-label required" %>
+		<div class="controls">
+			<%= f.text_field :url, class: "input-xlarge"  %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label :github_repo, "Github URL", class: "control-label required" %>
+		<div class="controls">
+			<%= f.text_field :github_repo, class: "input-xlarge"  %>
+		</div>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+</div>

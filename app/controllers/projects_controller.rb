@@ -18,6 +18,17 @@ class ProjectsController < ApplicationController
 		#get project owners page data for the sidebar and the right sidebar
 		@page = Page.find(page_id)
 		@user_projects = Project.find_all_by_page_id(page_id)
+		#get the tech tags for this project
+		@tag_ids = Tagowner.find_all_by_project_id(params[:id])
+
+		@tech_tags = Array.new
+		@tag_ids.each do |f|
+			#query for the rows associated with with these ids
+			@tech_tags << TechTag.find(f.tech_tag_id)
+		end
+	end
+
+	def new_project 
 	end
 
 	def new
@@ -42,7 +53,11 @@ class ProjectsController < ApplicationController
 		#going to have to differentiate all the editable fields below. Maybe get the value of the param. 
 		#like edit_block = 'short_description'. try render :partial => '#{params[:edit_block]}'
 		if params[:edit_block]
-			render :partial => "#{params[:edit_block]}"
+			if params[:edit_block] == "tech_tags"
+				render "_tech_tags"
+			else 
+				render :partial => "#{params[:edit_block]}"
+			end
 			# .to_i == 1
 			# render :partial => 'project_type'
 		end
@@ -102,5 +117,4 @@ class ProjectsController < ApplicationController
 				@page = sidebar_data(current_user.id)
 			end
 		end
-
 end

@@ -1,3 +1,19 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tech_tags {
+	position:absolute; 
+	margin-top:10px
+}
+.picture_tags {
+	float:left; 
+	margin-right:15px;
+}
+.generic_tags span {
+	float:left; 
+	margin-right:15px;
+	padding:15px;
+	background-color:#DFEAF4;
+	color:#19558D;
+	border:1px solid #ddd;
+}

@@ -18,6 +18,7 @@ CNN::Application.routes.draw do
     collection do
       get 'project_type'
       get 'project_layout'
+      get 'new_project'
     end
   end
 

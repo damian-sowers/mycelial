@@ -10,18 +10,18 @@
 				</a>
 				
 				<div class="project_blocks">
-					<!-- <div id="short_description"> -->
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/1/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<div id="short_description">
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
 					<p>
 						<b>Summary:</b><br/><br/>
 						<%= @project.short_description %>
 					</p>
-<!-- 					</div> -->
+					</div>
 				</div>
 				<br/>
 				<div class="project_blocks">
 					<div id="long_description">
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/1/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
 					<p>
 						<b>Project Description:</b><br/><br/>
 						<%= @project.long_description %>
@@ -30,28 +30,53 @@
 				</div>
 			</div>
 			<div style="clear:both"></div>
+			<div class="project_blocks">
 			<div class="prog_language" style="margin-bottom:20px;">
+				<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
 				<h3>Main Languages and Technologies:</h3>
-				<%= image_tag "ruby.jpg", style: "margin-right:15px;" %><%= image_tag "rails.jpg", style: "margin-right:15px;" %><%= image_tag "jquery.jpg", style: "margin-right:15px;" %><%= image_tag "postgres.jpg", style: "margin-right:15px;" %><%= image_tag "heroku.jpg", style: "margin-right:15px;" %>
+				<% @tech_tags.each do |t| %>
+					<% if t.picture != nil %>
+						<%= image_tag "tech_tags/#{t.picture.to_s}", class: "picture_tags" %>
+					<% else %>
+						<div class="generic_tags"><span><%= t.name %></span></div>
+					<% end %>
+				<% end %>
+			</div>
+			<div style="clear:both"></div>
 			</div>
 			<hr>
 			<% if !@project.other_interesting.empty? %>
-			<div class="other_interesting">
-				<h3>Other Interesting Things About This Project:</h3>
+			<div class="project_blocks">
+				<div class="other_interesting">
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
+					</div>
+					<h3>Other Interesting Things About This Project:</h3>
 
-				<p style="font-size:14px;">
-					<%= @project.other_interesting %>
-				</p>
+					<p style="font-size:14px;">
+						<%= @project.other_interesting %>
+					</p>
+				</div>
 			</div>
 			<hr>
 			<% end %>
-			<div class="project_url">
-				<h3>Project Link: <a href="#">http://www.mycelial.com</a></h3>
+			<% unless @project.url.empty? and @project.github_repo.empty? %>
+			<div class="project_blocks">
+				<div class="project_links">
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
+					</div>
+					<% unless @project.url.empty? %>
+						<div class="project_url">
+							<h3>Vist This Project: <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></h3>
+						</div>
+					<% end %>
+					<% unless @project.github_repo.empty? %>
+						<div class="github_link">
+							<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><h3>Check it out on Github: <br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></h3>
+						</div>
+					<% end %>
+				</div>
 			</div>
-
-			<div class="github_link">
-				<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><h3>Check it out on Github: <br/><a href="#">http://www.mycelial.com</a></h3>
-			</div>
+			<% end %>
 		</div>
 	</div>
 	<div class="mycelial_sidebar">
