@@ -9,6 +9,7 @@ CNN::Application.routes.draw do
 
   resources :pages
   resources :tech_tags
+  resources :comments
 
   match "/projects/project_type/:id" => "projects#project_type"
   match "/projects/project_layout" => "projects#project_layout"

@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   belongs_to :page
   has_many :tagowners
   has_many :tech_tags, through: :tagowners
+  has_many :comments
   attr_reader :tech_tag_tokens
   #accepts_nested_attributes_for :tech_tags
   #carrierwave image uploader below
