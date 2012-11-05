@@ -1,7 +1,19 @@
-  <%= render 'layouts/span8_well' %>
-    <h2>Sign up</h2>
+<div class="theme-orange">
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= render 'home/shared/header' %>
+
+  <div id='content' role='main'>
+    <section class='section' id='section-inner'>
+    <div class='container'>
+      <header class='page-header'>
+        <h1>
+          Sign &nbsp;up &nbsp;in &nbsp;a &nbsp;flash
+        </h1>
+        <span style="font-size:18px">Build your page</span>
+      </header>
+      <div class="pull-center">
+      <div class="well span5 offset3"> 
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
 
       <div><label><%= f.label :username %></label>
@@ -17,7 +29,14 @@
       <%= f.password_field :password_confirmation %></div>
 
       <div><%= f.submit "Sign up", class: "btn btn-info" %></div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+     </div>
+    </div>
+    </div>
+    <div class='bg-2'></div>
+    </section>
   </div>
+</div>
+
+  

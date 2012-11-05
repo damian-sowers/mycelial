@@ -1,0 +1,51 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
+.theme-orange {
+	h1, h2, h3, h4, h5, h6, .navbar .brand {
+		font-family: 'Oswald', sans-serif;
+  	text-transform: uppercase;
+  	font-weight: 700;
+	}
+	p  {
+		font-family: 'Open Sans', sans-serif;
+	}
+	h1 {
+  	font-size: 36px;
+  	line-height: 40px; 
+	}
+
+	h2 {
+	  font-size: 30px;
+	  line-height: 40px; }
+
+	h3 {
+	  font-size: 24px;
+	  line-height: 40px; }
+
+	h4 {
+	  font-size: 18px;
+	  line-height: 20px; }
+
+	h5 {
+	  font-size: 14px;
+	  line-height: 20px; }
+
+	h6 {
+	  font-size: 12px;
+	  line-height: 20px; }
+
+	h1 small {
+	  font-size: 20px; }
+
+	h2 small {
+	  font-size: 18px; }
+
+	h3 small {
+	  font-size: 14px; }
+
+	h4 small {
+	  font-size: 14px; }
+}
+

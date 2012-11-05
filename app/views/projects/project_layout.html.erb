@@ -1,3 +1,4 @@
+<%= render 'layouts/opening_divs' %>
 <!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
 <%= render 'layouts/span8_well' %>
   <h2 style="color:#777">Add a project to your page:</h2>
@@ -69,6 +70,5 @@
   <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>
-
-
+<%= render 'layouts/closing_divs' %>
 

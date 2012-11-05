@@ -3,48 +3,11 @@
 <head>
   <title>Mycelial</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <link href='http://fonts.googleapis.com/css?family=Signika:400,600' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <% if !controller?('home')  %>
-
-  <!-- BEGIN #container -->
-  <div id="container" class="clearfix js-disabled">
-
-    <!--BEGIN #content -->
-    <div id="content">
-
-      <%= render 'layouts/widget_overlay' %>
-
-      <%= render 'layouts/sidebar' %>
-      
-      <!--BEGIN #primary .hfeed-->
-      <div id="primary" class="hfeed">
-        <!--BEGIN #masonry-->
-        <div id="masonry">
-
-          <% if controller?('pages') && action?('show') %>
-            <%= yield %>
-          <% else %>
-            <!-- inner white page box for all pages other than homepage and show page -->
-              <% flash.each do |key, value| %>
-                <div class="span8 well alert alert-<%= key %>"><%= value %></div>
-              <% end %>
-              <%= yield %>
-          <% end %>
-        </div>
-        <% #render 'layouts/footer' %>
-      </div>
-    </div>
-  </div>
-
-  <% else %>
     <%= yield %>
-  <% end %>
-
 </body>
 </html>
