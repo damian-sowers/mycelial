@@ -23,27 +23,27 @@
 
             <div>
               <label><%= f.label :email %></label>
-                <%= f.email_field :email %>
+              <%= f.email_field :email %>
             </div>
 
             <div><label><%= f.label :password %></label>
-                  <%= f.password_field :password %>
+              <%= f.password_field :password %>
             </div>
 
             <div><label><%= f.label :password_confirmation %></label>
-                    <%= f.password_field :password_confirmation %>
+              <%= f.password_field :password_confirmation %>
             </div>
 
             <div><%= f.submit "Sign up", class: "btn btn-info" %>
             </div>
-                    <% end %>
-                    <span>Already have an account?</span>
-                    <%= render "devise/shared/links" %>
-                  </div>
-                </div>
-              </div>
-              <div class='bg-2'></div>
-            </section>
+            <% end %>
+            <span>Already have an account?</span>
+            <%= render "devise/shared/links" %>
           </div>
         </div>
+      </div>
+      <div class='bg-2'></div>
+    </section>
+  </div>
+</div>
 

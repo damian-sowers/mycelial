@@ -12,7 +12,9 @@
 				
 				<div class="project_blocks">
 					<div id="short_description">
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<% if @page_owner == 1 %>
+						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<% end %>
 					<p>
 						<b>Summary:</b><br/><br/>
 						<%= @project.short_description %>
@@ -22,7 +24,9 @@
 				<br/>
 				<div class="project_blocks">
 					<div id="long_description">
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+					<% if @page_owner == 1 %>
+						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+					<% end %>
 					<p>
 						<b>Project Description:</b><br/><br/>
 						<%= @project.long_description %>
@@ -33,8 +37,10 @@
 			<div style="clear:both"></div>
 			<div class="project_blocks">
 			<div class="prog_language" style="margin-bottom:20px;">
-				<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
-				<h3>Main Languages and Technologies:</h3>
+				<% if @page_owner == 1 %>
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
+				<% end %>
+				<p><b>Main Languages and Technologies</b><br/></p>
 				<% @tech_tags.each do |t| %>
 					<% if t.picture != nil %>
 						<%= image_tag "tech_tags/#{t.picture.to_s}", class: "picture_tags" %>
@@ -49,11 +55,11 @@
 			<% if !@project.other_interesting.empty? %>
 			<div class="project_blocks">
 				<div class="other_interesting">
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
-					</div>
-					<h3>Other Interesting Things About This Project:</h3>
-
-					<p style="font-size:14px;">
+					<% if @page_owner == 1 %>
+						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
+						</div>
+					<% end %>
+					<p><b>Other Interesting Things About This Project:</b><br/><br/>
 						<%= @project.other_interesting %>
 					</p>
 				</div>
@@ -63,16 +69,18 @@
 			<% unless @project.url.empty? and @project.github_repo.empty? %>
 			<div class="project_blocks">
 				<div class="project_links">
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
-					</div>
+					<% if @page_owner == 1 %>
+						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
+						</div>
+					<% end %>
 					<% unless @project.url.empty? %>
 						<div class="project_url">
-							<h3>Vist This Project: <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></h3>
+							<p><b>Vist This Project:</b> <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></p>
 						</div>
 					<% end %>
 					<% unless @project.github_repo.empty? %>
 						<div class="github_link">
-							<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><h3>Check it out on Github: <br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></h3>
+							<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><p><b>Check it out on Github:</b><br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></p>
 						</div>
 					<% end %>
 				</div>
@@ -80,6 +88,9 @@
 			<% end %>
 		</div>
 	</div>
+	<br/>	
+	<br/>
+	
 	<div class="mycelial_sidebar">
 		<b>Back to All Projects?</b>       
 		<br/><br/>
@@ -98,4 +109,25 @@
     <a href="/projects/new" class="button orange">Like This Project</a>
     <a href="/projects/new" class="button navy">Add a Comment</a>
 	</div>
+
+	<div class="mycelial_page page">
+     
+      <img alt="" src="http://0.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=35&amp;d=&amp;r=G" class="avatar avatar-35 photo" height="35" width="35">      
+      <div class="comment-author vcard">
+         Jules 
+		       </div>
+
+      <div class="comment-meta commentmetadata">
+	  	May 25, 2011 at 12:20 pm		 · 
+		<a class="comment-reply-link" href="/gridlocked/party-party/?replytocom=191#respond" onclick="return addComment.moveForm(&quot;comment-191&quot;, &quot;191&quot;, &quot;respond&quot;, &quot;365&quot;)">Reply</a>      </div>
+      
+      <div class="comment-inner">
+      
+	  	  
+   		<p>Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus.</p>
+        
+      </div>
+      
+     </div>
+
 <%= render 'layouts/closing_divs' %>
