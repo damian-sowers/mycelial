@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
 			@tech_tags << TechTag.find(f.tech_tag_id)
 		end
 		@page_owner = page_owner()
+		@comments = Comment.find_all_by_project_id(params[:id])
 	end
 
 	def new_project 
@@ -55,8 +56,9 @@ class ProjectsController < ApplicationController
 		#like edit_block = 'short_description'. try render :partial => '#{params[:edit_block]}'
 		if params[:edit_block]
 			if params[:edit_block] == "tech_tags"
-				render "_tech_tags"
+				render "tech_tags"
 			else 
+				#render partial doesn't load the head css data, etc...
 				render :partial => "#{params[:edit_block]}"
 			end
 			# .to_i == 1

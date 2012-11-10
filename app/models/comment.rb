@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :project_id, :user_id, :comment
   belongs_to :project
 end
 # == Schema Information

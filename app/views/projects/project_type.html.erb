@@ -1,15 +1,34 @@
 <%= render 'layouts/opening_divs' %>
-<div class="hentry page mycelial_page">
-<p>Please select the format of this project:</p>
-<div class="ajax-select">
 <% if @project_type.to_i == 1 
 	 	project_type = 1
 	 elsif @project_type.to_i == 2
 	 	project_type =2
 	 end
-	 #add in the other project types to these numbers. Will need more efficient way of testing. 
 %>
-<%= link_to "Picture Widget", project_layout_projects_path + "?project_type=#{project_type}&widget_type=1", :remote => true, :update => { :success => "project_area" } %>
-</div>
+<div class="page mycelial_page">
+		<%= render 'layouts/span8_well' %>
+		<div class="mycelial-page-header">
+			<h2 class="mycelial-page-title">Select a Widget Type:</h2>
+			<span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+		</div>
+		<!--BEGIN .entry-content -->
+		<div class="entry-content">
+			<div class="row" style="padding-left:15px; padding-bottom:20px;">
+				<%= link_to(image_tag("picture_widget.png"), "/projects/new" + "?project_type=#{project_type}&widget_type=1", class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
+				%> 
+				<h2><%= link_to "Picture Widget", "/projects/new" + "?project_type=#{project_type}&widget_type=1" %></h2>
+				<p>Upload and display a nice picture for your project</p>
+			</div>
+
+			<div class="row" style="padding-left:15px; padding-bottom:20px;">
+				<%= link_to(image_tag("text_widget.png"), "/projects/new" + "?project_type=#{project_type}&widget_type=2", class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
+				%> 
+				<h2><%= link_to "Text Widget", "/projects/new" + "?project_type=#{project_type}&widget_type=2" %></h2>
+				<p>A widget with no picture. Just a text title at the top.</p>
+			</div>
+		</div>
+	</div>
 </div>
 <%= render 'layouts/closing_divs' %>
