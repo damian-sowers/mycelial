@@ -1,0 +1,23 @@
+<%= render 'layouts/opening_divs' %>
+<!-- Different form fields will be displayed based on project_type and widget_type. Insert these vars into the db as well, in the controller -->
+<div class="page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+  <div class="mycelial-page-header">
+	  <h2 class="mycelial-page-title">Edit your comment</h2>
+	  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
+  <%= render 'shared/errors', :target => @comment %>
+	<%= form_for(@comment, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
+
+	<div class="control-group">
+		<%= f.label :comment, "Comment", class: "control-label required" %>
+		<div class="controls">
+			<%= f.text_area :comment, class: "input-xlarge"  %>
+		</div>
+	</div>
+	<%= f.hidden_field :parent_id %>
+	<%= f.hidden_field :project_id, value: @project_id %>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+</div>
+<%= render 'layouts/closing_divs' %>

@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :project_id, :user_id, :comment
+  attr_accessible :project_id, :user_id, :comment, :parent_id
   belongs_to :project
+  has_ancestry
 end
 # == Schema Information
 #

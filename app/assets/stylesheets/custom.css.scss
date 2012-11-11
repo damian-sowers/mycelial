@@ -3870,6 +3870,20 @@ legend + .control-group {
         box-shadow:0 2px 1px rgba(0, 0, 0, 0.10);
   padding-top:10px;
 }
+.comment_box {
+  position: relative;
+  width:100%;
+  margin: 0 20px 20px 10px;
+  float: left;
+  background-color:#ffffff;
+  -webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
+     -moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.10);
+        box-shadow:0 2px 1px rgba(0, 0, 0, 0.10);
+  padding-top:10px;
+}
+.center_column_area {
+  width:730px;
+}
 .mycelial_page p {
   font-size:14px;
 }

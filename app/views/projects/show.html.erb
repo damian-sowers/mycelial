@@ -109,26 +109,12 @@
     <a href="/projects/new" class="button orange">Like This Project</a>
     <%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox button navy", :remote => true %>
 	</div>
-	
+
 	<div class="comments_area">
 		<% if @comments %>
-			<% @comments.each do |c| %>
-				<div class="mycelial_page page">
-					<img alt="" src="http://0.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=35&amp;d=&amp;r=G" class="avatar avatar-35 photo" height="35" width="35">      
-					<div class="comment-author vcard">
-						<%= c.user_id %>
-					</div>
-
-					<div class="comment-meta commentmetadata">
-						<%= c.created_at %>		 · 
-						<a class="comment-reply-link" href="/gridlocked/party-party/?replytocom=191#respond" onclick="return addComment.moveForm(&quot;comment-191&quot;, &quot;191&quot;, &quot;respond&quot;, &quot;365&quot;)">Reply</a>      
-					</div>
-
-					<div class="comment-inner">
-						<p><%= c.comment %></p>
-					</div>
-			  </div>
-			<% end %>
+			<div class="center_column_area">
+				<%= nested_comments @comments %>
+			</div>
 		<% end %>
 	</div>
 

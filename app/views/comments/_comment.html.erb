@@ -1,0 +1,19 @@
+<div class="comment_box">
+	<img alt="" src="http://0.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=35&amp;d=&amp;r=G" class="avatar avatar-35 photo" height="35" width="35">      
+	<div class="comment-author vcard">
+		<%= comment.user_id %>
+	</div>
+
+	<div class="comment-meta commentmetadata">
+		<%= comment.created_at %>		 · 
+		<%= link_to "Reply", "/comments/new?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>    
+		<% if user_signed_in? && comment.user_id == current_user.id %>
+			<%= link_to "Edit Your Comment", "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
+			<%= link_to "Delete Your Comment", "/comments/#{comment.id}", method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } %>  
+		<% end %>
+	</div>
+
+	<div class="comment-inner">
+		<p><%= comment.comment %></p>
+	</div>
+</div>

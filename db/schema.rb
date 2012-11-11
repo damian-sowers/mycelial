@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121103191910) do
+ActiveRecord::Schema.define(:version => 20121110235048) do
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(:version => 20121103191910) do
     t.integer  "project_id"
     t.integer  "user_id"
     t.text     "comment"
+    t.string   "ancestry"
   end
+
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
 
   create_table "pages", :force => true do |t|
     t.datetime "created_at",        :null => false

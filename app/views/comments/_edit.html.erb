@@ -1,6 +1,6 @@
 <div class="well">
 <%= render 'shared/errors', :target => @comment %>
-<h2 style="color:#777">Add a new comment</h2>
+<h2 style="color:#777">Edit your comment</h2>
 <hr>
 <%= form_for(@comment, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
 
@@ -11,7 +11,7 @@
 	</div>
 </div>
 <%= f.hidden_field :parent_id %>
-<%= f.hidden_field :project_id, value: @project_id %>
+<%= f.hidden_field :project_id %>
 <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
 </div>

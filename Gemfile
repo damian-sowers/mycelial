@@ -31,6 +31,7 @@ gem "fog", "~> 1.3.1"
 gem 'redis'
 gem 'redis-namespace'
 gem 'client_side_validations'
+gem 'ancestry'
 
 group :test do
   gem 'capybara', '1.1.2'

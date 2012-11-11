@@ -26,8 +26,9 @@ class ProjectsController < ApplicationController
 			#query for the rows associated with with these ids
 			@tech_tags << TechTag.find(f.tech_tag_id)
 		end
+		#show edit blocks on hover if page_owner == 1
 		@page_owner = page_owner()
-		@comments = Comment.find_all_by_project_id(params[:id])
+		@comments = Project.find(params[:id]).comments.arrange(:order => :created_at)
 	end
 
 	def new_project 
