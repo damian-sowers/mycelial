@@ -1,19 +1,32 @@
 <div class="comment_box">
-	<img alt="" src="http://0.gravatar.com/avatar/4f64c9f81bb0d4ee969aaf7b4a5a6f40?s=35&amp;d=&amp;r=G" class="avatar avatar-35 photo" height="35" width="35">      
-	<div class="comment-author vcard">
-		<%= comment.user_id %>
-	</div>
+	<div style="padding:15px">
+		<div style="float:left; margin-right:15px;">
+		<%= image_tag @page.image_url(:thumb).to_s %>     
+		</div>
 
-	<div class="comment-meta commentmetadata">
-		<%= comment.created_at %>		 · 
-		<%= link_to "Reply", "/comments/new?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>    
-		<% if user_signed_in? && comment.user_id == current_user.id %>
-			<%= link_to "Edit Your Comment", "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
-			<%= link_to "Delete Your Comment", "/comments/#{comment.id}", method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } %>  
-		<% end %>
-	</div>
+		<div class="comment-top-data">
+			<%= comment.created_at.to_s.slice(0, 10) %>		 · 
+			<strong>
+				<% if user_signed_in? %>
+					<%= link_to "Reply", "/comments/new?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox comment_links", :remote => true %>
+				<% else %>
+					<%= link_to "Reply", new_user_session_path, class: "comment_links" %>
+				<% end %>
+			</strong>
+			<% if user_signed_in? %>
+				<div style="float:right">
+				<% if comment.user_id == current_user.id %>
+					<%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
+				<% end %>
+				<% if @page_owner == 1 && comment.user_id != current_user.id %>
+					<%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %> 
+				<% end %>
+				</div>
+			<% end %>
+		</div>
 
-	<div class="comment-inner">
-		<p><%= comment.comment %></p>
+		<div class="comment_body">
+			<p><%= comment.comment %></p>
+		</div>
 	</div>
 </div>

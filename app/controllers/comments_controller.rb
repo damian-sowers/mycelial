@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
 	def edit
 		@comment = Comment.find(params[:id])
-		
+		@page_owner = page_owner()
 		render :partial => "edit"
 	end
 
@@ -41,6 +41,10 @@ class CommentsController < ApplicationController
     else 
       render 'edit'
     end
+	end
+
+	def pencil
+		render :partial => "pencil"
 	end
 
 	def destroy
@@ -65,42 +69,7 @@ class CommentsController < ApplicationController
 
 	private
 
-		def current_user?(user)
-			if user_signed_in?
-				user.id == current_user.id
-			end
-		end
-
-    def correct_user
-    	@user = get_user()
-    	if @user
-      	redirect_to(root_path) unless current_user?(@user)
-      else 
-      	redirect_to(root_path)
-      end
-    end
-
-    def page_owner
-    	@user = get_user()
-    	if @user 
-    		if current_user?(@user)
-      		@page_owner = 1
-      	else 
-      		@page_owner = 0
-      	end
-      else 
-      	@page_owner = 0
-      end
-    end
-
     def get_user
     	@user = Comment.find(params[:id]).project.page.user
     end
-
-    #only call this for the signed in methods. When they are editing their projects. sidebar_data is in a module.
-		def get_sidebar_info
-			if user_signed_in?
-				@page = sidebar_data(current_user.id)
-			end
-		end
 end

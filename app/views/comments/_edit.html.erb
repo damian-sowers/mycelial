@@ -1,17 +1,23 @@
 <div class="well">
-<%= render 'shared/errors', :target => @comment %>
-<h2 style="color:#777">Edit your comment</h2>
-<hr>
-<%= form_for(@comment, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
+<% if @page_owner == 1 && @comment.user_id != current_user.id %>
+	<%= link_to "Delete this Comment?", "/comments/#{@comment.id}", method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } %> 
+<% else %>
+	<%= render 'shared/errors', :target => @comment %>
+	<h2 style="color:#777">Edit your comment</h2>
+	<hr>
+	<%= form_for(@comment, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
 
-<div class="control-group">
-	<%= f.label :comment, "Comment", class: "control-label required" %>
-	<div class="controls">
-		<%= f.text_area :comment, class: "input-xlarge"  %>
+	<div class="control-group">
+		<%= f.label :comment, "Comment", class: "control-label required" %>
+		<div class="controls">
+			<%= f.text_area :comment, class: "input-xlarge"  %>
+		</div>
 	</div>
-</div>
-<%= f.hidden_field :parent_id %>
-<%= f.hidden_field :project_id %>
-<%= f.submit "Submit", class: "btn btn-primary" %>
+	<%= f.hidden_field :parent_id %>
+	<%= f.hidden_field :project_id %>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+	<br/>
+	<%= link_to "Delete Your Comment?", "/comments/#{@comment.id}", method: :delete, data: { confirm: "Are you sure you want to delete this comment?" } %> 
 <% end %>
 </div>

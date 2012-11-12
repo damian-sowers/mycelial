@@ -91,24 +91,7 @@
 	<br/>	
 	<br/>
 	
-	<div class="mycelial_sidebar">
-		<b>Back to All Projects?</b>       
-		<br/><br/>
-		<a href="/projects/new" class="button white">Visit Project Site</a>
-    <br/>
-		More of Damian's Projects:
-		<hr style="padding:0px; margin:0">
-		<% @user_projects.each do |f| %>
-		<div style="padding:5px;">
-			<a href="#"><%= f.project_name %></a>
-		</div>
-		<hr style="margin:0">
-		<% end %>
-
-		<br/>
-    <a href="/projects/new" class="button orange">Like This Project</a>
-    <%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox button navy", :remote => true %>
-	</div>
+	<%= render 'layouts/right_sidebar' %>
 
 	<div class="comments_area">
 		<% if @comments %>

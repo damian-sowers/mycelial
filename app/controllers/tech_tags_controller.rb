@@ -27,12 +27,4 @@ class TechTagsController < ApplicationController
 			redirect to @project
 		end
 	end
-
-	private 
-
-		def get_sidebar_info
-			if user_signed_in?
-				@page = sidebar_data(current_user.id)
-			end
-		end
 end

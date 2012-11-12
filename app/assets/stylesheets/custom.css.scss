@@ -78,9 +78,9 @@ button { font: 12px/20px "Helvetica Neue", Helvetica, Arial, sans-serif; }
   width:100%;
 }
 
-a { text-decoration: none; }
+// a { text-decoration: none; }
 
-a:hover { text-decoration: none; }
+// a:hover { text-decoration: none; }
 
 a img { border: none; }
 
@@ -1997,8 +1997,7 @@ blockquote,
 input,
 textarea,
 .tabs ul.nav li a,
-body,
-a { color: #96999d;}
+body { color: #96999d;}
 
 #tagline {
   color: #7b7d80;
@@ -2013,12 +2012,12 @@ a { color: #96999d;}
 #load-more-link a:hover,
 a:hover { color: #000; }
 
-.comment-body p a,
-.comment-author a:hover,
-.entry-content a,
-.entry-title a:hover {
-  color: #3a3c3d;
-}
+// .comment-body p a,
+// .comment-author a:hover,
+// .entry-content a,
+// .entry-title a:hover {
+//   color: #3a3c3d;
+// }
 
 .widget-title { color: #3a3c3d; }
 
@@ -3974,8 +3973,11 @@ ul .token-input-list-facebook {
   -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 28px;  
 }
 .mycelial_brand {
-font-family: 'Montez', cursive;
-font-size:35px;
-font-weight:normal;
-text-transform:none;
+  font-family: 'Montez', cursive;
+  font-size:35px;
+  font-weight:normal;
+  text-transform:none;
+}
+.comment_links {
+
 }

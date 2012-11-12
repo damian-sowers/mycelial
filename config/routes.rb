@@ -13,6 +13,7 @@ CNN::Application.routes.draw do
 
   match "/projects/project_type/:id" => "projects#project_type"
   match "/projects/project_layout" => "projects#project_layout"
+  match "/comments/pencil" => "comments#pencil"
   
   #need to put these inside of a collection resource to get access to project_type_projects_path variable.
   resources :projects do 

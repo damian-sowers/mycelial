@@ -76,27 +76,11 @@ class PagesController < ApplicationController
 
 	private
 
-		def current_user?(user)
-			user.id == current_user.id
-		end
-
-    def correct_user
-    	@user = Page.find(params[:id]).user
-    	if @user
-      	redirect_to(root_path) unless current_user?(@user)
-      else 
-      	redirect_to(root_path)
-      end
-    end
-
     def is_numeric?(obj) 
    		obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 		end
 
-		#only call this for the signed in methods. When they are editing their page. 
-		def get_sidebar_info
-			if user_signed_in?
-				@page = sidebar_data(current_user.id)
-			end
+		def get_user 
+			@user = Page.find(params[:id]).user
 		end
 end
