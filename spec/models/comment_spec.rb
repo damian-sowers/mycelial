@@ -13,5 +13,7 @@ end
 #  project_id :integer
 #  user_id    :integer
 #  comment    :text
+#  ancestry   :string(255)
+#  username   :string(255)
 #
 

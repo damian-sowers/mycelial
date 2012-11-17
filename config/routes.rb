@@ -9,11 +9,12 @@ CNN::Application.routes.draw do
 
   resources :pages
   resources :tech_tags
-  resources :comments
 
   match "/projects/project_type/:id" => "projects#project_type"
   match "/projects/project_layout" => "projects#project_layout"
-  match "/comments/pencil" => "comments#pencil"
+  match "/comments/loadmore" => "comments#loadmore"
+
+  resources :comments
   
   #need to put these inside of a collection resource to get access to project_type_projects_path variable.
   resources :projects do 

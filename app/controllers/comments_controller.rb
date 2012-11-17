@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
 	def create 
 		@comment = Comment.new(params[:comment])
 		@comment.user_id = current_user.id
+		@comment.username = current_user.username
 		if @comment.save
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
 		else
@@ -43,8 +44,14 @@ class CommentsController < ApplicationController
     end
 	end
 
-	def pencil
-		render :partial => "pencil"
+	def loadmore
+		@project = Project.find(params[:project_id])
+		@page_owner = page_owner()
+		@comments = Project.find(params[:project_id]).comments.arrange(:order => :created_at)
+		respond_to do |format|
+			format.html 
+      format.js { render :layout => false }
+    end
 	end
 
 	def destroy

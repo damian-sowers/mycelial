@@ -11,6 +11,7 @@ group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'pry'
 end
 
 
@@ -32,6 +33,7 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'client_side_validations'
 gem 'ancestry'
+gem 'will_paginate', '~> 3.0.0'
 
 group :test do
   gem 'capybara', '1.1.2'

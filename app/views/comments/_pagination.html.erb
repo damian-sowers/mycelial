@@ -1,0 +1,6 @@
+<div class="comment_box">
+	<div style="padding:15px">
+		<div id="testing"></div>
+		<%= link_to "Load More Comments...", "/comments/loadmore?page=#{page}&project_id=1", :remote => true , :update => { :success => "testing" } %>
+	</div>
+</div>

@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
 	#module below. Inside the /lib folder. Autoloaded in config/application.rb (the whole lib folder. Might want to restrict to just load in the controllers I need)
 	include Mycelial
 
@@ -29,6 +28,9 @@ class ProjectsController < ApplicationController
 		#show edit blocks on hover if page_owner == 1
 		@page_owner = page_owner()
 		@comments = Project.find(params[:id]).comments.arrange(:order => :created_at)
+
+		#can get the total number of comments by counting both the keys and values inside the has
+		#@comments.keys.count + @comment.values.count
 	end
 
 	def new_project 
@@ -105,4 +107,15 @@ class ProjectsController < ApplicationController
 		def get_user
     	@user = Project.find(params[:id]).page.user
     end    
+
+    def count_subarrays array
+		  return 0 unless array && array.is_a?(Array)
+
+		  nested = array.select { |e| e.is_a?(Array) }
+		  if nested.empty?
+		    1 # this is a leaf
+		  else
+		    nested.inject(0) { |sum, ary| sum + count_subarrays(ary) }
+		  end
+		end
 end

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   #this has_many association give me the ability to find all projects of a user just by their user_id. (skip going through page)
   has_many :projects, :through => :page
+
+  has_many :notifications
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
