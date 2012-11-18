@@ -41,6 +41,8 @@ CNN::Application.configure do
 
   require 'pusher'
 
+  require 'will_paginate/array'
+
   Pusher.app_id = 31914
   Pusher.key = 'fc096edc2ecc120b0129'
   Pusher.secret = '8ac310c55e535857bef3'

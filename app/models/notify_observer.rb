@@ -8,6 +8,7 @@ class NotifyObserver < ActiveRecord::Observer
     r.notification_id = model.id
     #put in an if statement to see if model is comment or like
     r.notification_type = "comment"
+    r.viewed = 0
     r.save
   end
 end

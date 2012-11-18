@@ -13,7 +13,8 @@ CNN::Application.routes.draw do
   match "/projects/project_type/:id" => "projects#project_type"
   match "/projects/project_layout" => "projects#project_layout"
   match "/comments/loadmore" => "comments#loadmore"
-   match "/notifications" => "notifications#index"
+  match "/notifications" => "notifications#index"
+  match "/notifications/old" => "notifications#old"
 
   resources :comments
   

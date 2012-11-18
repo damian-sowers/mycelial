@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117202637) do
+ActiveRecord::Schema.define(:version => 20121118180309) do
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20121117202637) do
     t.integer  "receiver_id"
     t.integer  "notification_id"
     t.string   "notification_type"
+    t.integer  "viewed"
   end
 
   create_table "pages", :force => true do |t|

@@ -26,8 +26,17 @@ class CommentsController < ApplicationController
 		@comment.username = current_user.username
 		if @comment.save
 			# Send a Pusher notification
-			data = {'message' => 'New Notification'}
-      Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
+			if @comment.is_root? 
+				data = {'message' => 'New Notification'}
+      	Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
+      else 
+      	#get the parent id of this comment. Fetch the comment record and the comment user_id. Also send a notification to this person. 
+      	parent_id = @comment.parent_id
+      	parent_user_id = Comment.find(parent_id).user_id
+      	data = {'message' => 'New Notification'}
+      	Pusher['private-' + parent_user_id.to_s].trigger('new_comment', data)
+      	Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
+      end
 
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
 		else
