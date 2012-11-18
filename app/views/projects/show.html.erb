@@ -12,7 +12,7 @@
 				
 				<div class="project_blocks">
 					<div id="short_description">
-					<% if @page_owner == 1 %>
+					<% if @page_owner %>
 						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
 					<% end %>
 					<p>
@@ -24,7 +24,7 @@
 				<br/>
 				<div class="project_blocks">
 					<div id="long_description">
-					<% if @page_owner == 1 %>
+					<% if @page_owner %>
 						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
 					<% end %>
 					<p>
@@ -37,7 +37,7 @@
 			<div style="clear:both"></div>
 			<div class="project_blocks">
 			<div class="prog_language" style="margin-bottom:20px;">
-				<% if @page_owner == 1 %>
+				<% if @page_owner %>
 					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
 				<% end %>
 				<p><b>Main Languages and Technologies</b><br/></p>
@@ -55,7 +55,7 @@
 			<% if !@project.other_interesting.empty? %>
 			<div class="project_blocks">
 				<div class="other_interesting">
-					<% if @page_owner == 1 %>
+					<% if @page_owner %>
 						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
 						</div>
 					<% end %>
@@ -69,7 +69,7 @@
 			<% unless @project.url.empty? and @project.github_repo.empty? %>
 			<div class="project_blocks">
 				<div class="project_links">
-					<% if @page_owner == 1 %>
+					<% if @page_owner %>
 						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
 						</div>
 					<% end %>

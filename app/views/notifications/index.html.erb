@@ -1,0 +1,16 @@
+<%= render 'layouts/opening_divs' %>
+  <div class="page mycelial_page">
+	  <%= render 'layouts/span8_well' %>
+	  <div class="mycelial-page-header">
+		  <h2 class="mycelial-page-title">You have new notifications</h2>
+		  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+		  <div class="new_notifications">
+		  	<% @comment_notifications.each do |f| %>
+		  		<a href=""><%= f.username %></a> | <%= time_ago_in_words(f.created_at) %> ago<br/>
+		  		<%= f.comment %>
+		  	<% end %>
+		  </div>
+	  </div>
+	 	</div>
+	</div>
+<%= render 'layouts/closing_divs' %>

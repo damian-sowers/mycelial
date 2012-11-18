@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
 			@tech_tags << TechTag.find(f.tech_tag_id)
 		end
 		#show edit blocks on hover if page_owner == 1
-		@page_owner = page_owner()
+		@page_owner = is_page_owner?(@project.id)
 		@comments = Project.find(params[:id]).comments.arrange(:order => :created_at)
 
 		#can get the total number of comments by counting both the keys and values inside the has

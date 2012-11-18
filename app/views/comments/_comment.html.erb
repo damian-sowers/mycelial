@@ -12,11 +12,8 @@
 			</strong>
 			<% if user_signed_in? %>
 				<div style="float:right">
-				<% if comment.user_id == current_user.id %>
+				<% if comment.user_id == current_user.id or @page_owner %>
 					<%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
-				<% end %>
-				<% if @page_owner == 1 && comment.user_id != current_user.id %>
-					<%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %> 
 				<% end %>
 				</div>
 			<% end %>

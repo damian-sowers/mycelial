@@ -38,4 +38,10 @@ CNN::Application.configure do
   config.assets.debug = true
 
   ENV["REDISTOGO_URL"] = 'redis://0.0.0.0:6379' 
+
+  require 'pusher'
+
+  Pusher.app_id = 31914
+  Pusher.key = 'fc096edc2ecc120b0129'
+  Pusher.secret = '8ac310c55e535857bef3'
 end

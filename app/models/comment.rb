@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   attr_accessible :project_id, :user_id, :comment, :parent_id, :username
   belongs_to :project
+  belongs_to :user
   has_many :notifications
   has_ancestry
 end

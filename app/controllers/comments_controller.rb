@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
 	include Mycelial
 
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:edit, :update, :destroy]
+	before_filter :correct_user, only: [:update]
+	before_filter :owner_of_page?, only: [:destroy]
 	before_filter :get_sidebar_info, except: [:index, :show]
 
 	def show
@@ -17,10 +18,17 @@ class CommentsController < ApplicationController
 	end
 
 	def create 
+		#need to get the user.id for pusher
+		@user_id = Project.find(params[:comment][:project_id]).page.user.id
+
 		@comment = Comment.new(params[:comment])
 		@comment.user_id = current_user.id
 		@comment.username = current_user.username
 		if @comment.save
+			# Send a Pusher notification
+			data = {'message' => 'New Notification'}
+      Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
+
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
 		else
 			flash[:error] = "Something went wrong."
@@ -30,7 +38,7 @@ class CommentsController < ApplicationController
 
 	def edit
 		@comment = Comment.find(params[:id])
-		@page_owner = page_owner()
+		@page_owner = is_page_owner?(params[:project_id])
 		render :partial => "edit"
 	end
 
@@ -75,8 +83,14 @@ class CommentsController < ApplicationController
 	end
 
 	private
-
+		#this method is a problem for the edit function if user who is editing comment not the owner of the page. Need to change. 
     def get_user
-    	@user = Comment.find(params[:id]).project.page.user
+    	@user = Comment.find(params[:id]).user
+    end
+
+    def owner_of_page? 
+    	project_id = Comment.find(params[:id]).project_id
+    	owner_user_id = Project.find(project_id).page.user.id
+    	current_user.id == owner_user_id
     end
 end

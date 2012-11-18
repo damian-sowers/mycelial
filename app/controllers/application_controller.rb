@@ -18,17 +18,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def page_owner
-    	@user = get_user()
-    	if @user 
-    		if current_user?(@user)
-      		@page_owner = 1
-      	else 
-      		@page_owner = 0
-      	end
-      else 
-      	@page_owner = 0
-      end
+    def is_page_owner?(project_id)
+      #first find the user_id that corresponds to this project_id
+      page_user_id = Project.find(project_id).page.user.id
+      #will return true or false
+      page_user_id == current_user.id
     end
 
     def get_sidebar_info

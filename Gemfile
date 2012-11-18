@@ -34,6 +34,7 @@ gem 'redis-namespace'
 gem 'client_side_validations'
 gem 'ancestry'
 gem 'will_paginate', '~> 3.0.0'
+gem 'pusher'
 
 group :test do
   gem 'capybara', '1.1.2'
