@@ -67,17 +67,25 @@
     <div class="menu-type-container">
         <ul id="menu-type" class="menu">
             <% if @page %>
-            <% unless @page.personal_site.empty? or @page.personal_site.nil? %>
+            <% if @page.personal_site %>
+            <% unless @page.personal_site.empty? %>
                 <li style="padding-bottom:10px;"><a href="<%= @page.personal_site %>">My Personal Site</a></li>
             <% end %>
-            <% unless @page.hnusername.empty? or @page.personal_site.nil? %>
+            <% end %>
+            <% if @page.hnusername %>
+            <% unless @page.hnusername.empty? %>
                 <li style="margin-bottom:5px;"><a href="http://news.ycombinator.com/user?id=<%= @page.hnusername %>"><%= image_tag "y18.gif", :size => "16x16" %> Hacker News</a></li>
             <% end %>
-            <% unless @page.github_username.empty? or @page.personal_site.nil? %>
+            <% end %>
+            <% if @page.github_username %>
+            <% unless @page.github_username.empty? %>
                 <li style="margin-bottom:5px;"><a href="https://github.com/<%= @page.github_username %>"><%= image_tag "github.png" %> Github</a></li>
             <% end %>
-            <% unless @page.linkedin_username.empty? or @page.personal_site.nil? %>
+            <% end %>
+            <% if @page.linkedin_username %>
+            <% unless @page.linkedin_username.empty? %>
                 <li style="margin-bottom:5px;"><a href="<%= @page.linkedin_username %>" style="padding-bottom:10px;"><%= image_tag "linkedin.jpeg" %> LinkedIn</a></li>
+            <% end %>
             <% end %>
             <% end %>
         </ul>
