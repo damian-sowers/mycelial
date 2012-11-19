@@ -66,6 +66,7 @@
     <h3 class="widget-title">Also find me on:</h3>
     <div class="menu-type-container">
         <ul id="menu-type" class="menu">
+            <% if @page %>
             <% unless @page.personal_site.empty? %>
                 <li style="padding-bottom:10px;"><a href="<%= @page.personal_site %>">My Personal Site</a></li>
             <% end %>
@@ -77,6 +78,7 @@
             <% end %>
             <% unless @page.linkedin_username.empty? %>
                 <li style="margin-bottom:5px;"><a href="<%= @page.linkedin_username %>" style="padding-bottom:10px;"><%= image_tag "linkedin.jpeg" %> LinkedIn</a></li>
+            <% end %>
             <% end %>
         </ul>
     </div>

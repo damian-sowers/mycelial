@@ -2,7 +2,7 @@
   <div class="page mycelial_page">
 	  <%= render 'layouts/span8_well' %>
 		  <div class="mycelial-page-header">
-			  <h2 class="mycelial-page-title">You have new notifications</h2>
+			  <h2 class="mycelial-page-title">Your Notifications</h2>
 			  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
 		  </div>
 		  <div class="new_notifications">
@@ -26,7 +26,7 @@
 	          	<li><a href="/notifications/old?page=<%= params[:page].to_i - 1 %>">«</a></li>
 	          <% end %>
 	          <% 1.upto(@total_pages) do |i| %>
-	           <li><a href="/notifications/old?page=<%= i %>"><%= i %></a></li>
+	           <li <%= 'class=active' if params[:page].to_i == i %>><a href="/notifications/old?page=<%= i %>"><%= i %></a></li>
 	          <% end %>
 	          <% unless params[:page].to_i == @total_pages %>
 	          	<li><a href="/notifications/old?page=<%= params[:page].to_i + 1 %>">&raquo;</a></li>

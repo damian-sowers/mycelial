@@ -11,6 +11,8 @@ class NotificationsController < ApplicationController
 		new_notifications = Notification.get_new_notifications(current_user.id)
 
 		@new_notifications = []
+		new_ids = []
+
 		new_notifications.each do |f| 
 			#need to build up a new object of all the comments.  
 			if f.notification_type == "comment"
@@ -18,7 +20,15 @@ class NotificationsController < ApplicationController
 				n = Comment.find(f.notification_id)
 				@new_notifications << n
 			end
+
+			if f.notification_type == "like"
+				#do stuff
+			end
+			#now change the viewed column to 1 for these new notifications.
+			f.viewed = 1
+			f.save
 		end
+
 	end
 
 	def old
