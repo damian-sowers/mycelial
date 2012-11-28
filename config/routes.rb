@@ -29,6 +29,8 @@ CNN::Application.routes.draw do
 
   post 'pusher/auth'
 
+  mount Resque::Server, :at => '/resque'
+
   #match ':controller(/:action(/:id))'
 
   # Sample of regular route:

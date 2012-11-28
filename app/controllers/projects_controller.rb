@@ -1,6 +1,4 @@
 class ProjectsController < ApplicationController
-	#module below. Inside the /lib folder. Autoloaded in config/application.rb (the whole lib folder. Might want to restrict to just load in the controllers I need)
-	include Mycelial
 
 	before_filter :authenticate_user!, except: [:show, :index]
 	before_filter :correct_user, only: [:edit, :update]

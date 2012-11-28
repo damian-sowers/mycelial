@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
 
-	include Mycelial
-
 	before_filter :authenticate_user!, except: [:show, :index]
 	before_filter :correct_user, only: [:edit, :update]
 	#get the sidebar data from the session user id for the logged in methods

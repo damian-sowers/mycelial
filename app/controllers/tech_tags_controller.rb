@@ -1,7 +1,5 @@
 class TechTagsController < ApplicationController
 
-	include Mycelial
-
 	before_filter :get_sidebar_info
 
 	def index

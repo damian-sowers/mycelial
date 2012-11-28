@@ -1,5 +1,4 @@
 class NotificationsController < ApplicationController
-	include Mycelial
 
 	before_filter :authenticate_user!
 	# before_filter :correct_user, only: [:update]

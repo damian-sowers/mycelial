@@ -11,8 +11,7 @@
   <%= csrf_meta_tags %>
 
   <% if signed_in? %>
-	  <script type="text/javascript" charset="utf-8">
-	  	// Enable pusher logging - don't include this in production
+	  <script type="text/javascript" charset="utf-8">	
 	  	<% if Rails.env.development? %> 
 	    Pusher.log = function(message) {
 	      if (window.console && window.console.log) window.console.log(message);

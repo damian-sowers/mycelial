@@ -14,3 +14,5 @@
 /log/*.log
 /tmp
 /config/initializers/carrierwave.rb
+/.env
+/Procfile

@@ -1,9 +1,8 @@
 class CommentsController < ApplicationController
-	include Mycelial
 
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:update]
-	before_filter :owner_of_page?, only: [:destroy]
+	before_filter :comment_update_privelidges?, only: [:update]
+	before_filter :comment_destroy_privelidges?, only: [:destroy]
 	before_filter :get_sidebar_info, except: [:index, :show]
 
 	def show
@@ -25,18 +24,8 @@ class CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		@comment.username = current_user.username
 		if @comment.save
-			# Send a Pusher notification
-			if @comment.is_root? 
-				data = {'message' => 'New Notification'}
-      	Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
-      else 
-      	#get the parent id of this comment. Fetch the comment record and the comment user_id. Also send a notification to this person. 
-      	parent_id = @comment.parent_id
-      	parent_user_id = Comment.find(parent_id).user_id
-      	data = {'message' => 'New Notification'}
-      	Pusher['private-' + parent_user_id.to_s].trigger('new_comment', data)
-      	Pusher['private-' + @user_id.to_s].trigger('new_comment', data)
-      end
+			# Send a Pusher notification via a background job
+			Resque.enqueue(CommentNotifier, @user_id)
 
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
 		else
@@ -92,14 +81,31 @@ class CommentsController < ApplicationController
 	end
 
 	private
-		#this method is a problem for the edit function if user who is editing comment not the owner of the page. Need to change. 
-    def get_user
+
+    def get_comment_user
     	@user = Comment.find(params[:id]).user
     end
 
-    def owner_of_page? 
+    def comment_owner? 
+    	@comment_user = get_comment_user()
+    	if @comment_user
+    		current_user?(@comment_user)
+    	else 
+    		return false
+    	end
+    end
+
+    def comment_update_privelidges? 
+    	redirect_to(root_path) unless comment_owner?()
+    end
+
+    def get_project_id_from_comment_id
     	project_id = Comment.find(params[:id]).project_id
-    	owner_user_id = Project.find(project_id).page.user.id
-    	current_user.id == owner_user_id
+    end
+
+    def comment_destroy_privelidges? 
+    	#check to see if author first, then also check to see if user is owner of project. Both give ownership over destroy action.
+    	project_id = get_project_id_from_comment_id()
+    	return false unless is_page_owner?(project_id) or comment_owner?()
     end
 end

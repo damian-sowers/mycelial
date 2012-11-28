@@ -25,34 +25,6 @@
     <div class="menu-main-container">
         <ul id="menu-main" class="menu">
             <li><a href="http://demo.themezilla.com/gridlocked/elements/">About Me</a></li>
-            <% if user_signed_in? %>
-            <li><%= link_to 'Edit Your Page', "/pages/#{@page.id}/edit" %>
-                <% if controller?('devise/registrations') && action?('edit') %>
-                    &rarr;
-                <% end %>
-            </li>
-            <li><%= link_to 'Account', edit_user_registration_path %>
-                <% if controller?('devise/registrations') && action?('edit') %>
-                    &rarr;
-                <% end %>
-            </li>
-            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-            <li id="notify" style="display:none">
-                <br/>
-                <%= link_to(image_tag("star.png", style: "padding-right:5px;"), "/notifications") %><a href="#">New Messages</a>
-            </li>
-          <% else %>
-            <li><%= link_to 'Register', new_user_registration_path %>
-                <% if controller?('devise/registrations') && action?('new') %>
-                    &rarr;
-                <% end %>
-            </li>
-            <li><%= link_to 'Login', new_user_session_path %>
-                <% if controller?('devise/sessions') && action?('new') %>
-                    &rarr;
-                <% end %>
-            </li>
-          <% end %>
         </ul>
     </div>
 </div>
@@ -91,8 +63,41 @@
 </div>    
 <% end %>        
 <% end %>
-<a class="mycelial_brand" style="font-size:30px; font-weight:bold; color:#555">Mycelial</a>
+<a class="mycelial_brand" style="font-size:25px; font-weight:bold; color:#555">Mycelial</a>
 <br/><br/>
+<a href="/">Feed</a><br/>
+<div class="widget">
+    <div class="menu-type-container">
+        <ul id="menu-type" class="menu">
+<% if user_signed_in? %>
+            <li><a href="">Profile</a></li>
+            <li><%= link_to 'Edit Your Page', "/pages/#{@page.id}/edit" %>
+                <% if controller?('devise/registrations') && action?('edit') %>
+                    &rarr;
+                <% end %>
+            </li>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+            <li id="notify" style="display:none">
+                <br/>
+                <%= link_to(image_tag("star.png", style: "padding-right:5px;"), "/notifications") %><a href="#">New Messages</a>
+            </li>
+          <% else %>
+            <li><%= link_to 'Register', new_user_registration_path %>
+                <% if controller?('devise/registrations') && action?('new') %>
+                    &rarr;
+                <% end %>
+            </li>
+            <li><%= link_to 'Login', new_user_session_path %>
+                <% if controller?('devise/sessions') && action?('new') %>
+                    &rarr;
+                <% end %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+</div>
+<a href="/">About & Legal</a><br/>
+<span>Copyright 2012</span><br/><br/>
 
 <!-- BEGIN #back-to-top -->
 <div id="back-to-top">

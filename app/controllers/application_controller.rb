@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
 		def current_user?(user)
 			if user_signed_in?
 				user.id == current_user.id
-			end
+      else 
+        return false
+      end
 		end
 
     def correct_user
@@ -27,7 +29,7 @@ class ApplicationController < ActionController::Base
 
     def get_sidebar_info
 			if user_signed_in?
-				@page = sidebar_data(current_user.id)
+				@page = Page.find_by_user_id(current_user.id)
 			end
 		end
 end
