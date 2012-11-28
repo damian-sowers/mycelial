@@ -1,0 +1,36 @@
+<% if [1,2,3].include? sidebar_number  %>
+  <%= render 'layouts/sidebars/partials/yellow_data' %>
+<% end %>
+
+<%= render 'layouts/sidebars/partials/notification' %>
+
+<div class="widget">
+  <div class="menu-type-container">
+    <ul id="menu-type" class="menu">
+
+      <%= render 'layouts/sidebars/partials/green_data' %>
+
+      <% if [1,2,5].include? sidebar_number  %>
+        <%= render 'layouts/sidebars/partials/blue_data' %>
+      <% end %>
+
+      <% if [4,5].include? sidebar_number %>
+        <%= render 'layouts/sidebars/partials/purple_data' %>
+      <% end %>
+
+      <% if [3,4].include? sidebar_number %>
+        <%= render 'layouts/sidebars/partials/orange_data' %>
+      <% end %>
+
+    </ul>
+  </div>
+</div>
+
+<div class="separator clearfix">
+ <div class="line"></div>
+</div>
+
+
+<%= render 'layouts/sidebars/partials/red_data' %>
+
+<%= render 'layouts/sidebars/partials/to_top' %>

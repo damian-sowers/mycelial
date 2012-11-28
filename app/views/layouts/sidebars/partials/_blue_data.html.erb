@@ -1,0 +1,3 @@
+<li><a href=""><strong>Profile</strong></a></li>
+<li><strong><%= link_to 'Edit Your Page', "/pages/#{@page.id}/edit" %></strong></li>
+<li><strong><%= link_to 'Logout', destroy_user_session_path, method: :delete %></strong></li>

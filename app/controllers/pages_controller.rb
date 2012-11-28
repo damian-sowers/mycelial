@@ -19,11 +19,8 @@ class PagesController < ApplicationController
 
 	def show
 		#need to get the username from users table and fetch appropriate hacker page based on this. 
-		if is_numeric?(params[:id])
-			@page = Page.find(params[:id])
-		else 
-			@page = User.find_by_username(params[:id]).page
-		end
+		@user = User.find_by_username(params[:id])
+		@page = @user.page
 		#get the projects for this page from project model. 
 	end
 

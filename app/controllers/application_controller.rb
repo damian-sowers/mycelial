@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
       #first find the user_id that corresponds to this project_id
       page_user_id = Project.find(project_id).page.user.id
       #will return true or false
-      page_user_id == current_user.id
+      if user_signed_in?
+        page_user_id == current_user.id
+      else 
+        return false
+      end
     end
 
     def get_sidebar_info

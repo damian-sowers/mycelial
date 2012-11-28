@@ -9,12 +9,10 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = Project.find(params[:id])
-		page_id = @project.page_id
-		#need to get the username, the users other projects to list on the right
-		@user_name = Project.find(params[:id]).page.user.username
-		#get project owners page data for the sidebar and the right sidebar
-		@page = Page.find(page_id)
-		@user_projects = Project.find_all_by_page_id(page_id)
+		@page = @project.page
+		@user = @page.user
+		@user_projects = Project.find_all_by_page_id(@page.id)
+
 		#get the tech tags for this project
 		@tag_ids = Tagowner.find_all_by_project_id(params[:id])
 
@@ -25,7 +23,7 @@ class ProjectsController < ApplicationController
 		end
 		#show edit blocks on hover if page_owner == 1
 		@page_owner = is_page_owner?(@project.id)
-		@comments = Project.find(params[:id]).comments.arrange(:order => :created_at)
+		@comments = @project.comments.arrange(:order => :created_at)
 
 		#can get the total number of comments by counting both the keys and values inside the has
 		#@comments.keys.count + @comment.values.count
