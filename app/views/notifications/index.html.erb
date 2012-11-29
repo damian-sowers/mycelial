@@ -2,12 +2,12 @@
   <div class="page mycelial_page">
 	  <%= render 'layouts/span8_well' %>
 		  <div class="mycelial-page-header">
-			  <h2 class="mycelial-page-title">You have new notifications</h2>
+			  <h2 class="mycelial-page-title">You have <% if @new_notifications.count >= 1 %>new<% else %> no new<% end %> notifications</h2>
 			  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
 		  </div>
 		  <div class="new_notifications">
 		  	<% @new_notifications.each do |f| %>
-		  		<% if f.comment %>
+		  		<% if f.methods.include?("comment") %>
 		  			<span class="notifications_meta">
 		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
 		  			</span>
@@ -15,11 +15,13 @@
 		  				<span class="notifications_body">"<%= f.comment %>"</span>
 		  			</div>
 		  		<% else %>
-		  			<!-- put the like notifications code here -->
+		  			<span class="notifications_meta">
+		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> liked your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
+		  			</span>
 		  		<% end %>
 		  		<hr>
 		  	<% end %>
-		  	<a href="/notifications/old">View all of your notifications</a>
+		  	<a href="/notifications/old" class="button orange">View all of your old notifications</a>
 			</div>
 		</div>
 	</div>

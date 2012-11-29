@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  attr_accessible :user_id, :project_id
+  attr_accessible :user_id, :project_id, :username
   
   belongs_to :project
   belongs_to :user
@@ -13,5 +13,6 @@ end
 #  updated_at :datetime        not null
 #  user_id    :integer
 #  project_id :integer
+#  username   :string(255)
 #
 

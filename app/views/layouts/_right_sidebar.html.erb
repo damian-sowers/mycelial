@@ -23,6 +23,7 @@
 			<%= form_for current_user.likes.build(:project_id => @project.id), :remote => true do |f| %>
 				<%= f.hidden_field :project_id %>
 				<%= f.hidden_field :user_id %>
+				<%= f.hidden_field :username, value: current_user.username %>
 				<%= f.submit "Like This Project", class: "btn btn-info" %>
 			<% end %>
 		<% end %>

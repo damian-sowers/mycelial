@@ -64,6 +64,10 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		project_id = @comment.project_id
 
+		#delete the notification associated with the comment
+		notification = @comment.notifications
+		notification.destroy
+
 		#test to see if the comment has any children. If so, just rewrite the body to "deleted".
 		if @comment.has_children?
 			@comment.comment = "Deleted"

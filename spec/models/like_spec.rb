@@ -12,5 +12,6 @@ end
 #  updated_at :datetime        not null
 #  user_id    :integer
 #  project_id :integer
+#  username   :string(255)
 #
 
