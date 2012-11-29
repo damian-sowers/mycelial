@@ -71,10 +71,6 @@ class PagesController < ApplicationController
 
 	private
 
-    def is_numeric?(obj) 
-   		obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
-		end
-
 		def get_user 
 			@user = Page.find(params[:id]).user
 		end

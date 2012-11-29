@@ -18,5 +18,6 @@ end
 #  receiver_id       :integer
 #  notification_id   :integer
 #  notification_type :string(255)
+#  viewed            :integer
 #
 

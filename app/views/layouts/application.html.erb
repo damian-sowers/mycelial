@@ -22,7 +22,7 @@
 	      var pusher = new Pusher('<%= Pusher.key %>'); 
 	      var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
 
-	      channel.bind('new_comment', function(data) {
+	      channel.bind('new_notification', function(data) {
 	  			msg = 'new messages';
 	  			dom_notify(msg);
 				});

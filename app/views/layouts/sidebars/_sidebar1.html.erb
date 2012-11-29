@@ -2,7 +2,6 @@
   <%= render 'layouts/sidebars/partials/yellow_data' %>
 <% end %>
 
-<%= render 'layouts/sidebars/partials/notification' %>
 
 <div class="widget">
   <div class="menu-type-container">
@@ -21,6 +20,8 @@
       <% if [3,4].include? sidebar_number %>
         <%= render 'layouts/sidebars/partials/orange_data' %>
       <% end %>
+
+      <%= render 'layouts/sidebars/partials/notification' %>
 
     </ul>
   </div>

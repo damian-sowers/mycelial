@@ -1,5 +1,5 @@
-class CommentNotifier
-	@queue = :comments_queue
+class LikeNotifier
+	@queue = :likes_queue
 
 	def self.perform(user_id)
 		data = {'message' => 'New Notification'}

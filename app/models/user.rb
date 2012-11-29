@@ -5,13 +5,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_one :page, :dependent => :destroy
-
   #this has_many association give me the ability to find all projects of a user just by their user_id. (skip going through page)
   has_many :projects, :through => :page
-
   has_many :notifications
-
   has_many :comments
+  has_many :likes
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me

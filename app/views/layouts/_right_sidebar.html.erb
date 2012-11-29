@@ -13,10 +13,27 @@
 	<% end %>
 
 	<br/>
-	<a href="/projects/new" class="button orange">Like This Project</a>
+	<div id="like">
 	<% if user_signed_in? %>
-	<%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox button navy", :remote => true %>
+		<% if like = current_user.likes.find_by_project_id(@project.id) %>
+			<%= form_for like, :html => { :method => :delete }, :remote => true do |f| %>
+				<%= f.submit "Unlike", class: "btn btn-primary" %>
+			<% end %>
+		<% else %>
+			<%= form_for current_user.likes.build(:project_id => @project.id), :remote => true do |f| %>
+				<%= f.hidden_field :project_id %>
+				<%= f.hidden_field :user_id %>
+				<%= f.submit "Like This Project", class: "btn btn-info" %>
+			<% end %>
+		<% end %>
 	<% else %>
-	<%= link_to "Add a Comment", new_user_session_path, class: "button navy" %>
+		<%= link_to "Like This Project", new_user_session_path, class: "button orange" %>
+	<% end %>
+	</div>
+
+	<% if user_signed_in? %>
+		<%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox button navy", :remote => true %>
+	<% else %>
+		<%= link_to "Add a Comment", new_user_session_path, class: "button navy" %>
 	<% end %>
 </div>
