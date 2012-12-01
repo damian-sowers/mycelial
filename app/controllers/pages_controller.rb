@@ -2,8 +2,8 @@ class PagesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:show, :index]
 	before_filter :correct_user, only: [:edit, :update]
-	#get the sidebar data from the session user id for the logged in methods
-	before_filter :get_sidebar_info, except: [:index, :show, :new, :create]
+	#get the sidebar data from the session user id for the logged in methods like edit, update, destroy
+	before_filter :get_sidebar_info, only: [:edit, :update, :destroy]
 
 	def index
 		@page = Page.all
@@ -52,7 +52,7 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		#@page is now being retrieved from the mycelial module and the get_sidebar_info method
+		#@page is now being retrieved from the get_sidebar_info method
 		#@page = Page.find(params[:id])
 		if @page.update_attributes(params[:page])
       #handle a successful update
@@ -67,6 +67,9 @@ class PagesController < ApplicationController
     else 
       render 'edit'
     end
+	end
+
+	def destroy
 	end
 
 	private

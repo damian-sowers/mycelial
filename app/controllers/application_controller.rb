@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
     def get_sidebar_info
 			if user_signed_in?
 				@page = Page.find_by_user_id(current_user.id)
+        @user = current_user
 			end
 		end
 end

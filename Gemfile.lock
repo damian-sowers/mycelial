@@ -114,6 +114,9 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.3.1)
+    pry-remote (0.1.6)
+      pry (~> 0.9)
+      slop (~> 3.0)
     pusher (0.11.0)
       multi_json (~> 1.0)
       signature (~> 0.1.4)
@@ -224,6 +227,7 @@ DEPENDENCIES
   jquery-rails
   pg (= 0.12.2)
   pry
+  pry-remote
   pusher
   rails (= 3.2.8)
   redis
