@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129034823) do
+ActiveRecord::Schema.define(:version => 20121202175548) do
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20121129034823) do
     t.integer  "page_id"
     t.integer  "project_type"
     t.integer  "widget_type"
+    t.integer  "image_width"
+    t.integer  "image_height"
   end
 
   create_table "tagowners", :force => true do |t|

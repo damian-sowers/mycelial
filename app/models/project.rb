@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :widget_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :widget_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height
 
   belongs_to :page
   has_many :tagowners
@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   #accepts_nested_attributes_for :tech_tags
   #carrierwave image uploader below
   mount_uploader :picture, PictureUploader
+  before_save :save_image_dimensions
 
   def tech_tag_tokens=(tokens)
     self.tech_tag_ids = TechTag.ids_from_tokens(tokens)
@@ -31,6 +32,15 @@ class Project < ActiveRecord::Base
   # def crop_avatar
   # 	picture.recreate_versions! if crop_x.present?
   # end
+  private 
+
+    def save_image_dimensions
+      if picture_changed?
+        self.image_width  = picture.geometry[:width]
+        self.image_height = picture.geometry[:height]
+      end
+      # binding.remote_pry
+    end
 
 end
 # == Schema Information

@@ -1,12 +1,23 @@
 <%= render 'layouts/opening_divs' %>
 <% @projects.each do |p| %>
-<div class="post type-post format-image hentry">  
-  <div class="post-thumb clearfix">
-    <% if p.picture_url %>
-    <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic"), project_path(:id => p.id)) %>
+<div class="post type-post hentry <% if p.widget_type == 2 %>category-quotes format-quote<% else %>format-image<% end %>"> 
+    <% if p.widget_type == 2 %>
+      <div class="quote-wrap clearfix">
+        <span class="icon"></span>
+          <blockquote>
+          <%= link_to "#{p.project_name}", project_path(:id => p.id) %>                     
+          </blockquote>
+      </div>
+    <span class="arrow"></span>
+    <% else %>
+      <div class="post-thumb clearfix">
+        <% if p.image_height && p.image_width %>
+        <% new_height = calculate_height_from_aspect(p.image_height, p.image_width, 360) %>
+        <% end %>
+        <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic", style: "height: #{new_height}px; width:360px;"), project_path(:id => p.id)) %>
+      </div>
+      <div class="arrow"></div>
     <% end %>
-  </div>
-  <div class="arrow"></div>
   <h2 class="entry-title"><%= link_to "#{p.project_name}", project_path(:id => p.id) %></h2>
   <div class="entry-content">
     <p><%= p.short_description %></p>
@@ -24,6 +35,7 @@
   </ul>
 </div>
 <% end %>
+
 
 </div>
 <%= render 'layouts/closing_divs' %>
