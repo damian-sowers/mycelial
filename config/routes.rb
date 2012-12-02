@@ -5,8 +5,7 @@ CNN::Application.routes.draw do
   # first created -> highest priority.
   root to: 'home#index'
 
-  #get '/hackers/:username' => 'hackers#show', :as => 'vanity_url', :constrain => { :username => /^[a-z0-9\-_]+$/i }
-
+  match "/pages/demo" => "pages#demo"
   resources :pages
   resources :tech_tags
   resources :likes 
@@ -16,6 +15,7 @@ CNN::Application.routes.draw do
   match "/comments/loadmore" => "comments#loadmore"
   match "/notifications" => "notifications#index"
   match "/notifications/old" => "notifications#old"
+
 
   resources :comments
   

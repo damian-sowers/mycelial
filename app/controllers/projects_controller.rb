@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:edit, :update]
+	before_filter :correct_user, only: [:edit, :update, :destroy]
 	before_filter :get_sidebar_info, except: [:index, :show]
 
 	def index
@@ -78,6 +78,9 @@ class ProjectsController < ApplicationController
     else 
       render 'edit'
     end
+	end
+
+	def destroy
 	end
 
 	def project_type

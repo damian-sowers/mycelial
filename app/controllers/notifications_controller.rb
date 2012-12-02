@@ -1,8 +1,6 @@
 class NotificationsController < ApplicationController
 
 	before_filter :authenticate_user!
-	# before_filter :correct_user, only: [:update]
-	# before_filter :owner_of_page?, only: [:destroy]
 	before_filter :get_sidebar_info
 
 	def index
@@ -76,11 +74,9 @@ class NotificationsController < ApplicationController
 					end
 					@old_notifications << l unless !l
 				end
-
 			end
 			i += 1
 		end
-		
 		render 'all_notifications'
 	end
 end

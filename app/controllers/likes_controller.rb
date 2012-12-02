@@ -13,6 +13,8 @@ class LikesController < ApplicationController
   def destroy
     like = Like.find(params[:id]).destroy
     @project_id = like.project_id
+    #delete the like notification with background job.
+    Resque.enqueue(LikeNotificationDestroyer, params[:id])
     render :toggle
   end
 end

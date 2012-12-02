@@ -3,8 +3,9 @@ class CommentsController < ApplicationController
 	before_filter :authenticate_user!, except: [:show, :index]
 	before_filter :comment_update_privelidges?, only: [:update]
 	before_filter :comment_destroy_privelidges?, only: [:destroy]
-	before_filter :get_sidebar_info, except: [:index, :show]
+	#before_filter :get_sidebar_info, except: [:index, :show]
 
+	#should I expand this comments show so people can make comments without the overlay? Would need to get the user of the project and put in page and user instance vars. Render sidebar in view.
 	def show
 	end
 

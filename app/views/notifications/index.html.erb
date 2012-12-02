@@ -7,7 +7,7 @@
 		  </div>
 		  <div class="new_notifications">
 		  	<% @new_notifications.each do |f| %>
-		  		<% if f.methods.include?("comment") %>
+		  		<% if f[:comment] %>
 		  			<span class="notifications_meta">
 		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
 		  			</span>

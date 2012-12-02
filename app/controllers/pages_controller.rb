@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:edit, :update]
-	#get the sidebar data from the session user id for the logged in methods like edit, update, destroy
-	before_filter :get_sidebar_info, only: [:edit, :update, :destroy]
+	before_filter :correct_user, only: [:edit, :update, :destroy]
+	#get the sidebar data from the session user id for the logged in methods like edit, update
+	before_filter :get_sidebar_info, only: [:edit, :update]
 
 	def index
 		@page = Page.all
@@ -17,21 +17,19 @@ class PagesController < ApplicationController
 		end
 	end
 
-	def show
-		#need to get the username from users table and fetch appropriate hacker page based on this. 
+	def show 
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
-		#get the projects for this page from project model. 
+		@projects = @page.projects
+	end
+
+	def demo
+		#some hardcoded examples
+		@user = User.find_by_username('dsowers')
+		@page = @user.page
 	end
 
 	def edit
-		#@page is now being retrieved from the mycelial module and the get_sidebar_info method
-		#@page = Page.find(params[:id])
-		#projects will return an array, since there can be many associated with each page. 
-
-		#this method below now works due to the has_many through association in User. Don't need to use it this way, though. 
-		#@projects = User.find(current_user.id).projects
-
 		@projects = Page.find(params[:id]).projects
 	end
 
@@ -52,8 +50,6 @@ class PagesController < ApplicationController
 	end
 
 	def update
-		#@page is now being retrieved from the get_sidebar_info method
-		#@page = Page.find(params[:id])
 		if @page.update_attributes(params[:page])
       #handle a successful update
       #get rid of this session variable in the update eventually. Need to figure out a way to get this upon login, and also assign it during create. 

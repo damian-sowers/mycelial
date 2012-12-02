@@ -28,12 +28,12 @@
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= link_to "Like This Project", new_user_session_path, class: "button orange" %>
+		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-info" %>
 	<% end %>
 	</div>
 
 	<% if user_signed_in? %>
-		<%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox button navy", :remote => true %>
+		<%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox btn btn-danger", :remote => true %>
 	<% else %>
 		<%= link_to "Add a Comment", new_user_session_path, class: "button navy" %>
 	<% end %>

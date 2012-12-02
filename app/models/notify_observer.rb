@@ -7,7 +7,7 @@ class NotifyObserver < ActiveRecord::Observer
     r.receiver_id = Project.find(model.project_id).page.user.id
     r.notification_id = model.id
     #put in an if statement to see if model is comment or like
-    if model.methods.include?("comment")
+    if model.methods.include?(:comment)
       r.notification_type = "comment"
     else
       r.notification_type = "like"

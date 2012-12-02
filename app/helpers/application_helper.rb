@@ -7,7 +7,7 @@ module ApplicationHelper
     action.include?(params[:action])
   end
 
-  def render_sidebar(id)
+  def render_sidebar()
 
   	path = 'layouts/sidebars/sidebar1'
     
@@ -15,10 +15,6 @@ module ApplicationHelper
   		if controller?('feed') 
   			#display 5.
   			render :partial => path, :locals => { :sidebar_number => 5 }
-      #1 and 2 are the same. Don't think I need the on_own_page? method at all.
-  		# elsif on_own_page?(id) 
-  		# 	#display 1
-  		# 	render :partial => path, :locals => { :sidebar_number => 1 }
   		else
   			#display 2. 
   			render :partial => path, :locals => { :sidebar_number => 2 }
@@ -55,6 +51,15 @@ module ApplicationHelper
   end
 
   def is_numeric?(obj) 
-   		obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
-		end
+   	obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+	end
+
+  def has_a_page?(user_id)
+    begin
+      p = User.find(user_id).page
+    rescue
+      return false
+    end
+    return true if p
+  end
 end
