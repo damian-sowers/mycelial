@@ -1,13 +1,13 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :widget_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :remove_picture
 
   belongs_to :page
   has_many :tagowners
   has_many :tech_tags, through: :tagowners
   has_many :comments
   has_many :likes
-  attr_reader :tech_tag_tokens
+  attr_reader :tech_tag_tokens, :delete_picture
   #accepts_nested_attributes_for :tech_tags
   #carrierwave image uploader below
   mount_uploader :picture, PictureUploader
@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
   private 
 
     def save_image_dimensions
-      if picture_changed?
+      if picture_changed? && remove_picture != true
         self.image_width  = picture.geometry[:width]
         self.image_height = picture.geometry[:height]
       end

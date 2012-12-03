@@ -1,0 +1,48 @@
+<div class="post type-post hentry <% if widget_number == 1 or widget_number == 3 %>category-quotes format-quote<% else %> format-image<% end %>"> 
+
+  <% if widget_number == 1 %>
+
+    <div class="quote-wrap clearfix">
+      <span class="icon"></span>
+      <blockquote>
+        <%= link_to "#{p.project_name}", project_path(:id => p.id) %>                     
+      </blockquote>
+    </div>
+    <span class="arrow"></span>
+
+  <% elsif widget_number == 3 %>
+
+    <div class="text-title text-title-wrap<%= rand(1..6).to_s %> clearfix">
+      <span class="icon"></span>
+        <%= link_to "#{p.project_name}", project_path(:id => p.id) %>                     
+    </div>
+    <span class="arrow"></span>
+
+  <% else %>
+
+    <div class="post-thumb clearfix">
+      <% if p.image_height && p.image_width %>
+      <% new_height = calculate_height_from_aspect(p.image_height, p.image_width, 360) %>
+      <% end %>
+      <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic", style: "height: #{new_height}px; width:360px;"), project_path(:id => p.id)) %>
+    </div>
+    <div class="arrow"></div>
+    <h2 class="entry-title"><% if widget_number == 2 %>Blog Post: <% end %><%= link_to "#{p.project_name}", project_path(:id => p.id) %></h2>
+
+  <% end %>
+
+  <div class="entry-content">
+    <p><%= p.short_description %></p>
+  </div>
+  <ul class="entry-meta entry-header clearfix">
+    <li class="published">
+      <a href="<%= project_path(:id => p.id) %>"><span class="icon"></span><%= time_ago_in_words(p.created_at) %> ago</a>
+    </li>
+    <li class="like-count">
+      <a href="#" class="likeThis" id="like-356"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a>    
+    </li>
+    <li class="comment-count">
+      <a href="/projects/1"><span class="icon"></span><%= p.comments.count %></a>   
+    </li>
+  </ul>
+</div>

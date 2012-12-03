@@ -70,8 +70,7 @@
       <%= f.text_field :github_repo, class: "input-xlarge" %>
     </div>
   </div>
-  <%= f.hidden_field :project_type, value: @project_type %>
-  <%= f.hidden_field :widget_type, value: @widget_type %>
+  <%= f.hidden_field :project_type, value: params[:project_type] %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>

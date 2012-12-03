@@ -15,7 +15,7 @@ CNN::Application.routes.draw do
   match "/comments/loadmore" => "comments#loadmore"
   match "/notifications" => "notifications#index"
   match "/notifications/old" => "notifications#old"
-
+  match "/projects/delete_picture/:id" => "projects#delete_picture"
 
   resources :comments
   

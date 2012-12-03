@@ -24,9 +24,6 @@ class ProjectsController < ApplicationController
 		#show edit blocks on hover if page_owner == 1
 		@page_owner = is_page_owner?(@project.id)
 		@comments = @project.comments.arrange(:order => :created_at)
-
-		#can get the total number of comments by counting both the keys and values inside the has
-		#@comments.keys.count + @comment.values.count
 	end
 
 	def new_project 
@@ -40,12 +37,8 @@ class ProjectsController < ApplicationController
 		@project = Project.new(params[:project])
 		@project.page_id = Page.find_by_user_id(current_user.id).id
 		if @project.save
-			if params[:project][:picture].present?
-				render 'crop'
-			else 
-				flash[:success] = "Your project has been created."
-				redirect_to :action => "edit", :id => @project.id, only_path: true
-			end
+			flash[:success] = "Your project has been created."
+			redirect_to :action => "edit", :id => @project.id, only_path: true
 		end
 	end
 
@@ -60,21 +53,14 @@ class ProjectsController < ApplicationController
 				#render partial doesn't load the head css data, etc...
 				render :partial => "#{params[:edit_block]}"
 			end
-			# .to_i == 1
-			# render :partial => 'project_type'
 		end
 	end
 
 	def update
 		@project = Project.find(params[:id])
-		if @project.update_attributes(params[:project])
-      #handle a successful update
-   		#if params[:project][:picture].present?
-			# 	render 'crop'
-			# else 
-      	flash[:success] = "Project updated"
-      	redirect_to :action => "edit", :id => params[:id], only_path: true
-      # end
+		if @project.update_attributes(params[:project]) 
+      flash[:success] = "Project updated"
+      redirect_to :action => "edit", :id => params[:id], only_path: true
     else 
       render 'edit'
     end
@@ -95,6 +81,17 @@ class ProjectsController < ApplicationController
 		@project = Project.new
 		@project_type = params[:project_type]
 		@widget_type = params[:widget_type]
+		respond_to do |format|
+			format.html
+      format.js { render :layout => false }
+    end
+	end
+
+	def delete_picture
+		r = Project.find(params[:id])
+		r.remove_picture!
+		r.remove_picture = true
+		r.save
 		respond_to do |format|
 			format.html
       format.js { render :layout => false }

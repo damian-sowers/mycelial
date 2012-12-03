@@ -9,26 +9,26 @@
 		<!--BEGIN .entry-content -->
 		<div class="entry-content">
 			<div class="row" style="padding-left:15px; padding-bottom:20px;">
-				<%= link_to(image_tag("code.png"), project_type_projects_path + "/1", class: 
-				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				<%= link_to(image_tag("code.png"), new_project_path(:project_type => 1), class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
 				%> 
-				<h2><%= link_to "Programming Project", project_type_projects_path + "/1", :remote => true , :update => { :success => "project_area" } %></h2>
+				<h2><%= link_to "Programming Project", new_project_path(:project_type => 1) %></h2>
 				<p>Web app, Desktop software, open source, or anything programming related</p>
 			</div>
 
 			<div class="row" style="padding-left:15px; padding-bottom:20px;">
-				<%= link_to(image_tag("blog.png"), project_type_projects_path + "/2", class: 
-				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				<%= link_to(image_tag("blog.png"), new_project_path(:project_type => 2), class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
 				%> 
-				<h2><%= link_to "Blog Post", project_type_projects_path + "/2", :remote => true , :update => { :success => "project_area" } %></h2>
+				<h2><%= link_to "Blog Post", new_project_path(:project_type => 2) %></h2>
 				<p>Web app, Desktop software, open source, or anything programming related</p>
 			</div>
 
 			<div class="row" style="padding-left:15px;">
-				<%= link_to(image_tag("other.png"), project_type_projects_path + "/3", class: 
-				"thumbnail", style: "width: 220px; float:left; margin-right:30px;", :remote => true , :update => { :success => "project_area" })
+				<%= link_to(image_tag("other.png"), new_project_path(:project_type => 3), class: 
+				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
 				%> 
-				<h2><%= link_to "Other", project_type_projects_path + "/3", :remote => true , :update => { :success => "project_area" } %></h2>
+				<h2><%= link_to "Other", new_project_path(:project_type => 3) %></h2>
 				<p>Web app, Desktop software, open source, or anything programming related</p>
 			</div>
 		</div>

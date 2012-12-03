@@ -570,7 +570,7 @@ img.aligncenter {
 
 .widget-title {
   font-size: 12px;
-  margin: 0 0 10px 0;
+  margin: 0 0 1px 0;
 }
 
 .widget ul {
@@ -632,7 +632,7 @@ img.aligncenter {
 
 /* All ------------------------------*/
 
-.entry-content p { margin: 0 0 18px 0; }
+.entry-content p { margin: 0 0 18px 0; font-size:12px; color:#666; }
 
 .entry-meta a { display: block; }
 .published { float: left; }
@@ -790,41 +790,6 @@ a .overlay .icon {
 
 .format-image .arrow { margin: -8px 17px 0 0; }
 
-/* Quote ------------------------------*/
-
-.format-quote .quote-wrap { padding: 20px 15px; }
-
-.format-quote blockquote {
-  padding: 0 0 0 10px;
-  margin: 0 0 0 26px;
-  font-size: 14px;
-  line-height: 19px;
-}
-
-.format-quote .arrow {
-  margin: -8px 15px 0 0;
-  position: relative;
-  float: right;
-  top: auto;
-  z-index: 500;
-}
-
-.format-quote .quote-wrap .icon {
-  width: 16px;
-  height: 12px;
-  float: left;
-  margin: 3px 0 0 0;
-}
-
-.format-quote .entry-content { 
-  padding: 20px 15px 0 15px; 
-  font-size: 11px;
-}
-
-.single .format-quote .entry-content { font-size: 12px; }
-
-.format-quote .entry-meta { padding: 0 15px 20px 15px; }
-
 
 /* Standard ------------------------------*/
 
@@ -898,9 +863,6 @@ a:hover { color: #000; }
 .entry-title a { color: #66696d; }
 
 .format-link .entry-title a,
-.format-quote blockquote {
-  color: #f1f1f1;
-}
 
 .format-link .entry-title a:hover { color: #fff; }
 
@@ -929,7 +891,7 @@ a:hover { color: #000; }
 #load-more-link a,
 .hentry { color: #96999d; }
 
-.format-quote .quote-wrap .icon{ background: url(image_path('light/quote.png')) no-repeat; }
+
 
 
 #single-sidebar .portfolio-link a .icon,
@@ -947,9 +909,6 @@ a .overlay .icon,
 #single-sidebar .like-count a:hover,
 .like-count a.active,
 .like-count a:hover { color: #f56559; }
-
-span.icon, .format-quote .quote-wrap,
-.format-link .entry-title { background-color: #2d2e2f; }
 
 blockquote,
 .format-link .entry-title a { border-left: 1px solid #4d4f51; }

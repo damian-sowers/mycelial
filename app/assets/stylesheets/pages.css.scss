@@ -1,0 +1,64 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.entry-title a {
+	font-size:12px;
+	font-weight:bold;
+}
+
+/* Quote ------------------------------*/
+
+.format-quote .quote-wrap, .text-title { padding: 20px 15px; }
+
+.format-quote blockquote {
+  padding: 0 0 0 10px;
+  margin: 0 0 0 26px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.format-quote .arrow {
+  margin: -8px 15px 0 0;
+  position: relative;
+  float: right;
+  top: auto;
+  z-index: 500;
+}
+
+.format-quote .quote-wrap .icon {
+  width: 16px;
+  height: 12px;
+  float: left;
+  margin: 3px 0 0 0;
+}
+
+.format-quote .entry-content { 
+  padding: 20px 15px 0 15px; 
+  font-size: 11px;
+}
+
+.single .format-quote .entry-content { font-size: 12px; }
+
+.format-quote .entry-meta { padding: 0 15px 20px 15px; }
+
+.format-quote blockquote {
+  color: #f1f1f1;
+}
+
+.quote-wrap blockquote a {
+	color:#fff;
+}
+
+span.icon, .format-quote .quote-wrap { background-color: #2d2e2f; }
+
+.text-title-wrap1 { background-color: #A200FF; }
+.text-title-wrap2 { background-color: #2E7BCC; /*blue*/}
+.text-title-wrap3 { background-color: #49AFCD; /*light blue*/}
+.text-title-wrap4 { background-color: #DA4F49; /*red*/ }
+.text-title-wrap5 { background-color: #2d2e2f; /*dark grey*/}
+.text-title-wrap6 { background-color: #5BB75B; /*light green*/}
+
+
+.text-title a { color: #fff; font-weight:bold;  font-size:16px; }
+
+.format-quote .quote-wrap .icon{ background: url(image_path('light/quote.png')) no-repeat; }
