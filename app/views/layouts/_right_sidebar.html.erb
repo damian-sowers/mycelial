@@ -1,17 +1,11 @@
 <div class="mycelial_sidebar">
-	<b>Back to All Projects?</b>       
+	<% unless @project.url.empty? %>
+	<a href="<%= @project.url.to_s %>" class="btn">Visit Project Site</a>
 	<br/><br/>
-	<a href="/projects/new" class="button white">Visit Project Site</a>
-	<br/>
-	More of Damian's Projects:
-	<hr style="padding:0px; margin:0">
-	<% @user_projects.each do |f| %>
-	<div style="padding:5px;">
-		<a href="#"><%= f.project_name %></a>
-	</div>
-	<hr style="margin:0">
 	<% end %>
-
+	<strong class="dark_text">More Projects:</strong>
+	<hr class="divider_spacer">
+	<%= raw show_more_projects(@user_projects) %>
 	<br/>
 	<div id="like">
 	<% if user_signed_in? %>
@@ -33,7 +27,7 @@
 	</div>
 
 	<% if user_signed_in? %>
-		<%= link_to "Add a Comment", "/comments/new?project_id=#{@project.id}", class: "lightbox btn btn-danger", :remote => true %>
+		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "lightbox btn btn-danger", :remote => true %>
 	<% else %>
 		<%= link_to "Add a Comment", new_user_session_path, class: "button navy" %>
 	<% end %>

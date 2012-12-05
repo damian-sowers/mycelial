@@ -62,4 +62,13 @@ module ApplicationHelper
     end
     return true if p
   end
+
+  def has_new_notifications?(user_id)
+    begin
+      n = Notification.where("receiver_id = ? AND viewed = ?", user_id, 0)
+    rescue
+      return false
+    end
+    return true unless n.empty?
+  end
 end

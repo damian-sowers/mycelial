@@ -21,6 +21,8 @@ class PagesController < ApplicationController
 	def show 
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
+		total_projects = @page.projects.count
+		@total_pages = (total_projects.to_f / @projects_per_page.to_f).ceil
 		@projects = @page.projects.limit(@projects_per_page)
 		#need to paginate this somehow. Maybe just limit 10, and a new method that gets called via ajax that finds the projects offset by 10*page? 
 	end
@@ -90,6 +92,7 @@ class PagesController < ApplicationController
 		def set_projects_per_page
 			@projects_per_page = 3
 		end
+		
 		def get_user 
 			@user = Page.find(params[:id]).user
 		end

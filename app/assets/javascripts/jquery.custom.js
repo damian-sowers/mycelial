@@ -94,6 +94,7 @@ jQuery(document).ready(function() {
 	var loadMoreLink = jQuery('#load-more-link a');
 
 	var offset = parseInt(loadMoreLink.attr('data-offset'));
+	var total_pages = parseInt(loadMoreLink.attr('data-pages'));
 	var author = loadMoreLink.attr('data-author');
 	var tag = loadMoreLink.attr('data-tag');
 		
@@ -136,6 +137,9 @@ jQuery(document).ready(function() {
 							jQuery('#load-more-link a').bind("click", tz_loadMore());
 							//this works because the var offset above the function isn't reloading every time the link is clicked, so the new value of the offset is incremented and passed into the post data to the load_more controller
 							offset++;
+							if(offset == total_pages) {
+								jQuery('#load-more-link').hide()
+							}
 							
 						});
 

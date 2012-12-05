@@ -530,7 +530,8 @@ img.aligncenter {
   position: relative;
   display: block;
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight:bold;
   min-width: 340px;
   margin: 20px 0 0 20px;
   padding: 10px;
@@ -830,7 +831,7 @@ blockquote,
 #respond-title,
 #footer a,
 #load-more-link a span,
-#load-more-link a:hover span { color: #66696d; }
+#load-more-link a:hover span { color: #08C; }
 
 #comments span,
 #respond-title span {
@@ -888,7 +889,6 @@ a:hover { color: #000; }
 }
 
 .comment-body p,
-#load-more-link a,
 .hentry { color: #96999d; }
 
 
@@ -1430,4 +1430,10 @@ ul .token-input-list-facebook {
   font-weight:bold;
   text-transform:none;
 
+}
+.dark_text {
+  color:#333
+}
+.divider_spacer {
+  padding:0px; margin:0; margin-top:5px
 }

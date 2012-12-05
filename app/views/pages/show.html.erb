@@ -16,7 +16,9 @@
 <% end %>
 </div> <!-- end masonry -->
 <div class="ready" id="new-posts"></div>
+<% if @total_pages > 1 %>
   <div id="load-more-link">
-    <a href="#" data-offset="1" data-author="<%= @user.username %>">Load More</a>
+    <a href="#" data-offset="1" data-pages="<%= @total_pages %>" data-author="<%= @user.username %>">Load More</a>
   </div>
+<% end %>
 <%= render 'layouts/closing_divs' %>

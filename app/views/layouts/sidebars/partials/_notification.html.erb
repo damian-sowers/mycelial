@@ -1,3 +1,8 @@
 <li id="notify" style="display:none;">
   <%= link_to(image_tag("star.png", style: "padding-right:5px;"), notifications_path) %><%= link_to "New Messages", notifications_path %>
 </li>
+<% if user_signed_in? && has_new_notifications?(current_user.id) %>
+	<script>
+		$("#notify").show()
+	</script>
+<% end %>
