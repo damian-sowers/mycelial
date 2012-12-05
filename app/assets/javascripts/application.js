@@ -21,7 +21,7 @@
 
 // if (history && history.pushState) {
 //   $(function() {
-//     $(".ajax-select a").live("click", function(e) {
+//     $("#load-more-link a").live("click", function(e) {
 //       $.getScript(this.href);
 //       history.pushState(null, document.title, this.href);
 //       e.preventDefault();

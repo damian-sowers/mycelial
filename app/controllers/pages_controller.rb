@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-	before_filter :authenticate_user!, except: [:show, :index]
+	before_filter :authenticate_user!, except: [:show, :index, :load_more, :view_history]
 	before_filter :correct_user, only: [:edit, :update, :destroy]
 	#get the sidebar data from the session user id for the logged in methods like edit, update
 	before_filter :get_sidebar_info, only: [:edit, :update]
@@ -23,8 +23,12 @@ class PagesController < ApplicationController
 		@page = @user.page
 		total_projects = @page.projects.count
 		@total_pages = (total_projects.to_f / @projects_per_page.to_f).ceil
-		@projects = @page.projects.limit(@projects_per_page)
-		#need to paginate this somehow. Maybe just limit 10, and a new method that gets called via ajax that finds the projects offset by 10*page? 
+		if params[:offset]
+			limit_num = (Integer(params[:offset]) + 1) * @projects_per_page
+		else
+			limit_num = @projects_per_page
+		end
+		@projects = @page.projects.limit(limit_num)
 	end
 
 	def load_more

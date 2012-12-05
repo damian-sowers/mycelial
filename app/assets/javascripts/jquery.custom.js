@@ -116,13 +116,9 @@ jQuery(document).ready(function() {
 				
 				jQuery('#new-posts').html('Loading...');
 				
-				jQuery('#new-posts').load("/pages/load_more", { 
+				load_params = "?author=" + author + "&offset=" + offset +"&tag=" + tag;
 				
-					author: author,
-					offset: offset,
-					tag: tag
-					
-				}, function() {
+				jQuery('#new-posts').load("/pages/load_more" + load_params, function() {
 					
 					// create jQuery object
 					$boxes = jQuery( '#new-posts .hentry' );
@@ -139,11 +135,17 @@ jQuery(document).ready(function() {
 							offset++;
 							if(offset == total_pages) {
 								jQuery('#load-more-link').hide()
+								last_page = 1
 							}
 							
 						});
 
 					}
+					//need to write a new controller function for loading all of the last ones back into the screen when they hit back. 
+	        history.pushState(null, document.title, "/pages/" + author + load_params + "&last_page=1");
+    			$(window).bind("popstate", function() {
+      			$.getScript(this.href);
+    			});
 				});
 				
 			//return false;

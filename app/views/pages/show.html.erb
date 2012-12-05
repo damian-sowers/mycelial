@@ -16,7 +16,7 @@
 <% end %>
 </div> <!-- end masonry -->
 <div class="ready" id="new-posts"></div>
-<% if @total_pages > 1 %>
+<% if @total_pages > 1 && !params[:last_page] #last_page needed for history js state %>
   <div id="load-more-link">
     <a href="#" data-offset="1" data-pages="<%= @total_pages %>" data-author="<%= @user.username %>">Load More</a>
   </div>
