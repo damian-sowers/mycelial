@@ -6,6 +6,7 @@ CNN::Application.routes.draw do
   root to: 'home#index'
 
   match "/pages/demo" => "pages#demo"
+  match "/pages/load_more" => "pages#load_more"
   resources :pages
   resources :tech_tags
   resources :likes 

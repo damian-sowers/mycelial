@@ -1,4 +1,3 @@
-<%= render 'layouts/opening_divs' %>
 <% @projects.each do |p| %>
   <% if p.project_type == 2 #blog %>
     <% if p.picture.nil? or p.picture.blank? #text-widget %>
@@ -14,9 +13,3 @@
     <% end %>
   <% end %>
 <% end %>
-</div> <!-- end masonry -->
-<div class="ready" id="new-posts"></div>
-  <div id="load-more-link">
-    <a href="#" data-offset="1" data-author="<%= @user.username %>">Load More</a>
-  </div>
-<%= render 'layouts/closing_divs' %>

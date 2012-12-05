@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 	before_filter :correct_user, only: [:edit, :update, :destroy]
 	#get the sidebar data from the session user id for the logged in methods like edit, update
 	before_filter :get_sidebar_info, only: [:edit, :update]
+	before_filter :set_projects_per_page
 
 	def index
 		@page = Page.all
@@ -20,7 +21,23 @@ class PagesController < ApplicationController
 	def show 
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
-		@projects = @page.projects
+		@projects = @page.projects.limit(@projects_per_page)
+		#need to paginate this somehow. Maybe just limit 10, and a new method that gets called via ajax that finds the projects offset by 10*page? 
+	end
+
+	def load_more
+
+		offset_num = Integer(params[:offset])
+		offset = @projects_per_page * offset_num
+
+		@user = User.find_by_username(params[:author])
+		@page = @user.page
+		@projects = @page.projects.limit(@projects_per_page).offset(offset)
+
+		respond_to do |format|
+			format.html { render :partial => 'more_projects' }
+      format.js { render :layout => false }
+    end
 	end
 
 	def demo
@@ -70,6 +87,9 @@ class PagesController < ApplicationController
 
 	private
 
+		def set_projects_per_page
+			@projects_per_page = 3
+		end
 		def get_user 
 			@user = Page.find(params[:id]).user
 		end

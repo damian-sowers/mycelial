@@ -1,4 +1,4 @@
-<div class="post type-post hentry <% if widget_number == 1 or widget_number == 3 %>category-quotes format-quote<% else %> format-image<% end %>"> 
+<div class='post type-post hentry <% if widget_number == 1 or widget_number == 3 %>category-quotes format-quote<% else %> format-image<% end %>'> 
 
   <% if widget_number == 1 %>
 
@@ -42,7 +42,7 @@
       <a href="#" class="likeThis" id="like-356"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a>    
     </li>
     <li class="comment-count">
-      <a href="/projects/1"><span class="icon"></span><%= p.comments.count %></a>   
+      <a href="<%= project_path(:id => p.id) %>"><span class="icon"></span><%= p.comments.count %></a>   
     </li>
   </ul>
 </div>

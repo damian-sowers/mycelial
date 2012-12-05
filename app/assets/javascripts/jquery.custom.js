@@ -92,63 +92,34 @@ jQuery(document).ready(function() {
 /*-----------------------------------------------------------------------------------*/
 	
 	var loadMoreLink = jQuery('#load-more-link a');
-	
+
 	var offset = parseInt(loadMoreLink.attr('data-offset'));
-	var cat = parseInt(loadMoreLink.attr('data-category'));
-	var author = parseInt(loadMoreLink.attr('data-author'));
+	var author = loadMoreLink.attr('data-author');
 	var tag = loadMoreLink.attr('data-tag');
-	var date = loadMoreLink.attr('data-date');
-	var searchQ = loadMoreLink.attr('data-search');
-	
-	if(!cat)
-		cat = 0;
 		
 	if(!author)
 		author = 0;
 		
 	if(!tag)
 		tag = '';
-		
-	if(!date)
-		date = 0;
-	
-	if(!searchQ)
-		searchQ = '';
 			
 	function tz_loadMore() {
-		
-		var off = false;
-	
-		var currentCount = parseInt(jQuery('#post-count').text());
-		
-		if(currentCount == 0 ) {
-			loadMoreLink.text(loadMoreLink.attr('data-empty'));
-			off = true;
-		}
 
 		loadMoreLink.click(function(e) {
-			var newCount = currentCount - jQuery(this).attr('data-offset');
 			
 			e.preventDefault();
 
 			//console.log(offset);
-			
-			if(off != true) {
 				
 				jQuery(this).unbind("click");
 				
-				jQuery('#post-count').html('<img src="'+ jQuery('#post-count').attr('data-src') +'" alt="Loading..." />');
-				jQuery('#remaining').html('');
+				jQuery('#new-posts').html('Loading...');
 				
+				jQuery('#new-posts').load("/pages/load_more", { 
 				
-				jQuery('#new-posts').load(jQuery(this).attr('data-src'), { 
-				
-					offset: offset,
-					category: cat,
 					author: author,
-					tag: tag,
-					date: date,
-					searchQ: searchQ
+					offset: offset,
+					tag: tag
 					
 				}, function() {
 					
@@ -162,23 +133,15 @@ jQuery(document).ready(function() {
 							tz_overlay();
 							tz_likeInit();
 							
-							if(newCount > 0 ) {
-								jQuery('#load-more-link a').find('#post-count').text(newCount);
-								jQuery('#remaining').text(' '+jQuery('#remaining').attr('data-text'));
-							} else {
-								jQuery('#load-more-link a').text(jQuery('#load-more-link a').attr('data-empty'));
-								off = true;
-							}
-							
 							jQuery('#load-more-link a').bind("click", tz_loadMore());
-					
+							//this works because the var offset above the function isn't reloading every time the link is clicked, so the new value of the offset is incremented and passed into the post data to the load_more controller
+							offset++;
+							
 						});
+
 					}
-					
-					offset = offset + parseInt(jQuery('#load-more-link a').attr('data-offset'));
 				});
-			}
-			
+				
 			//return false;
 			
 		});
