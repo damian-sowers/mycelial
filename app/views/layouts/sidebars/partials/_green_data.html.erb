@@ -1,3 +1,3 @@
-<a class="mycelial_brand">Mycelial</a>
+<a href="/" class="mycelial_brand <% if controller?('feed') %>brand_large <% end %> style="color:#fff;">Mycelial</a>
 <br/><br/>
-<li><a href="/">Feed</a></li>
+<li><%= link_to "Feed", feed_path %></li>

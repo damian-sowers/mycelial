@@ -11,8 +11,16 @@ class NotifyObserver < ActiveRecord::Observer
       r.notification_type = "comment"
     else
       r.notification_type = "like"
+      increment_likes_count(model)
     end
     r.viewed = 0
+    r.save
+  end
+
+  def increment_likes_count(model)
+    r = Project.find(model.project_id)
+    r.likes_count ||= 0
+    r.likes_count = r.likes_count + 1
     r.save
   end
 end

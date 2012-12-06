@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202175548) do
+ActiveRecord::Schema.define(:version => 20121205222035) do
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(:version => 20121202175548) do
   end
 
   create_table "projects", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "project_name"
     t.text     "short_description"
     t.text     "long_description"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20121202175548) do
     t.integer  "widget_type"
     t.integer  "image_width"
     t.integer  "image_height"
+    t.integer  "likes_count",       :default => 0
   end
 
   create_table "tagowners", :force => true do |t|

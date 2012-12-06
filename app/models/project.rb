@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :remove_picture
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :remove_picture, :likes_count
 
   belongs_to :page
   has_many :tagowners
@@ -17,9 +17,6 @@ class Project < ActiveRecord::Base
     self.tech_tag_ids = TechTag.ids_from_tokens(tokens)
   end
 
-  # attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  # after_update :crop_avatar
-
   validates :project_name, presence: 	true,
                            :length => { :maximum => 50 }
   validates :short_description, :length => { :maximum => 500 }
@@ -27,11 +24,7 @@ class Project < ActiveRecord::Base
   #might need to fix these url validators. Can't use them until they can accept blank entries 
   #validates_format_of :url, :with => URI::regexp(%w(http https)) 
   #validates_format_of :github_repo, :with => URI::regexp(%w(http https))
-  
 
-  # def crop_avatar
-  # 	picture.recreate_versions! if crop_x.present?
-  # end
   private 
 
     def save_image_dimensions

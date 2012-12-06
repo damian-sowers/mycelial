@@ -1,0 +1,24 @@
+<%= render 'layouts/opening_divs' %>
+<% @projects.each do |p| %>
+  <% if p.project_type == 2 #blog %>
+    <% if p.picture.nil? or p.picture.blank? #text-widget %>
+      <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 1, :p => p } %>
+    <% else #picture widget. Prepend blog to the title %>
+      <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 2, :p => p } %>
+    <% end %>
+  <% else #programming or other widget %>
+    <% if p.picture.nil? or p.picture.blank?#text widget %>
+      <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 3, :p => p } %>
+    <% else #main picture widget %>
+      <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 4, :p => p } %>
+    <% end %>
+  <% end %>
+<% end %>
+</div> <!-- end masonry -->
+<div class="ready" id="new-posts"></div>
+<% if @total_pages > 1 && !params[:last_page] #last_page needed for history js state %>
+  <div id="load-more-link">
+    <a href="#" data-offset="1" data-pages="<%= @total_pages %>" data-author="<%= @user.username %>">Load More</a>
+  </div>
+<% end %>
+<%= render 'layouts/closing_divs' %>

@@ -1,5 +1,13 @@
-<% if user.signed_in? %>
+<% if user_signed_in? %>
 	<a href="/feed/customize">Customize Feed</a>
 <% else %>
 	<a href="/users/sign_in">Customize Feed</a>
 <% end %>
+<h4 style="margin-top:20px; margin-bottom:20px; color:#222; font-size:12px">Filter By Tags</h4>
+
+<div class="generic_tags feed_tags"><%= link_to "Ruby", feed_path(:tag => 5) %></div>
+<div class="generic_tags feed_tags"><span>Programming</span></div><br/><br/><br/>
+
+<div class="separator clearfix">
+ <div class="line"></div>
+</div>
