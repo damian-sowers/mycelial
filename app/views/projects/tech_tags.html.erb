@@ -9,7 +9,11 @@
 	<%= form_for(@project, :html => { :class => "form-horizontal" }) do |f| %>
 
 	<div class="control-group">
-	  <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label required" %>
+		<% if @project.project_type == 1 %>
+	  	<%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label" %>
+	  <% else %>
+	  	<%= f.label :tech_tag_tokens, "Tags (e.g. Startups, Arduino, Potato Guns, Telescopes...)", class: "control-label" %>
+	  <% end %>
 	  <div class="controls tech_tags">
 	    <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
 	  </div>

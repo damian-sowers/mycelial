@@ -7,7 +7,12 @@
 }
 .picture_tags {
 	float:left; 
-	margin-right:15px;
+	padding:2px;
+	margin-right:10px;
+}
+.picture_tags:hover {
+	padding:1px;
+	border:1px solid #49AFCD;
 }
 .generic_tags span {
 	float:left; 

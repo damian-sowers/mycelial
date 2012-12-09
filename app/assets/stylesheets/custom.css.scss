@@ -1440,3 +1440,19 @@ ul .token-input-list-facebook {
 .divider_spacer {
   padding:0px; margin:0; margin-top:5px
 }
+.feed_tags {
+  color: #efefef;
+  background-color: #49AFCD;
+  border-bottom: 1px solid #3E6D8E;
+  border-right: 1px solid #7F9FB6;
+  padding: 3px 4px 3px 4px;
+  margin: 2px 2px 2px 0;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 2.4;
+  &:hover {
+    background-color:#5BB75B;
+    color:#fff;
+    text-decoration:none;
+  }
+}

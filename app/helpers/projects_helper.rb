@@ -17,4 +17,17 @@ module ProjectsHelper
 		end
 		return html_output
 	end
+
+	def show_tag_language(project)
+		case project.project_type
+			when 1
+				return "Main Languages and Technologies"
+			when 2
+				return "Blog Tags"
+			when 3
+				return "Tags"
+			else
+				return "Tags"
+		end 
+	end
 end

@@ -97,12 +97,16 @@ jQuery(document).ready(function() {
 	var total_pages = parseInt(loadMoreLink.attr('data-pages'));
 	var author = loadMoreLink.attr('data-author');
 	var tag = loadMoreLink.attr('data-tag');
+	var feed = loadMoreLink.attr('data-feed');
 		
 	if(!author)
 		author = 0;
 		
 	if(!tag)
 		tag = '';
+
+	if(!feed)
+		feed = 0
 			
 	function tz_loadMore() {
 
@@ -115,10 +119,16 @@ jQuery(document).ready(function() {
 				jQuery(this).unbind("click");
 				
 				jQuery('#new-posts').html('Loading...');
+
+				if(feed == 1) {
+					load_path = "/feed/load_more"
+				} else {
+					load_path = "/pages/load_more"
+				}
 				
 				load_params = "?author=" + author + "&offset=" + offset +"&tag=" + tag;
 				
-				jQuery('#new-posts').load("/pages/load_more" + load_params, function() {
+				jQuery('#new-posts').load(load_path + load_params, function() {
 					
 					// create jQuery object
 					$boxes = jQuery( '#new-posts .hentry' );
@@ -136,13 +146,19 @@ jQuery(document).ready(function() {
 							if(offset == total_pages) {
 								jQuery('#load-more-link').hide()
 								last_page = 1
+							} else {
+								last_page = 0
 							}
 							
 						});
 
 					}
 					//need to write a new controller function for loading all of the last ones back into the screen when they hit back. 
-	        history.pushState(null, document.title, "/pages/" + author + load_params + "&last_page=1");
+					if(feed != 1) {
+	        	history.pushState(null, document.title, "/pages/" + author + load_params + "&last_page=" + last_page);
+	        } else {
+	        	history.pushState(null, document.title, "/feed/" + load_params + "&last_page="  + last_page);
+	        }
     			$(window).bind("popstate", function() {
       			$.getScript(this.href);
     			});

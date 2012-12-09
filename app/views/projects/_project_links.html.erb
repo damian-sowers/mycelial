@@ -5,18 +5,21 @@
 	<%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
 
 	<div class="control-group">
-		<%= f.label :url, "Project Link", class: "control-label required" %>
+		<%= f.label :url, "Project Link", class: "control-label" %>
 		<div class="controls">
 			<%= f.text_field :url, class: "input-xlarge"  %>
 		</div>
 	</div>
 
+	<% if @project.project_type == 1 %>
 	<div class="control-group">
-		<%= f.label :github_repo, "Github URL", class: "control-label required" %>
+		<%= f.label :github_repo, "Github URL", class: "control-label" %>
 		<div class="controls">
 			<%= f.text_field :github_repo, class: "input-xlarge"  %>
 		</div>
 	</div>
+	<% end %>
+
 	<%= f.submit "Submit", class: "btn btn-primary" %>
 	<% end %>
 </div>

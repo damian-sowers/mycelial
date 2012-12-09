@@ -2,57 +2,69 @@
 	<div class="mycelial_page page">
 		<h1 class="entry-title" style="font-size:25px; color:#333"><%= @project.project_name %></h1>
 		<div class="entry-content">
-			<div>
-				<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
-					<span class="overlay" style="display:none; ">
-						<span class="icon"></span>
-					</span>
-					<%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
-				</a>
-				
-				<div class="project_blocks">
-					<div id="short_description">
-					<% if @page_owner %>
-						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
-					<% end %>
-					<p>
-						<b>Summary:</b><br/><br/>
-						<%= @project.short_description %>
-					</p>
-					</div>
-				</div>
-				<br/>
-				<div class="project_blocks">
-					<div id="long_description">
-					<% if @page_owner %>
-						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
-					<% end %>
-					<p>
-						<b>Project Description:</b><br/><br/>
-						<%= @project.long_description %>
-					</p>
-					</div>
+			<% if @project.picture_url %>
+			<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
+				<span class="overlay" style="display:none; ">
+					<span class="icon"></span>
+				</span>
+				<%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
+			</a>
+			<% end %>
+			
+			<% unless @project.short_description.empty? %>
+			<div class="project_blocks">
+				<div id="short_description">
+				<% if @page_owner %>
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+				<% end %>
+				<p>
+					<b>Summary:</b><br/><br/>
+					<%= @project.short_description %>
+				</p>
 				</div>
 			</div>
+			<br/>
+			<% end %>
+
+			<% unless @project.long_description.empty? %>
+			<div class="project_blocks">
+				<div id="long_description">
+				<% if @page_owner %>
+					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+				<% end %>
+				<p>
+					<b>Project Description:</b><br/><br/>
+					<%= @project.long_description %>
+				</p>
+				</div>
+			</div>
+			<% end %>
+
 			<div style="clear:both"></div>
+
+			<% unless @tech_tags.empty? %>
 			<div class="project_blocks">
 			<div class="prog_language" style="margin-bottom:20px;">
 				<% if @page_owner %>
 					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
 				<% end %>
-				<p><b>Main Languages and Technologies</b><br/></p>
+				
+				<p><b><%= show_tag_language(@project) %></b><br/></p>
+
 				<% @tech_tags.each do |t| %>
 					<% if t.picture != nil %>
-						<%= image_tag "tech_tags/#{t.picture.to_s}", class: "picture_tags" %>
+						<%= link_to(image_tag("tech_tags/#{t.picture.to_s}", :title => t.name), feed_path(:tag => t.name), class: "picture_tags", :rel => "tooltip") %>
 					<% else %>
-						<div class="generic_tags"><span><%= t.name %></span></div>
+						<%= link_to "#{t.name}", feed_path(:tag => t.name), class: "feed_tags" %>
 					<% end %>
 				<% end %>
 			</div>
 			<div style="clear:both"></div>
 			</div>
+			<% end %>
+
+			<% unless @project.other_interesting.empty? %>
 			<hr>
-			<% if !@project.other_interesting.empty? %>
 			<div class="project_blocks">
 				<div class="other_interesting">
 					<% if @page_owner %>
@@ -64,9 +76,10 @@
 					</p>
 				</div>
 			</div>
-			<hr>
 			<% end %>
+
 			<% unless @project.url.empty? and @project.github_repo.empty? %>
+			<hr>
 			<div class="project_blocks">
 				<div class="project_links">
 					<% if @page_owner %>
@@ -86,6 +99,7 @@
 				</div>
 			</div>
 			<% end %>
+
 		</div>
 	</div>
 	<br/>	

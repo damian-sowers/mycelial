@@ -8,7 +8,7 @@
     <%= render 'shared/errors', :target => @page %>
     <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
     <div class="control-group">
-      <%= f.label :name,  class: "control-label required" %>
+      <%= f.label :name, "Full Name", class: "control-label required" %>
       <div class="controls">
         <%= f.text_field :name, class: "input-xlarge" %>
       </div>
@@ -75,7 +75,7 @@
     <% else %>
     <div class="row">
     <div style="float:right">
-      <a href="/projects/new_project" class="button orange">Add another project</a>
+      <a href="/projects/new_project" class="btn btn-large btn-success">Add a new project +</a>
     </div>
     <div class="span6">
     <h2>Your Projects</h2>

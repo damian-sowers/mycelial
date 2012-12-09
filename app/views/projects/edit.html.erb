@@ -11,39 +11,43 @@
     <%= render 'shared/errors', :target => @project %>
     <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
     <div class="control-group">
-      <%= f.label :project_name,  class: "control-label required" %>
+      <%= f.label :project_name, @project.project_type.to_i == 2 ? "Post Title" : "Project name", class: "control-label required" %>
       <div class="controls">
         <%= f.text_field :project_name, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :short_description, "Short description", class: "control-label required" %>
+      <%= f.label :short_description, "Short description", class: "control-label" %>
       <div class="controls">
         <%= f.text_area :short_description, :cols => 80, :rows => 5, class: "input-xlarge"  %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :long_description, "Long Description", class: "control-label required" %>
+      <%= f.label :long_description, "Long Description", class: "control-label" %>
       <div class="controls">
         <%= f.text_area :long_description, :cols => 80, :rows => 10, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label required" %>
+      <% if @project.project_type == 1 %>
+        <%= f.label :tech_tag_tokens, "Main Languages and Technologies (e.g Ruby, Rails, Python)", class: "control-label" %>
+      <% else %>
+        <%= f.label :tech_tag_tokens, "Tags (e.g. Startups, Arduino, Potato Guns, Telescopes...)", class: "control-label" %>
+      <% end %>
       <div class="controls tech_tags">
           <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :other_interesting, "Other interesting things about this project", class: "control-label required" %>
-      <div class="controls">
-        <%= f.text_area :other_interesting, :cols => 80, :rows => 8, class: "input-xlarge" %>
-      </div>
+    <%= f.label :other_interesting, "Other interesting things about this #{@project.project_type.to_i == 2 ? "blog post" : "project"}", class: "control-label" %>
+    <div class="controls">
+      <%= f.text_area :other_interesting, class: "input-xlarge" %>
     </div>
+  </div>
 
     <% unless @project.picture.nil? or @project.picture.blank? %>
     <div id="project_picture_area">
@@ -63,18 +67,20 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :url, "Project URL", class: "control-label required" %>
+      <%= f.label :url, "#{@project.project_type.to_i == 2 ? "Blog article" : "Project"} URL", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :url, class: "input-xlarge" %>
       </div>
     </div>
 
+    <% if @project.project_type.to_i == 1 %>
     <div class="control-group">
       <%= f.label :github_repo, "Github Repo", class: "control-label required" %>
       <div class="controls">
         <%= f.text_field :github_repo, class: "input-xlarge" %>
       </div>
     </div>
+    <% end %>
 
     <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>

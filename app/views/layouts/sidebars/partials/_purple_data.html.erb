@@ -3,10 +3,20 @@
 <% else %>
 	<a href="/users/sign_in">Customize Feed</a>
 <% end %>
-<h4 style="margin-top:20px; margin-bottom:20px; color:#222; font-size:12px">Filter By Tags</h4>
+<h4 style="margin-top:20px; margin-bottom:20px; color:#222; font-size:14px">Filter By Tags</h4>
 
-<div class="generic_tags feed_tags"><%= link_to "Ruby", feed_path(:tag => 5) %></div>
-<div class="generic_tags feed_tags"><span>Programming</span></div><br/><br/><br/>
+<%= link_to "Ruby", feed_path(:tag => 'ruby'), class: 'feed_tags' %>
+<%= link_to "Programming", feed_path(:tag => 'programming'), class: 'feed_tags' %>
+<%= link_to "Rails", feed_path(:tag => 'rails'), class: 'feed_tags' %>
+<%= link_to "Postgres", feed_path(:tag => 'postgres'), class: 'feed_tags' %>
+<%= link_to "Heroku", feed_path(:tag => 'heroku'), class: 'feed_tags' %>
+<%= link_to "Startups", feed_path(:tag => 'startups'), class: 'feed_tags' %>
+
+<br/><br/>
+<form method="get" action="/feed?">
+	<input type="text" name="tag" class="span2" />
+	<input type="submit" name="Search" value="Search" class="btn" />
+</form>
 
 <div class="separator clearfix">
  <div class="line"></div>
