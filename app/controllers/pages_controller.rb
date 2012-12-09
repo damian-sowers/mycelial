@@ -24,10 +24,12 @@ class PagesController < ApplicationController
 		total_projects = @page.projects.count
 		@total_pages = (total_projects.to_f / @projects_per_page.to_f).ceil
 		if params[:offset]
+			@offset = Integer(params[:offset]) + 1
 			limit_num = (Integer(params[:offset]) + 1) * @projects_per_page
 		else
 			limit_num = @projects_per_page
 		end
+		@offset ||= 1
 		@projects = @page.projects.limit(limit_num)
 	end
 

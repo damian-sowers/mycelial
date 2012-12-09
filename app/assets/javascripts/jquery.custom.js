@@ -122,11 +122,11 @@ jQuery(document).ready(function() {
 
 				if(feed == 1) {
 					load_path = "/feed/load_more"
+					load_params = "?offset=" + offset + "&tag=" + tag; 
 				} else {
 					load_path = "/pages/load_more"
+					load_params = "?author=" + author + "&offset=" + offset;
 				}
-				
-				load_params = "?author=" + author + "&offset=" + offset +"&tag=" + tag;
 				
 				jQuery('#new-posts').load(load_path + load_params, function() {
 					
@@ -144,10 +144,10 @@ jQuery(document).ready(function() {
 							//this works because the var offset above the function isn't reloading every time the link is clicked, so the new value of the offset is incremented and passed into the post data to the load_more controller
 							offset++;
 							if(offset == total_pages) {
-								jQuery('#load-more-link').hide()
-								last_page = 1
+								jQuery('#load-more-link').hide();
+								last_page = 1;
 							} else {
-								last_page = 0
+								last_page = 0;
 							}
 							
 						});
@@ -157,7 +157,7 @@ jQuery(document).ready(function() {
 					if(feed != 1) {
 	        	history.pushState(null, document.title, "/pages/" + author + load_params + "&last_page=" + last_page);
 	        } else {
-	        	history.pushState(null, document.title, "/feed/" + load_params + "&last_page="  + last_page);
+	        	history.pushState(null, document.title, "/feed" + load_params + "&last_page="  + last_page);
 	        }
     			$(window).bind("popstate", function() {
       			$.getScript(this.href);

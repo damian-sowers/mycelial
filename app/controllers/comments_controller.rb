@@ -25,8 +25,10 @@ class CommentsController < ApplicationController
 		@comment.user_id = current_user.id
 		@comment.username = current_user.username
 		if @comment.save
-			# Send a Pusher notification via a background job
-			Resque.enqueue(CommentNotifier, @user_id)
+			if @user_id != @comment.user_id
+				# Send a Pusher notification via a background job
+				Resque.enqueue(CommentNotifier, @user_id)
+			end
 
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
 		else

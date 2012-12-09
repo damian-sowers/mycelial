@@ -18,7 +18,7 @@
 <div class="ready" id="new-posts"></div>
 <% if @total_pages > 1 && params[:last_page].to_i != 1 %>
   <div id="load-more-link">
-    <a href="#" data-offset="1" data-pages="<%= @total_pages %>" <% if @user %>data-author="<%= @user.username %>" <% end %> <% if controller?('feed') %> data-feed=1<% end %> <% if @tag %> data-tag="<%= @tag.name %>"<% end %>>Load More</a>
+    <a href="#" data-offset="<%= @offset %>" data-pages="<%= @total_pages %>" <% if @user %>data-author="<%= @user.username %>" <% end %> <% if controller?('feed') %> data-feed=1<% end %> <% if @tag %> data-tag="<%= @tag.name %>"<% end %>>Load More</a>
   </div>
 <% end %>
 <%= render 'layouts/closing_divs' %>

@@ -7,14 +7,16 @@ class NotifyObserver < ActiveRecord::Observer
     r.receiver_id = Project.find(model.project_id).page.user.id
     r.notification_id = model.id
     #put in an if statement to see if model is comment or like
-    if model.methods.include?(:comment)
-      r.notification_type = "comment"
-    else
-      r.notification_type = "like"
-      increment_likes_count(model)
+    if r.receiver_id != r.sender_id
+      if model.methods.include?(:comment)
+        r.notification_type = "comment"
+      else
+        r.notification_type = "like"
+        increment_likes_count(model)
+      end
+      r.viewed = 0
+      r.save
     end
-    r.viewed = 0
-    r.save
   end
 
   def increment_likes_count(model)
