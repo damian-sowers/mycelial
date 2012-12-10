@@ -1,4 +1,5 @@
 <%= render 'layouts/opening_divs' %>
+<% unless @projects.empty? %>  
 <% @projects.each do |p| %>
   <% if p.project_type == 2 #blog %>
     <% if p.picture.nil? or p.picture.blank? #text-widget %>
@@ -13,6 +14,14 @@
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 4, :p => p } %>
     <% end %>
   <% end %>
+<% end %>
+<% else %>
+<div class="page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+    <h2 style="color:#111111">Get Started: Add some projects to your page with the button below</h2>
+    <a href="" class="btn btn-large btn-warning">Build my page</a>
+  </div>
+</div>
 <% end %>
 </div> <!-- end masonry -->
 <div class="ready" id="new-posts"></div>

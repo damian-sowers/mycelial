@@ -14,7 +14,7 @@
         <div class="pull-center">
           <div class="well span5 offset3 shadow-box"> 
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
+            <div class="alert"><%= devise_error_messages! %></div>
 
             <div>
               <label><%= f.label :username %></label>

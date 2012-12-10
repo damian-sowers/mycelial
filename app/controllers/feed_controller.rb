@@ -61,7 +61,7 @@ class FeedController < ApplicationController
 	private
 
 		def set_projects_per_page 
-			@projects_per_page = 1
+			@projects_per_page = 3
 		end
 
 		# def get_projects_per_page()

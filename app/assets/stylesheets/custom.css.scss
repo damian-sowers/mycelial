@@ -1422,10 +1422,9 @@ ul .token-input-list-facebook {
   -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 28px;  
 }
 .mycelial_brand {
-  // font-family: 'Montez', cursive;
   cursor:pointer;
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
+  // font-family: 'Oswald', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size:20px;
   font-weight:bold;
   text-transform:none;
@@ -1436,6 +1435,7 @@ ul .token-input-list-facebook {
 }
 .dark_text {
   color:#333;
+  font-size:14px;
 }
 .divider_spacer {
   padding:0px; margin:0; margin-top:5px
@@ -1455,4 +1455,15 @@ ul .token-input-list-facebook {
     color:#fff;
     text-decoration:none;
   }
+}
+.dark-grey {
+  color:#222;
+}
+.mycelial_square {
+  position:absolute;
+  margin-top:-26px;
+  height:26px;
+  width:28px;
+  background-color:#DA4F49;
+  z-index:-1;
 }

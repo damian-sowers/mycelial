@@ -2,10 +2,14 @@
   <div class="page mycelial_page">
   <%= render 'layouts/span8_well' %>
   <div class="mycelial-page-header">
-  <h2 class="mycelial-page-title">Edit Your Page</h2>
+  <h2 class="mycelial-page-title"><% if params[:new_user] %>Build Your Page<% else %>Edit Your Page<% end %></h2>
   <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
   </div>
     <%= render 'shared/errors', :target => @page %>
+    <br/>
+    <% if params[:new_user] %>
+     <h2 class="dark-grey">Step 1: A little about you (many fields are optional)</h2>
+    <% end %>
     <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
     <div class="control-group">
       <%= f.label :name, "Full Name", class: "control-label required" %>
@@ -49,10 +53,12 @@
       </div>
     </div>
 
+    <% if @page.image_url %>
     <div class="controls">
     <%= image_tag @page.image_url(:thumb).to_s %>
     <br/><br/>
     </div>
+    <% end %>
 
     <div class="control-group">
       <%= f.label :image, "Upload a Profile Picture", class: "control-label required" %>
@@ -70,9 +76,14 @@
 
     <%= f.submit "Save changes", class: "btn btn-info" %>
     <hr>
-    <% if @projects.empty? %>
-      <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
+    <% if params[:new_user] %>
+     <h2 class="dark-grey">Step 2: Add Some Projects to Your Page</h2>
     <% else %>
+      <% if @projects.empty? %>
+      <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
+      <a href="" class="btn btn-large btn-warning" style="float:right">Add a project to your page</a>
+    <% else %>
+    <% end %>
     <div class="row">
     <div style="float:right">
       <a href="/projects/new_project" class="btn btn-large btn-success">Add a new project +</a>
