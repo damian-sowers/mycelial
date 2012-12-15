@@ -7,8 +7,10 @@
   <h2 class="mycelial-page-title">Add a new project to your page</h2>
   <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
   </div>
-    <p>Fill in the fields below.</p>
-    <hr>
+  <p>Fill in the fields below.</p>
+  <hr>
+  <%= render 'shared/errors', :target => @project %>
+  <%= render 'shared/flash_messages' %>
   <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true ) do |f| %>
   <div class="control-group">
     <%= f.label :project_name, params[:project_type].to_i == 2 ? "Post Title" : "Project name", class: "control-label required" %>

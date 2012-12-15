@@ -12,7 +12,9 @@
         </header>
         <div class="pull-center">
           <div class="well span5 offset3 shadow-box"> 
-
+            <% flash.each do |key, value| %>
+                <div class="well alert alert-<%= key %>"><%= value %></div>
+            <% end %>
 						<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 						  <div><%= f.label :email %>
 						  <%= f.email_field :email %></div>

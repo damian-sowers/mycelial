@@ -71,4 +71,12 @@ module ApplicationHelper
     end
     return true unless n.empty?
   end
+
+  #need to put this as a helper as well as application controller method, because devise registrations edit needs to get the sidebar info. Doesn't have its own controller
+  def get_sidebar_info
+    if user_signed_in?
+      @page = Page.find_by_user_id(current_user.id)
+      @user = current_user
+    end
+  end
 end

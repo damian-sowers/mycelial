@@ -6,11 +6,13 @@
   <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
   </div>
     <%= render 'shared/errors', :target => @page %>
+    <%= render 'shared/flash_messages' %>
     <br/>
     <% if params[:new_user] %>
-     <h2 class="dark-grey">Step 1: A little about you (many fields are optional)</h2>
+     <h2 class="dark-grey size-20">Get started by filling out a little about you (many fields are optional)</h2>
+     <hr>
     <% end %>
-    <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" } ) do |f| %>
+    <%= form_for(@page, :html => { :multipart => true, :class => "form-horizontal" }, :validate => true) do |f| %>
     <div class="control-group">
       <%= f.label :name, "Full Name", class: "control-label required" %>
       <div class="controls">
@@ -19,35 +21,42 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :hnusername, "HN Username", class: "control-label required" %>
+      <%= f.label :hnusername, "HN Username", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :hnusername, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :linkedin_username, "LinkedIn Username", class: "control-label required" %>
+      <%= f.label :linkedin_username, "LinkedIn Public URL", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :linkedin_username, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :personal_site, "Personal Site", class: "control-label required" %>
+      <%= f.label :personal_site, "Personal Site", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :personal_site, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :github_username, "GitHub Username", class: "control-label required" %>
+      <%= f.label :twitter_username, "Twitter Username", class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :twitter_username, class: "input-xlarge" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :github_username, "GitHub Username", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :github_username, class: "input-xlarge" %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :about_text, "A Litte About Me", class: "control-label required" %>
+      <%= f.label :about_text, "A Litte About Me", class: "control-label" %>
       <div class="controls">
         <%= f.text_area :about_text, class: "input-xlarge" %>
       </div>
@@ -61,29 +70,29 @@
     <% end %>
 
     <div class="control-group">
-      <%= f.label :image, "Upload a Profile Picture", class: "control-label required" %>
+      <%= f.label :image, "Upload a Profile Picture", class: "control-label" %>
       <div class="controls">
         <%= f.file_field :image %>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :remote_image_url, "Or enter the url of an image", class: "control-label" %>
+      <%= f.label :remote_image_url, "Or enter the url of an image online", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :remote_image_url %>
       </div>
     </div>
-
-    <%= f.submit "Save changes", class: "btn btn-info" %>
-    <hr>
     <% if params[:new_user] %>
-     <h2 class="dark-grey">Step 2: Add Some Projects to Your Page</h2>
-    <% else %>
-      <% if @projects.empty? %>
-      <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
-      <a href="" class="btn btn-large btn-warning" style="float:right">Add a project to your page</a>
-    <% else %>
+      <%= f.hidden_field :new_user, value: 1 %>
     <% end %>
+    <%= f.submit "Save changes", class: "btn btn-info" %>
+
+    <% unless params[:new_user] %>
+    <hr>
+    <% if @projects.empty? %>
+    <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
+    <a href="" class="btn btn-large btn-warning" style="float:right">Add a project to your page</a>
+    <% else %>
     <div class="row">
     <div style="float:right">
       <a href="/projects/new_project" class="btn btn-large btn-success">Add a new project +</a>
@@ -104,19 +113,22 @@
           </thead>
           <tbody>
             <% @projects.each do |p| %>
+            <% p.project_name.length >= 37 ? project_name = p.project_name.slice(0,37) + "..." : project_name = p.project_name %>
+            <% p.short_description.length >= 52 ? short_description = p.short_description.slice(0,52) + "..." : short_description = p.short_description %>
               <tr>
-                <td><b><%= link_to "#{p.project_name}", "/projects/#{p.id}/edit" %></a></b></td>
-                <td><b><%= link_to "#{p.short_description}", "/projects/#{p.id}/edit" %></a></b></td>
-                <td><b><%= link_to "#{p.created_at}", "/projects/#{p.id}/edit" %></b></td>
+                <td><b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></a></b></td>
+                <td><b><%= link_to "#{short_description}", "/projects/#{p.id}/edit" %></a></b></td>
+                <td><b><%= link_to "#{time_ago_in_words(p.created_at)} ago", "/projects/#{p.id}/edit" %></b></td>
               </tr>
             <% end %>
           </tbody>
         </table>
 
     <% end %>
-    <p></p>
+    <% end %>
     <% end %>
   </div>
 </div>
 </div>
+<%= render 'layouts/admin_right_sidebar.html.erb' %>
 <%= render 'layouts/closing_divs' %>

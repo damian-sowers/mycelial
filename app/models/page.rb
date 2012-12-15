@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
 
-  attr_accessible :name, :hnusername, :linkedin_username, :personal_site, :github_username, :project_title, :about_text, :image, :remote_image_url, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :name, :hnusername, :linkedin_username, :personal_site, :github_username, :twitter_username, :project_title, :about_text, :image, :remote_image_url, :crop_x, :crop_y, :crop_w, :crop_h, :new_user
   belongs_to :user
   has_many :projects, :dependent => :destroy
   #carrierwave image uploader below
@@ -8,7 +8,7 @@ class Page < ActiveRecord::Base
 
   #cropping functionality requires this below
   #attr_accessor can be used for values you don't want to store in the database. It will only exist for the life of the object
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :new_user
   after_update :crop_avatar
   
   validates :name, presence: 	true

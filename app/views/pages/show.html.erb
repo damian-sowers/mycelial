@@ -18,8 +18,16 @@
 <% else %>
 <div class="page mycelial_page">
   <%= render 'layouts/span8_well' %>
+  <% if user_signed_in? && current_user.username == params[:id].to_s %>
     <h2 style="color:#111111">Get Started: Add some projects to your page with the button below</h2>
-    <a href="" class="btn btn-large btn-warning">Build my page</a>
+    <a href="/projects/new_project" class="btn btn-large btn-warning">Build my page</a>
+  <% else %>
+    <% if controller?('pages') %>
+    <h2 style="color:#111111">This user has not added any projects to their page yet.</h2>
+    <hr>
+    <% end %>
+    <%= image_tag "404-monster.jpg" %>
+  <% end %>
   </div>
 </div>
 <% end %>

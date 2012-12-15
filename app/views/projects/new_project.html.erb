@@ -3,7 +3,7 @@
 	<div class="page mycelial_page">
 		<%= render 'layouts/span8_well' %>
 		<div class="mycelial-page-header">
-			<h2 class="mycelial-page-title">Select a Project Type:</h2>
+			<h2 class="mycelial-page-title"><% if params[:new_user] %>Next step: Add a project to your page. Select a project type.<% else %>Select a project type<% end %></h2>
 			<span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
 		</div>
 		<!--BEGIN .entry-content -->
@@ -20,8 +20,8 @@
 				<%= link_to(image_tag("blog.png"), new_project_path(:project_type => 2), class: 
 				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
 				%> 
-				<h2><%= link_to "Blog Post", new_project_path(:project_type => 2) %></h2>
-				<p>Web app, Desktop software, open source, or anything programming related</p>
+				<h2><%= link_to "Blog Post or Article", new_project_path(:project_type => 2) %></h2>
+				<p>Any blog post or online article under the sun. Unless, of course, the article is claiming that Tapatio hot sauce is better than Cholula hot sauce. Such a claim is clearly untrue.</p>
 			</div>
 
 			<div class="row" style="padding-left:15px;">
@@ -29,7 +29,7 @@
 				"thumbnail", style: "width: 220px; float:left; margin-right:30px;")
 				%> 
 				<h2><%= link_to "Other", new_project_path(:project_type => 3) %></h2>
-				<p>Web app, Desktop software, open source, or anything programming related</p>
+				<p>Scientific research project, home-made telescope, illustrations and designs, or any other project.</p>
 			</div>
 		</div>
 	</div>

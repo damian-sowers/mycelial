@@ -4,14 +4,14 @@
 		<div class="entry-content">
 			<% if @project.picture_url %>
 			<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
-				<span class="overlay" style="display:none; ">
+				<span class="overlay" style="display:none;">
 					<span class="icon"></span>
 				</span>
 				<%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
 			</a>
 			<% end %>
 			
-			<% unless @project.short_description.empty? %>
+			<% unless @project.short_description.blank? %>
 			<div class="project_blocks">
 				<div id="short_description">
 				<% if @page_owner %>
@@ -26,7 +26,7 @@
 			<br/>
 			<% end %>
 
-			<% unless @project.long_description.empty? %>
+			<% unless @project.long_description.blank? %>
 			<div class="project_blocks">
 				<div id="long_description">
 				<% if @page_owner %>
@@ -42,7 +42,7 @@
 
 			<div style="clear:both"></div>
 
-			<% unless @tech_tags.empty? %>
+			<% unless @tech_tags.blank? %>
 			<div class="project_blocks">
 			<div class="prog_language" style="margin-bottom:20px;">
 				<% if @page_owner %>
@@ -63,7 +63,7 @@
 			</div>
 			<% end %>
 
-			<% unless @project.other_interesting.empty? %>
+			<% unless @project.other_interesting.blank? %>
 			<hr>
 			<div class="project_blocks">
 				<div class="other_interesting">
@@ -78,7 +78,7 @@
 			</div>
 			<% end %>
 
-			<% unless @project.url.empty? and @project.github_repo.empty? %>
+			<% unless @project.url.blank? and @project.github_repo.blank? %>
 			<hr>
 			<div class="project_blocks">
 				<div class="project_links">
@@ -86,12 +86,12 @@
 						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
 						</div>
 					<% end %>
-					<% unless @project.url.empty? %>
+					<% unless @project.url.blank? %>
 						<div class="project_url">
 							<p><b>Vist This Project:</b> <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></p>
 						</div>
 					<% end %>
-					<% unless @project.github_repo.empty? %>
+					<% unless @project.github_repo.blank? %>
 						<div class="github_link">
 							<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><p><b>Check it out on Github:</b><br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></p>
 						</div>
@@ -99,7 +99,6 @@
 				</div>
 			</div>
 			<% end %>
-
 		</div>
 	</div>
 	<br/>	

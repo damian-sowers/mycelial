@@ -1,11 +1,14 @@
+<% get_sidebar_info() %>
+<%= render 'layouts/opening_divs' %>
+<div class="mycelial_page page">
   <%= render 'layouts/span8_well' %>
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <div class="mycelial-page-header">
+  <h2 class="mycelial-page-title">Edit your account info</h2>
+  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
       <%= devise_error_messages! %>
-
-      <div><label><%= f.label :username %></label>
-      <%= f.text_field :username %></div>
 
       <div><label><%= f.label :email %></label>
       <%= f.email_field :email %></div>
@@ -19,12 +22,10 @@
       <div><label><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></label>
       <%= f.password_field :current_password %></div>
 
-      <div><%= f.submit "Update" %></div>
+      <div><%= f.submit "Update", class: "btn btn-primary" %></div>
     <% end %>
-
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 
     <%= link_to "Back", :back %>
   </div>
+</div>
+<%= render 'layouts/closing_divs' %>

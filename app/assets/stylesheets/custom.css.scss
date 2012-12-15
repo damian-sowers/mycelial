@@ -1459,6 +1459,15 @@ ul .token-input-list-facebook {
 .dark-grey {
   color:#222;
 }
+.size-16 {
+  font-size:16px;
+}
+.size-18 {
+  font-size:18px;
+}
+.size-20 {
+  font-size:20px;
+}
 .mycelial_square {
   position:absolute;
   margin-top:-26px;
@@ -1466,4 +1475,7 @@ ul .token-input-list-facebook {
   width:28px;
   background-color:#DA4F49;
   z-index:-1;
+  -moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px; /* future proofing */
 }

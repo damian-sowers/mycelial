@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
 		@project.page_id = Page.find_by_user_id(current_user.id).id
 		if @project.save
 			flash[:success] = "Your project has been created."
-			redirect_to :action => "edit", :id => @project.id, only_path: true
+			redirect_to :controller => "pages", :action => "show", :id => current_user.username, only_path: true
 		end
 	end
 
@@ -67,6 +67,16 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
+		#get the user page id
+		@page_id = User.find(current_user.id).page.id
+		project = Project.find(params[:id])
+		if project.destroy
+			flash[:success] = "Project Deleted"
+      redirect_to :controller => "pages", :action => "edit", :id => @page_id, only_path: true
+		else
+			flash[:error] = "Something went wrong"
+			redirect_to :controller => "pages", :action => "edit", :id => @page_id, only_path: true
+		end
 	end
 
 	def project_type

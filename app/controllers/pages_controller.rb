@@ -82,8 +82,13 @@ class PagesController < ApplicationController
       if params[:page][:image].present?
 				render 'crop'
 			else 
-      	flash[:success] = "Page updated"
-      	redirect_to :action => "edit", :id => params[:id], only_path: true
+				if params[:page][:new_user]
+					#send to step 2. Add your first project. append var to tell new projects controller it's a new user
+					redirect_to :controller => "projects", :action => "new_project", :new_user => 1, only_path: true
+				else 
+	      	flash[:success] = "Page updated"
+	      	redirect_to :action => "edit", :id => params[:id], only_path: true
+	      end
       end
     else 
       render 'edit'
