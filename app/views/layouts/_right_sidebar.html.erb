@@ -1,4 +1,4 @@
-<div class="mycelial_sidebar">
+<div class="mycelial_sidebar" style="display:none">
 	<% unless @project.url.empty? %>
 	<a href="<%= @project.url.to_s %>" class="btn">Visit Project Site</a>
 	<br/><br/>
@@ -7,7 +7,7 @@
 	<br/><br/>
 	<%= raw show_more_projects(@user_projects) %>
 	<br/>
-	<div id="like">
+	<div class="like">
 	<% if user_signed_in? %>
 		<% if like = current_user.likes.find_by_project_id(@project.id) %>
 			<%= form_for like, :html => { :method => :delete }, :remote => true do |f| %>

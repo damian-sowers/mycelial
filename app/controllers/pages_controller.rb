@@ -76,6 +76,7 @@ class PagesController < ApplicationController
 	end
 
 	def update
+		@page.user_name_class = get_formatted_user_name_class(params[:page][:name])
 		if @page.update_attributes(params[:page])
       #handle a successful update
       #get rid of this session variable in the update eventually. Need to figure out a way to get this upon login, and also assign it during create. 
@@ -105,4 +106,29 @@ class PagesController < ApplicationController
 		def get_user 
 			@user = Page.find(params[:id]).user
 		end
+
+		def get_formatted_user_name_class(name)
+	    #steps to take: split the name based on the whitespace. Take the length of each segment. If length less than or equal to 7 characters, render the big name. 
+	    length_class = ["name_size_1", "name_size_2", "name_size_3", "name_size_4", "name_size_5"]
+	    length_flag = 0
+	    name_format = ""
+	    name_array = name.split(" ")
+	    length_array = []
+	    name_array.each do |f| 
+	      length_array << f.length 
+	    end
+
+	    if length_array.max.between?(0,7)
+	      name_format = length_class[0]
+	    elsif length_array.max.between?(8,9)
+	      name_format = length_class[1]
+	    elsif length_array.max.between?(10,12)
+	      name_format = length_class[2]
+	    elsif length_array.max.between?(13,16)
+	      name_format = length_class[3]
+	    else 
+	      name_format = length_class[4]
+	    end
+	    return name_format
+	  end
 end

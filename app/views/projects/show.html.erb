@@ -104,10 +104,13 @@
 	<br/>	
 
 	<%= render 'layouts/right_sidebar' %>
+	<%= render 'layouts/bottom_like_bar' %>
 
 	<div class="comments_area">
+
 		<% if @comments %>
 			<div class="center_column_area">
+				<a href="#" name="comments"></a>
 				<%= nested_comments(@comments) %>
 			</div>
 		<% end %>

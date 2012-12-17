@@ -46,7 +46,7 @@
       <% end %>
     </li>
     <li class="comment-count">
-      <a href="<%= project_path(:id => p.id) %>"><span class="icon"></span><%= p.comments.count %></a>   
+      <a href="/projects/<%= p.id %>#comments"><span class="icon"></span><%= p.comments.count %></a>   
     </li>
   </ul>
 </div>

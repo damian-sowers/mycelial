@@ -7,18 +7,18 @@
   <div class="menu-type-container">
     <ul id="menu-type" class="menu">
 
-      <%= render 'layouts/sidebars/partials/green_data' %>
+      <% #render 'layouts/sidebars/partials/green_data' %>
 
       <% if [4,5].include? sidebar_number %>
         <%= render 'layouts/sidebars/partials/purple_data' %>
       <% end %>
       
       <% if [1,2,5].include? sidebar_number  %>
-        <%= render 'layouts/sidebars/partials/blue_data' %>
+        <% # render 'layouts/sidebars/partials/blue_data' %>
       <% end %>
 
       <% if [3,4].include? sidebar_number %>
-        <%= render 'layouts/sidebars/partials/orange_data' %>
+        <% # render 'layouts/sidebars/partials/orange_data' %>
       <% end %>
 
       <%= render 'layouts/sidebars/partials/notification' %>
@@ -26,11 +26,6 @@
     </ul>
   </div>
 </div>
-
-<div class="separator clearfix">
- <div class="line"></div>
-</div>
-
 
 <%= render 'layouts/sidebars/partials/red_data' %>
 
