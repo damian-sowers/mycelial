@@ -1,4 +1,5 @@
 <%= render 'layouts/opening_divs' %>
+<div class="page mycelial_page">
   <%= render 'layouts/span8_well' %>
 		<h1>Crop Your Image</h1>
 		<p>Select the area below</p>
@@ -15,8 +16,9 @@
 				<%= f.hidden_field "crop_#{attribute}" %><br/>
 			<% end %>
 			<div class="actions">
-				<%= f.submit "Crop" %>
+				<%= f.submit "Crop", class: "btn btn-primary" %>
 			</div>
 		<% end %>
 	</div>
+</div>
 <%= render 'layouts/closing_divs' %>

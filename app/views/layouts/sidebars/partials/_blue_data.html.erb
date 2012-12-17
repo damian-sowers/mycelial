@@ -1,7 +1,4 @@
-<% if has_a_page?(current_user.id) %>
-	<li><%= link_to "Profile", page_path(:id => current_user.username) %></li>
-	<li><%= link_to 'Admin', edit_page_path(:id => current_user.page.id) %></li>
-	<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-<% else %>
-	<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-<% end %>
+<li><%= link_to "Profile", page_path(:id => current_user.username) %></li>
+<li><%= link_to 'Admin', edit_page_path(:id => current_user.page.id) %></li>
+<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+

@@ -38,13 +38,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
 
   version :large do
-    process :resize_to_limit => [600, 600]
+    process :resize_to_limit => [180, 180]
   end
 
   version :thumb do
     #resize_to_fill will also fill in the image if it is smaller than the parameters to begin with. 
     #adding in the cropping method below
-    process :crop
+    #process :crop
     process :resize_to_limit => [50, 50]
   end
 
@@ -65,6 +65,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  def filename
+    if original_filename 
+      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{@name}.#{file.extension}"
+    end
+    # time_var = Time.now.to_i
+    # "project-image-#{time_var}.png" if original_filename
   end
 
   # Override the filename of the uploaded files:

@@ -1,0 +1,28 @@
+<%= render 'layouts/opening_divs' %>
+<div class="page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+  <div class="mycelial-page-header">
+    <h2 class="mycelial-page-title"><%= @project.project_name %></h2>
+    <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  </div>
+  <% if @people %>
+  <% if @likes_count >= 1 %>
+    <p><strong><%= pluralize(@likes_count, "person") %></strong> <%= @likes_count == 0 or @likes_count > 1 ? "like" : "likes" %> this project</p>
+  <% end %>
+    <% @people.each do |f| %>
+      <% 
+        r = User.find(f.user_id).page 
+
+      %>
+      <p>
+        <% if r.image_url %>
+          <%= link_to(image_tag(r.image_url(:thumb).to_s, class: "thumbnail", style: "float:left; margin-right:15px; margin-bottom:15px;"), page_path(:id => "#{f.username}")) %>
+        <% end %>
+        <%= link_to "#{f.username}", page_path(:id => "#{f.username}") %><br/>
+        <span style="font-size:12px; font-style:italic"><%= time_ago_in_words(f.created_at) %> ago</span>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+</div>
+<%= render 'layouts/closing_divs' %>

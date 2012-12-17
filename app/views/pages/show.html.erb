@@ -2,13 +2,13 @@
 <% unless @projects.empty? %>  
 <% @projects.each do |p| %>
   <% if p.project_type == 2 #blog %>
-    <% if p.picture.nil? or p.picture.blank? #text-widget %>
+    <% if p.picture.blank? #text-widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 1, :p => p } %>
     <% else #picture widget. Prepend blog to the title %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 2, :p => p } %>
     <% end %>
   <% else #programming or other widget %>
-    <% if p.picture.nil? or p.picture.blank?#text widget %>
+    <% if p.picture.blank? #text widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 3, :p => p } %>
     <% else #main picture widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 4, :p => p } %>
@@ -20,7 +20,7 @@
   <%= render 'layouts/span8_well' %>
   <% if user_signed_in? && current_user.username == params[:id].to_s %>
     <h2 style="color:#111111">Get Started: Add some projects to your page with the button below</h2>
-    <a href="/projects/new_project" class="btn btn-large btn-warning">Build my page</a>
+    <a href="/pages/<%= current_user.page.id %>/edit?new_user=1" class="btn btn-large btn-warning">Build my page</a>
   <% else %>
     <% if controller?('pages') %>
     <h2 style="color:#111111">This user has not added any projects to their page yet.</h2>

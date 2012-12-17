@@ -1,0 +1,14 @@
+<%= render 'layouts/opening_divs' %>
+<div class="page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+    <% if @page.image_url %>
+    <%= image_tag @page.image_url(:large).to_s, class: "float_left margin_right_15 margin_bottom_15" %>
+    <% else %>
+    	<!-- show default image -->
+    	
+    <% end %>
+    <h2 style="color:#777">About <%= @page.name %></h2>
+    <p><%= @page.about_text %></p>
+  </div>
+</div>
+<%= render 'layouts/closing_divs' %>

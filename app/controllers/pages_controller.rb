@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-	before_filter :authenticate_user!, except: [:show, :index, :load_more, :view_history]
+	before_filter :authenticate_user!, except: [:show, :index, :load_more, :view_history, :about]
 	before_filter :correct_user, only: [:edit, :update, :destroy]
 	#get the sidebar data from the session user id for the logged in methods like edit, update
 	before_filter :get_sidebar_info, only: [:edit, :update]
@@ -33,6 +33,11 @@ class PagesController < ApplicationController
 		@projects = @page.projects.limit(limit_num)
 	end
 
+	def about
+		@user = User.find_by_username(params[:id])
+		@page = @user.page
+	end
+
 	def load_more
 
 		offset_num = Integer(params[:offset])
@@ -62,13 +67,9 @@ class PagesController < ApplicationController
 		@page = Page.new(params[:page])
 		@page.user_id = current_user.id
 		if @page.save
-			session[:page_id] = @page.id
-			if params[:page][:image].present?
-				render 'crop'
-			else 
-				flash[:success] = "Your page has been created."
-				redirect_to @page, only_path: true
-			end
+			session[:page_id] = @page.id 
+			flash[:success] = "Your page has been created."
+			redirect_to @page, only_path: true
 		else 
 			render 'new'
 		end
@@ -79,18 +80,15 @@ class PagesController < ApplicationController
       #handle a successful update
       #get rid of this session variable in the update eventually. Need to figure out a way to get this upon login, and also assign it during create. 
       session[:page_id] = @page.id
-      if params[:page][:image].present?
-				render 'crop'
+ 			if params[:page][:new_user]
+				#send to step 2. Add your first project. append var to tell new projects controller it's a new user
+				redirect_to :controller => "projects", :action => "new_project", :new_user => 1, only_path: true
 			else 
-				if params[:page][:new_user]
-					#send to step 2. Add your first project. append var to tell new projects controller it's a new user
-					redirect_to :controller => "projects", :action => "new_project", :new_user => 1, only_path: true
-				else 
-	      	flash[:success] = "Page updated"
-	      	redirect_to :action => "edit", :id => params[:id], only_path: true
-	      end
+      	flash[:success] = "Page updated"
+      	redirect_to :action => "edit", :id => params[:id], only_path: true
       end
     else 
+    	flash[:error] = "Something went wrong"
       render 'edit'
     end
 	end

@@ -9,8 +9,10 @@ CNN::Application.routes.draw do
   match "/pages/load_more" => "pages#load_more"
   match "/feed" => "feed#index"
   match "/feed/load_more" => "feed#load_more"
+  match "/pages/:id/about" => "pages#about"
   resources :pages
   resources :tech_tags
+  match "/likes/ajax_like" => "likes#ajax_like"
   resources :likes 
   
   match "/projects/project_type/:id" => "projects#project_type"

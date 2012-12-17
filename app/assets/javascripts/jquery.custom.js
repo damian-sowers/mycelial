@@ -311,11 +311,12 @@ jQuery(document).ready(function() {
 			}
 			var classes = jQuery(this).addClass("active");
 			var id = jQuery(this).attr("id");
+			var user_id = jQuery(this).attr("data-user");
 			id = id.split("like-");
 			jQuery.ajax({
 			  type: "POST",
-			  url: "index.php",
-			  data: "likepost=" + id[1],
+			  url: "/likes/ajax_like",
+			  data: "project_id=" + id[1] + "&user_id=" + user_id,
 			  success: tz_reloadLikes("like-" + id[1])
 			}); 
 			
@@ -324,6 +325,6 @@ jQuery(document).ready(function() {
 		});
 	}
 	
-	tz_likeInit();
+	 tz_likeInit();
 
 });

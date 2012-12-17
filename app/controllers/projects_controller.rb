@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
 		#show edit blocks on hover if page_owner == 1
 		@page_owner = is_page_owner?(@project.id)
 		@comments = @project.comments.arrange(:order => :created_at)
+		#get likes count for the right sidebar. 
+		@likes_count = Like.count(:all, :conditions => ["project_id = ?", params[:id]])
 	end
 
 	def new_project 

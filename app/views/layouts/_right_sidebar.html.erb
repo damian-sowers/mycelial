@@ -26,6 +26,12 @@
 	<% end %>
 	</div>
 
+	<div class="likes_count">
+		<% if @likes_count >= 1 %>
+			<p><%= link_to pluralize(@likes_count, "person"), like_path(:id => @project.id) %> <%= @likes_count == 0 or @likes_count > 1 ? "like" : "likes" %> this project</p>
+		<% end %>
+	</div>
+
 	<% if user_signed_in? %>
 		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "lightbox btn btn-warning", :remote => true %>
 	<% else %>
