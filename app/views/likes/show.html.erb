@@ -11,16 +11,26 @@
   <% end %>
     <% @people.each do |f| %>
       <% 
+      begin
         r = User.find(f.user_id).page 
-
+      rescue
+        r = nil
+      end
       %>
+      <div class="row">
+      <div class="span8">
       <p>
         <% if r.image_url %>
           <%= link_to(image_tag(r.image_url(:thumb).to_s, class: "thumbnail", style: "float:left; margin-right:15px; margin-bottom:15px;"), page_path(:id => "#{f.username}")) %>
+        <% else %>
+          <% n = Random.new %>
+          <%= link_to(image_tag(get_random_thumb(n.rand(1..4)).to_s, class: "thumbnail", style: "float:left; margin-right:15px; margin-bottom:15px;"), page_path(:id => "#{f.username}")) %>
         <% end %>
         <%= link_to "#{f.username}", page_path(:id => "#{f.username}") %><br/>
         <span style="font-size:12px; font-style:italic"><%= time_ago_in_words(f.created_at) %> ago</span>
       </p>
+      </div>
+      </div>
     <% end %>
   <% end %>
 </div>

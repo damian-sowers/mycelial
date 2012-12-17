@@ -18,11 +18,11 @@
 				<%= f.hidden_field :project_id %>
 				<%= f.hidden_field :user_id %>
 				<%= f.hidden_field :username, value: current_user.username %>
-				<%= f.submit "Like This Project", class: "btn btn-info" %>
+				<%= f.submit "Like This Project", class: "btn btn-primary" %>
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-info" %>
+		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary", style: "margin-bottom:15px" %>
 	<% end %>
 	</div>
 
@@ -35,7 +35,6 @@
 	<% if user_signed_in? %>
 		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "lightbox btn btn-warning", :remote => true %>
 	<% else %>
-		<br/>
-		<%= link_to "Add a Comment", new_user_session_path, class: "btn btn-warning" %>
+		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "btn btn-warning" %>
 	<% end %>
 </div>

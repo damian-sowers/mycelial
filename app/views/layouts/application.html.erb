@@ -46,5 +46,21 @@
 </head>
 <body>
     <%= yield %>
+    <% unless controller?('home') %>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+          <div class="nav">
+            <ul class="nav" style="margin-left:25px">
+              <li class="active"><a href="#">mycelial</a></li>
+              <li><a href="#">Feed</a></li>
+              <li><a href="#about">Profile</a></li>
+              <li><a href="#about">Admin</a></li>
+              <li><a href="#contact">Logout</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+
+      </div>
+    </div>
+    <% end %>
 </body>
 </html>
