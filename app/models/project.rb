@@ -1,13 +1,13 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :remove_picture, :likes_count
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :likes_count
 
   belongs_to :page
   has_many :tagowners
   has_many :tech_tags, through: :tagowners
   has_many :comments
   has_many :likes
-  attr_reader :tech_tag_tokens, :delete_picture
+  attr_reader :tech_tag_tokens
   #accepts_nested_attributes_for :tech_tags
   #carrierwave image uploader below
   mount_uploader :picture, PictureUploader

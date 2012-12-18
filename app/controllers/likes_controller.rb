@@ -43,15 +43,23 @@ class LikesController < ApplicationController
     @project = Project.find(params[:id])
     @page = @project.page
     @user = @page.user
-
     @project_id = params[:id]
 
-    #get all people who like this project id
-    @people = Like.find(:all, :conditions => ["project_id = ?", params[:id]], :order => "created_at DESC")
-    @likes_count = @people.count
+    likes_per_page = 15
 
-    @people.each do |f|
-      @people_like_array
+    if params[:page]
+      @offset = (params[:page].to_i - 1) * likes_per_page
     end
+    @offset ||= 0
+    
+    @people = Like.find(:all, :conditions => ["project_id = ?", params[:id]], :order => "created_at DESC", :offset => @offset, :limit => likes_per_page)
+
+    @total_pages = (get_total_likes(params[:id]).to_f / likes_per_page.to_f).ceil
   end
+
+  private
+
+    def get_total_likes(project_id)
+      @total_likes = Like.count(:all, :conditions => ["project_id = ?", project_id])
+    end
 end

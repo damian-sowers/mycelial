@@ -6,20 +6,14 @@
     <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
   </div>
   <% if @people %>
-  <% if @likes_count >= 1 %>
-    <p><strong><%= pluralize(@likes_count, "person") %></strong> <%= @likes_count == 0 or @likes_count > 1 ? "like" : "likes" %> this project</p>
+  <% if @total_likes >= 1 %>
+    <p><strong><%= pluralize(@total_likes, "person") %></strong> <%= @total_likes == 0 or @total_likes > 1 ? "like" : "likes" %> this project</p>
   <% end %>
     <% @people.each do |f| %>
-      <% 
-      begin
-        r = User.find(f.user_id).page 
-      rescue
-        r = nil
-      end
-      %>
       <div class="row">
       <div class="span8">
       <p>
+        <% r = User.find(f.user_id).page %>
         <% if r.image_url %>
           <%= link_to(image_tag(r.image_url(:thumb).to_s, class: "thumbnail", style: "float:left; margin-right:15px; margin-bottom:15px;"), page_path(:id => "#{f.username}")) %>
         <% else %>
@@ -30,6 +24,21 @@
         <span style="font-size:12px; font-style:italic"><%= time_ago_in_words(f.created_at) %> ago</span>
       </p>
       </div>
+      </div>
+    <% end %>
+    <% if @total_pages > 1 %>
+      <div class="pagination">
+        <ul>
+          <% unless params[:page].to_i == 1 %>
+            <li><a href="/likes/<%= params[:id] %>?page=<%= params[:page].to_i - 1 %>">«</a></li>
+          <% end %>
+          <% 1.upto(@total_pages) do |i| %>
+           <li <%= 'class=active' if params[:page].to_i == i %>><a href="/likes/<%= params[:id] %>?page=<%= i %>"><%= i %></a></li>
+          <% end %>
+          <% unless params[:page].to_i == @total_pages %>
+            <li><a href="/likes/<%= params[:id] %>?page=<%= params[:page].to_i + 1 %>">&raquo;</a></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
   <% end %>

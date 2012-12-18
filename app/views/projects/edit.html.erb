@@ -50,7 +50,7 @@
     </div>
   </div>
 
-    <% unless @project.picture.nil? or @project.picture.blank? %>
+    <% unless @project.picture.blank? %>
     <div id="project_picture_area">
       <div class="controls">
       <%= image_tag @project.picture_url(:thumb).to_s %><br/>

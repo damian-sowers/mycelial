@@ -4,12 +4,14 @@ class Page < ActiveRecord::Base
   belongs_to :user
   has_many :projects, :dependent => :destroy
   #carrierwave image uploader below
+
   mount_uploader :image, ImageUploader
 
   #cropping functionality requires this below
   #attr_accessor can be used for values you don't want to store in the database. It will only exist for the life of the object
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :new_user
-  after_update :crop_avatar
+
+  #after_update :crop_avatar
   
   validates :name, presence: 	true
 

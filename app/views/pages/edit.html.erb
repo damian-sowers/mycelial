@@ -62,10 +62,13 @@
       </div>
     </div>
 
-    <% if @page.image_url %>
-    <div class="controls">
-    <%= image_tag @page.image_url(:thumb).to_s %>
-    <br/><br/>
+    <% unless @page.image_url.blank? %>
+    <div id="page_picture_area">
+      <div class="controls">
+      <%= image_tag @page.image_url(:thumb).to_s %>
+      <%= link_to "Delete this profile picture", "/pages/delete_picture/#{params[:id]}", :confirm => "Are you sure you want to delete this picture?", :remote => true , :update => { :success => "project_picture_area" } %>
+      <br/><br/>
+      </div>
     </div>
     <% end %>
 

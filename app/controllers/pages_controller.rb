@@ -94,6 +94,17 @@ class PagesController < ApplicationController
     end
 	end
 
+	def delete_picture
+		r = Page.find(params[:id])
+		r.remove_image!
+		r.remove_image = true
+		r.save
+		respond_to do |format|
+			format.html
+      format.js { render :layout => false }
+    end
+	end
+
 	def destroy
 	end
 

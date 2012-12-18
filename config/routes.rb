@@ -10,6 +10,7 @@ CNN::Application.routes.draw do
   match "/feed" => "feed#index"
   match "/feed/load_more" => "feed#load_more"
   match "/pages/:id/about" => "pages#about"
+   match "/pages/delete_picture/:id" => "pages#delete_picture"
   resources :pages
   resources :tech_tags
   match "/likes/ajax_like" => "likes#ajax_like"
