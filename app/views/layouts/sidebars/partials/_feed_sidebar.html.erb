@@ -1,5 +1,13 @@
 <p><h1 class="name_size_2"><i>Projects Feed</i></h1></p>
-<h4 style="margin-top:20px; margin-bottom:20px; color:#222; font-size:14px">Filter By Tags</h4>
+<h4 style="margin-top:20px; margin-bottom:20px; color:#222; font-size:14px">Hot Projects &rarr;</h4>
+<% if params[:tag] %>
+	<p>Tag = <%= params[:tag] %></p>
+<% end %>
+<div class="separator clearfix">
+ <div class="line"></div>
+</div>
+
+<h4 style="margin-bottom:20px; color:#222; font-size:12px">Filter By Tags</h4>
 
 <%= link_to "Ruby", feed_path(:tag => 'ruby'), class: 'feed_tags' %>
 <%= link_to "Programming", feed_path(:tag => 'programming'), class: 'feed_tags' %>
