@@ -9,26 +9,15 @@ module ApplicationHelper
 
   def render_sidebar()
 
-  	path = 'layouts/sidebars/sidebar1'
+  	path = 'layouts/sidebars/sidebar_router'
     
-  	if user_signed_in?
-  		if controller?('feed') or controller?('sporeprint') 
-  			#display 5.
+  		if controller?('feed')
   			render :partial => path, :locals => { :sidebar_number => 5 }
-  		else
-  			#display 2. 
+  		elsif controller?('sporeprint')
+        render :partial => path, :locals => { :sidebar_number => 6 }
+      else
   			render :partial => path, :locals => { :sidebar_number => 2 }
   		end
-  	else
-  		if controller?('feed') or controller?('sporeprint') 
-  			#display 4.
-  			render :partial => path, :locals => { :sidebar_number => 4 }
-  		else
-  			#display 3.
-  			render :partial => path, :locals => { :sidebar_number => 3 }
-  		end
-  	end
-
   end	
 
   def on_own_page?(id)

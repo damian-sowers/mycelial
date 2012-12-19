@@ -1,0 +1,51 @@
+<div id="logo">
+  <p><h1 class="<%= @page.user_name_class %>"><i><%= @page.name %></i></h1></p>
+</div>
+
+<div class="separator clearfix">
+ <div class="line"></div>
+</div>
+
+<div class="widget">
+  <h3 class="widget-title"><a href="/pages/<%= @user.username %>">My Projects</a></h3>
+
+  <div class="menu-main-container">
+    <ul id="menu-main" class="menu">
+      <li><a href="/pages/<%= @user.username %>/about">About Me</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="separator clearfix">
+  <div class="line"></div>
+</div>
+
+<% unless @page.personal_site.blank? && @page.hnusername.blank? && @page.github_username.blank? && @page.linkedin_username.blank? && @page.twitter_username.blank? %>
+<div class="widget">
+  <h3 class="widget-title" style="margin-bottom:10px;">Also find me on:</h3>
+  <div class="menu-type-container">
+    <ul id="menu-type" class="menu">
+      <% unless @page.personal_site.blank? %>
+      <li style="padding-bottom:5px;"><a href="<%= @page.personal_site %>">My Personal Site</a></li>
+      <% end %>
+      <% unless @page.hnusername.blank? %>
+      <li style="margin-bottom:5px;"><a href="http://news.ycombinator.com/user?id=<%= @page.hnusername %>"><%= image_tag "y18.gif", :size => "16x16" %> Hacker News</a></li>
+      <% end %>
+      <% unless @page.github_username.blank? %>
+      <li style="margin-bottom:5px;"><a href="https://github.com/<%= @page.github_username %>"><%= image_tag "github.png" %> Github</a></li>
+      <% end %>
+      <% unless @page.linkedin_username.blank? %>
+      <li style="margin-bottom:5px;"><a href="<%= @page.linkedin_username %>" style="padding-bottom:10px;"><%= image_tag "linkedin.jpeg" %> LinkedIn</a></li>
+      <% end %>
+      <% unless @page.twitter_username.blank? %>
+      <li style="margin-bottom:5px;"><a href="https://twitter.com/<%= @page.twitter_username %>" style="padding-bottom:10px;"><%= image_tag "twitter.png" %> Twitter</a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<div class="separator clearfix">
+  <div class="line"></div>
+</div>
+<% end %>

@@ -1,0 +1,27 @@
+<% if sidebar_number == 2 %>
+  <%= render 'layouts/sidebars/partials/user_sidebar' %>
+<% end %>
+
+
+<div class="widget">
+  <div class="menu-type-container">
+    <ul id="menu-type" class="menu">
+
+      <% if sidebar_number == 5 %>
+        <%= render 'layouts/sidebars/partials/feed_sidebar' %>
+      <% end %>
+
+      <% if sidebar_number == 6 %>
+        <%= render 'layouts/sidebars/partials/sporeprint_sidebar' %>
+      <% end %>
+
+
+      <%= render 'layouts/sidebars/partials/notification' %>
+
+    </ul>
+  </div>
+</div>
+
+<%= render 'layouts/sidebars/partials/legal_sidebar' %>
+
+<%= render 'layouts/sidebars/partials/to_top' %>
