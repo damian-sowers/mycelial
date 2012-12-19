@@ -34,6 +34,8 @@ CNN::Application.routes.draw do
     end
   end
 
+  match "/sporeprint/:id" => "sporeprint#show"
+
   post 'pusher/auth'
 
   mount Resque::Server, :at => '/resque'

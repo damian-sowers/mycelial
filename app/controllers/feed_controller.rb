@@ -61,16 +61,8 @@ class FeedController < ApplicationController
 	private
 
 		def set_projects_per_page 
-			@projects_per_page = 3
+			@projects_per_page = 10
 		end
-
-		# def get_projects_per_page()
-		# 	if offset > 0
-		# 		limit_num = (offset + 1) * @projects_per_page
-		# 	else
-		# 		limit_num = @projects_per_page
-		# 	end
-		# end
 
 		def get_feed_order_algorithm
 			string = "(((projects.likes_count + 1) / (1/strftime(projects.created_at)))) DESC"

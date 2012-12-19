@@ -12,7 +12,7 @@ module ApplicationHelper
   	path = 'layouts/sidebars/sidebar1'
     
   	if user_signed_in?
-  		if controller?('feed') 
+  		if controller?('feed') or controller?('sporeprint') 
   			#display 5.
   			render :partial => path, :locals => { :sidebar_number => 5 }
   		else
@@ -20,7 +20,7 @@ module ApplicationHelper
   			render :partial => path, :locals => { :sidebar_number => 2 }
   		end
   	else
-  		if controller?('feed') 
+  		if controller?('feed') or controller?('sporeprint') 
   			#display 4.
   			render :partial => path, :locals => { :sidebar_number => 4 }
   		else

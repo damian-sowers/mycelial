@@ -1,5 +1,6 @@
 <%= render 'layouts/opening_divs' %>
-<% unless @projects.empty? %>  
+
+<% unless !@projects or @projects == [] %>
 <% @projects.each do |p| %>
   <% if p.project_type == 2 #blog %>
     <% if p.picture.blank? #text-widget %>

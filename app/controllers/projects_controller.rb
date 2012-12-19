@@ -38,6 +38,12 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(params[:project])
 		@project.page_id = Page.find_by_user_id(current_user.id).id
+
+		tech_tag_tokens = params[:project][:tech_tag_tokens]
+		if tech_tag_tokens
+			@project.tag_list = turn_tag_ids_into_name_string(tech_tag_tokens)
+		end
+
 		if @project.save
 			flash[:success] = "Your project has been created."
 			redirect_to :controller => "pages", :action => "show", :id => current_user.username, only_path: true
@@ -60,6 +66,13 @@ class ProjectsController < ApplicationController
 
 	def update
 		@project = Project.find(params[:id])
+		
+		#get the tags from the attributes and pass it into tag_list. 
+		tech_tag_tokens = params[:project][:tech_tag_tokens]
+		if tech_tag_tokens
+			@project.tag_list = turn_tag_ids_into_name_string(tech_tag_tokens)
+		end
+
 		if @project.update_attributes(params[:project]) 
       flash[:success] = "Project updated"
       redirect_to :action => "edit", :id => params[:id], only_path: true
@@ -125,5 +138,17 @@ class ProjectsController < ApplicationController
 		  else
 		    nested.inject(0) { |sum, ary| sum + count_subarrays(ary) }
 		  end
+		end
+
+		def turn_tag_ids_into_name_string(tech_tag_tokens)
+			#will be a csv string of tech_tag_ids. Need to get all of their names. 
+			#turn them into array and then perform map on each value in array to turn into integer.
+			tag_ids = tech_tag_tokens.split(",").map { |s| s.to_i }
+			#now query Tagowner for the name and put into an array. Then join the array into a string with commas separating them. 
+			tag_name_array = []
+			tag_ids.each do |t|
+				tag_name_array << TechTag.find(t).name
+			end
+			tag_list = tag_name_array.join(", ")
 		end
 end

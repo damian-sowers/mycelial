@@ -13,6 +13,7 @@ class LikesController < ApplicationController
   end
 
   def ajax_like
+    #for people who like by clicking on the heart icon, before they are inside the project
     user_who_liked_project = User.find(params[:user_id])
     #make sure they haven't already liked this post. Also include this code client side. 
     unless already_liked_project = user_who_liked_project.likes.find_by_project_id(params[:project_id])
