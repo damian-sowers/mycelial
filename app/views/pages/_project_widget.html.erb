@@ -2,7 +2,7 @@
 
   <% if widget_number == 1 %>
 
-    <div class="quote-wrap clearfix">
+    <div class="quote-wrap text-title-wrap<%= rand(1..6).to_s %> clearfix">
       <span class="icon"></span>
       <blockquote>
         <%= link_to "#{p.project_name}", project_path(:id => p.id) %>                     

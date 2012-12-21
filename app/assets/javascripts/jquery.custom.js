@@ -1,8 +1,3 @@
-/*-----------------------------------------------------------------------------------
-
- 	Custom JS - All front-end jQuery
- 
------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
 /*	Remove JavaScript fallback class
@@ -10,9 +5,6 @@
  
 jQuery('#container').removeClass('js-disabled');
  
-/*-----------------------------------------------------------------------------------*/
-/*	Let's get ready!
-/*-----------------------------------------------------------------------------------*/
 
 jQuery(document).ready(function() {
 
@@ -98,6 +90,8 @@ jQuery(document).ready(function() {
 	var author = loadMoreLink.attr('data-author');
 	var tag = loadMoreLink.attr('data-tag');
 	var feed = loadMoreLink.attr('data-feed');
+	var sporeprint = loadMoreLink.attr('data-sporeprint');
+	var project_id = loadMoreLink.attr('data-projectid');
 		
 	if(!author)
 		author = 0;
@@ -107,6 +101,12 @@ jQuery(document).ready(function() {
 
 	if(!feed)
 		feed = 0
+
+	if(!sporeprint)
+		sporeprint = 0
+
+	if(!project_id)
+		project_id = 0
 			
 	function tz_loadMore() {
 
@@ -123,6 +123,9 @@ jQuery(document).ready(function() {
 				if(feed == 1) {
 					load_path = "/feed/load_more"
 					load_params = "?offset=" + offset + "&tag=" + tag; 
+				} else if(sporeprint == 1) {
+					load_path = "/sporeprint/load_more"
+					load_params = "?offset=" + offset + "&project_id=" + project_id; 
 				} else {
 					load_path = "/pages/load_more"
 					load_params = "?author=" + author + "&offset=" + offset;
@@ -154,10 +157,12 @@ jQuery(document).ready(function() {
 
 					}
 					//need to write a new controller function for loading all of the last ones back into the screen when they hit back. 
-					if(feed != 1) {
+					if(feed != 1 && sporeprint != 1) {
 	        	history.pushState(null, document.title, "/pages/" + author + load_params + "&last_page=" + last_page);
-	        } else {
+	        } else if(feed == 1) {
 	        	history.pushState(null, document.title, "/feed" + load_params + "&last_page="  + last_page);
+	        } else {
+	        	history.pushState(null, document.title, "/sporeprint/" + project_id + load_params + "&last_page="  + last_page);
 	        }
     			$(window).bind("popstate", function() {
       			$.getScript(this.href);

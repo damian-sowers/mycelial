@@ -52,11 +52,11 @@
       	<div style="text-align:center">
           <div class="nav" style="margin-top:-15px; margin-left:25px;">
             <ul class="nav">
-            	<li class="active"><a href="/">mycelial</a></li>
-              <li><%= link_to "Feed", feed_path %></li>
+            	<li><a href="/">mycelial</a></li>
+              <li <%= controller?('feed') ? "class=active" : "" %>><%= link_to "Feed", feed_path %></li>
               <% if user_signed_in? %>
-	              <li><%= link_to "Profile", page_path(:id => current_user.username) %></li>
-	              <li><%= link_to "Admin", edit_page_path(:id => current_user.page.id) %></li>
+	              <li <%= on_own_page?(params[:id]) && !action?('edit') ? "class=active" : "" %>><%= link_to "Profile", page_path(:id => current_user.username) %></li>
+	              <li <%= action?('edit') ? "class=active" : "" %>><%= link_to "Admin", edit_page_path(:id => current_user.page.id) %></li>
 	              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               <% else %>
 	              <li><%= link_to "Create Your Page", new_user_registration_path %></li>

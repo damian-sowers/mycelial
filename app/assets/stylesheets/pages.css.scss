@@ -42,14 +42,14 @@
 .format-quote .entry-meta { padding: 0 15px 20px 15px; }
 
 .format-quote blockquote {
-  color: #f1f1f1;
+  color: #fff;
 }
 
 .quote-wrap blockquote a {
 	color:#fff;
 }
 
-span.icon, .format-quote .quote-wrap { background-color: #2d2e2f; }
+.format-quote .quote-wrap .icon{ background: url(image_path('light/quote.png')) no-repeat; }
 
 .text-title-wrap1 { background-color: #A200FF; }
 .text-title-wrap2 { background-color: #2E7BCC; /*blue*/}
@@ -60,5 +60,3 @@ span.icon, .format-quote .quote-wrap { background-color: #2d2e2f; }
 
 
 .text-title a { color: #fff; font-weight:bold;  font-size:16px; }
-
-.format-quote .quote-wrap .icon{ background: url(image_path('light/quote.png')) no-repeat; }

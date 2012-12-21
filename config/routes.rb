@@ -34,7 +34,9 @@ CNN::Application.routes.draw do
     end
   end
 
+  match "/sporeprint/load_more" => "sporeprint#load_more"
   match "/sporeprint/:id" => "sporeprint#show"
+
 
   post 'pusher/auth'
 

@@ -22,16 +22,18 @@ module ApplicationHelper
 
   def on_own_page?(id)
   	#first need to determine if the controller is on pages or projects. If true, then get either the username or the project_id. Then find the user.id from this info and compare to current_user.id.
-  	if controller?('pages') && action?('show')
-			if is_numeric?(params[:id])
-  			page_user_id = Page.find(params[:id]).user.id
-  		else 
-  			page_user_id = User.find_by_username(params[:id]).id
-  		end
-  		return users_match?(page_user_id)
-  	elsif controller?('projects') 
-  		project_user_id = Project.find(id).page.user.id
-  		return users_match?(project_user_id)
+    if id 
+    	if controller?('pages') && action?('show')
+  			if is_numeric?(params[:id])
+    			page_user_id = Page.find(params[:id]).user.id
+    		else 
+    			page_user_id = User.find_by_username(params[:id]).id
+    		end
+  		  return users_match?(page_user_id)
+    	elsif controller?('projects') 
+  		  project_user_id = Project.find(id).page.user.id
+  		  return users_match?(project_user_id)
+      end
     end
   end
 
