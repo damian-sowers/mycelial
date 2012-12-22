@@ -14,4 +14,3 @@
 /log/*.log
 /tmp
 /.env
-/Procfile
