@@ -37,6 +37,7 @@ gem 'client_side_validations'
 gem 'ancestry'
 gem 'pusher'
 gem 'resque', :require => "resque/server"
+gem 'hirefire'
 gem 'acts-as-taggable-on'
 
 group :test do
