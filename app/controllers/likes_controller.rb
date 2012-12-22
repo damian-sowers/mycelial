@@ -8,6 +8,7 @@ class LikesController < ApplicationController
     @user_id = Project.find(@project_id).page.user.id
     if @user_id != current_user.id
       Resque.enqueue(LikeNotifier, @user_id)
+      send_like_notification_email(@like.id)
     end
     render :toggle
   end
@@ -26,6 +27,7 @@ class LikesController < ApplicationController
         @receiving_user_id = Project.find(params[:project_id]).page.user.id
         if @receiving_user_id != params[:user_id].to_i
           Resque.enqueue(LikeNotifier, @receiving_user_id)
+          send_like_notification_email(r.id)
         end
       end
     end
@@ -62,5 +64,9 @@ class LikesController < ApplicationController
 
     def get_total_likes(project_id)
       @total_likes = Like.count(:all, :conditions => ["project_id = ?", project_id])
+    end
+
+    def send_like_notification_email(like_id)
+      Resque.enqueue(LikeMailer, like_id)
     end
 end
