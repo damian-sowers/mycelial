@@ -88,8 +88,10 @@
     <% if params[:new_user] %>
       <%= f.hidden_field :new_user, value: 1 %>
     <% end %>
-    <%= f.submit "Save changes", class: "btn btn-info" %>
+    <%= f.submit "Save changes", class: "btn btn-info form_submit" %>
 
+    <%= render 'shared/loading_bar' %>
+  
     <% unless params[:new_user] %>
     <hr>
     <% if @projects.empty? %>

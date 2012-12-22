@@ -32,7 +32,10 @@
               <%= f.password_field :password_confirmation %>
             </div>
 
-            <div><%= f.submit "Sign up", class: "btn btn-info" %>
+            <div><%= f.submit "Sign up", class: "btn btn-info", id: "register_button" %>
+            </div>
+            <div id="register_loader" style="display:none">
+              <%= image_tag "ajax-loader.gif" %>
             </div>
             <% end %>
             <span>Already have an account?</span>

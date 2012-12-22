@@ -332,4 +332,19 @@ jQuery(document).ready(function() {
 	
 	 tz_likeInit();
 
+/*-----------------------------------------------------------------------------------*/
+/*	loading bars 
+/*-----------------------------------------------------------------------------------*/
+	$(".form_submit").click(function() {
+    $(".form_submit").hide();
+    $("#loading-bar").show();
+  });
+
+  $("#register_button").click(function() {
+    $("#register_button").hide();
+    $("#register_loader").show();
+  });
+
+  
+
 });

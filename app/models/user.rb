@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+  before_save :transform_username_to_lowercase
+  after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_one :page, :dependent => :destroy
   #this has_many association give me the ability to find all projects of a user just by their user_id. (skip going through page)
@@ -22,6 +24,16 @@ class User < ActiveRecord::Base
   def to_param
   	id || username	
 	end
+
+  private
+
+    def transform_username_to_lowercase
+      self.username = self.username.downcase
+    end
+
+    def send_welcome_email
+      Resque.enqueue(WelcomeEmail, self.id)
+    end
 end
 # == Schema Information
 #

@@ -75,7 +75,9 @@
   <% end %>
 
   <%= f.hidden_field :project_type, value: params[:project_type] %>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-primary form_submit" %>
+
+  <%= render 'shared/loading_bar' %>
   <% end %>
 </div>
 <%= render 'layouts/closing_divs' %>

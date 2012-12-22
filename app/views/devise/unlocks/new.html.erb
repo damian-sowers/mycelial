@@ -1,12 +1,34 @@
-<h2>Resend unlock instructions</h2>
+<div class="theme-orange">
 
-<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= render 'home/shared/header' %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div id='content' role='main'>
+    <section class='section' id='section-inner'>
+      <div class='container'>
+        <header class='page-header' style="margin-bottom:0">
+          <h1>
+            Resend &nbsp; Unlock&nbsp; Instructions?
+          </h1>
+        </header>
+        <div class="pull-center">
+          <div class="well span5 offset3 shadow-box"> 
+            <% flash.each do |key, value| %>
+                <div class="well alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+						<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+						  <%= devise_error_messages! %>
 
-  <div><%= f.submit "Resend unlock instructions" %></div>
-<% end %>
+						  <div><%= f.label :email %><br />
+						  <%= f.email_field :email %></div>
 
-<%= render "devise/shared/links" %>
+						  <div><%= f.submit "Resend unlock instructions", class: "btn btn-primary" %></div>
+						<% end %>
+						<hr>
+						<%= render "devise/shared/links" %>
+					</div>
+        </div>
+      </div>
+      <div class='bg-2'></div>
+    </section>
+  </div>
+</div>

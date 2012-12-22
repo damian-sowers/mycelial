@@ -27,6 +27,7 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'devise-async'
 gem 'rmagick'
 gem 'carrierwave'
 gem "fog", "~> 1.3.1"

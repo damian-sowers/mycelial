@@ -27,7 +27,7 @@
       <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic", style: "height: #{new_height}px; width:360px;"), project_path(:id => p.id)) %>
     </div>
     <div class="arrow"></div>
-    <h2 class="entry-title"><% if widget_number == 2 %>Blog Post: <% end %><%= link_to "#{p.project_name}", project_path(:id => p.id) %></h2>
+    <h2 class="entry-title"><% if widget_number == 2 %><%= link_to "Blog post: ", project_path(:id => p.id) %> <% end %><%= link_to "#{p.project_name}", project_path(:id => p.id) %></h2>
 
   <% end %>
 
