@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
 			if @user_id != @comment.user_id
 				# Send a Pusher notification via a background job
 				Resque.enqueue(CommentNotifier, @user_id)
+				send_comment_notification_email(@comment.id)
 			end
 
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
@@ -114,5 +115,9 @@ class CommentsController < ApplicationController
     	#check to see if author first, then also check to see if user is owner of project. Both give ownership over destroy action.
     	project_id = get_project_id_from_comment_id()
     	return false unless is_page_owner?(project_id) or comment_owner?()
+    end
+
+    def send_comment_notification_email(comment_id)
+      Resque.enqueue(CommentMailer, comment_id)
     end
 end
