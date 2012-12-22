@@ -68,7 +68,7 @@ class FeedController < ApplicationController
 			if Rails.env.development?  
 				string = "(((projects.likes_count + 1) / (1/strftime(projects.created_at)))) DESC"
 			else 
-				string = "(((projects.likes_count + 1) / (1/to_timestamp(projects.created_at)))) DESC"
+				string = "((projects.likes_count + 1) / (extract(epoch from projects.created_at))) DESC"
 			end
 		end
 
