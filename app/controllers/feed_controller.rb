@@ -65,7 +65,11 @@ class FeedController < ApplicationController
 		end
 
 		def get_feed_order_algorithm
-			string = "(((projects.likes_count + 1) / (1/strftime(projects.created_at)))) DESC"
+			if Rails.env.development?  
+				string = "(((projects.likes_count + 1) / (1/strftime(projects.created_at)))) DESC"
+			else 
+				string = "(((projects.likes_count + 1) / (1/to_timestamp(projects.created_at)))) DESC"
+			end
 		end
 
 		def get_projects(limit_num, offset = 0)
