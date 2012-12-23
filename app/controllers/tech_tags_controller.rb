@@ -1,6 +1,7 @@
 class TechTagsController < ApplicationController
-
+	before_filter :authenticate_user!
 	before_filter :get_sidebar_info
+	before_filter :only_admin_allowed
 
 	def index
   	@tags = TechTag.order(:name)
@@ -20,9 +21,10 @@ class TechTagsController < ApplicationController
 	end
 
 	def create
-		@tech_tags = TechTag.new(params[:tech_tags])
+		@tech_tags = TechTag.new(params[:tech_tag])
 		if @tech_tags.save
-			redirect to @project
+			flash[:success] = "New tag has been added"
+			redirect_to :controller => "tech_tags", :action => "index", only_path: true
 		end
 	end
 end

@@ -1,9 +1,14 @@
-<div id="main">
-  <div class="container">
-    <div class="row">
-      <% @page.each do |page| %>
-        Name: <%= page.name %>
+<%= render 'layouts/opening_divs' %>
+<div class="hentry page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+  <%= render 'shared/flash_messages' %>
+    <h2 style="color:#777">All User Pages</h2>
+    <b>Total User Count: <%= @users_count %></b><br/>
+		<% @pages.each do |page| %>
+			<% if username = page.user.username %>
+      Full Name: <%= link_to page.name, page_path(:id => page.user.username) %> | Created <%= time_ago_in_words(page.created_at) %> ago<br/>
       <% end %>
-    </div>
-  </div>
+    <% end %>
+	</div>
 </div>
+<%= render 'layouts/closing_divs' %>

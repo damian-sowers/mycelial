@@ -53,4 +53,9 @@ class ApplicationController < ActionController::Base
         @user = current_user
 			end
 		end
+
+    def only_admin_allowed
+      #do it by user email
+      redirect_to root_path unless current_user.email == "damian.sowers@gmail.com" or current_user.email == "damian_sowers@yahoo.com"
+    end
 end

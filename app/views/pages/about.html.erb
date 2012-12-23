@@ -8,7 +8,7 @@
     <% n = Random.new %>
     <%= image_tag get_random_default(n.rand(1..4)).to_s, class: "float_left margin_right_15 margin_bottom_15" %>
   <% end %>
-  <h2 style="color:#777">About <%= @page.name %></h2>
+  <h2 class="color_777">About <%= @page.name %></h2>
   <p><%= @page.about_text %></p>
 </div>
 </div>

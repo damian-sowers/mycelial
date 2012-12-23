@@ -1,31 +1,31 @@
-<div class="bottom_like_bar" style="display:none; width:730px; margin-left:10px;">
+<div class="bottom_like_bar">
 	<% if user_signed_in? %>
-		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "lightbox btn btn-warning", style: "float:left; margin-right:20px", :remote => true %>
+		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "lightbox btn btn-warning", :remote => true %>
 	<% else %>
-		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "btn btn-warning", style: "float:left; margin-right:20px" %>
+		<%= link_to "Add a Comment", new_comment_path(:project_id => @project.id), class: "btn btn-warning" %>
 	<% end %>
 	<div class="like">
 	<% if user_signed_in? %>
 		<% if like = current_user.likes.find_by_project_id(@project.id) %>
 			<%= form_for like, :html => { :method => :delete }, :remote => true do |f| %>
-				<%= f.submit "Unlike", class: "btn btn-primary", style: "float:left; margin-right:20px" %>
+				<%= f.submit "Unlike", class: "btn btn-primary like_bar_submit" %>
 			<% end %>
 		<% else %>
 			<%= form_for current_user.likes.build(:project_id => @project.id), :remote => true do |f| %>
 				<%= f.hidden_field :project_id %>
 				<%= f.hidden_field :user_id %>
 				<%= f.hidden_field :username, value: current_user.username %>
-				<%= f.submit "Like This Project", class: "btn btn-primary", style: "float:left; margin-right:20px" %>
+				<%= f.submit "Like This Project", class: "btn btn-primary like_bar_submit" %>
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary", style: "margin-bottom:15px; float:left; margin-right:20px" %>
+		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary" %>
 	<% end %>
 	</div>
 
 	<div class="likes_count">
 		<% if @likes_count >= 1 %>
-			<p style="float:left; margin-right:20px;"><%= link_to pluralize(@likes_count, "person"), like_path(:id => @project.id) %> <%= @likes_count == 0 or @likes_count > 1 ? "like" : "likes" %> this project</p>
+			<p class="like_list_text"><%= link_to pluralize(@likes_count, "person"), like_path(:id => @project.id) %> &nbsp;<%= @likes_count == 0 or @likes_count > 1 ? "like" : "likes" %> this project</p>
 		<% end %>
 	</div>
 </div>

@@ -4,9 +4,6 @@ class ProjectsController < ApplicationController
 	before_filter :correct_user, only: [:edit, :update, :destroy]
 	before_filter :get_sidebar_info, except: [:index, :show]
 
-	def index
-	end
-
 	def show
 		@project = Project.find(params[:id])
 		@page = @project.page

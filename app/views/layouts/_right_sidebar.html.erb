@@ -5,7 +5,7 @@
 	<% end %>
 	<strong class="dark_text">More Projects:</strong>
 	<br/><br/>
-	<%= raw show_more_projects(@user_projects) %>
+	<%= raw show_more_projects(@user_projects, @project.id) %>
 	<br/>
 	<div class="like">
 	<% if user_signed_in? %>
@@ -22,7 +22,7 @@
 			<% end %>
 		<% end %>
 	<% else %>
-		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary", style: "margin-bottom:15px" %>
+		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary margin_bottom_15" %>
 	<% end %>
 	</div>
 

@@ -1,13 +1,15 @@
 class PagesController < ApplicationController
 
-	before_filter :authenticate_user!, except: [:show, :index, :load_more, :view_history, :about]
+	before_filter :authenticate_user!, except: [:show, :load_more, :view_history, :about]
 	before_filter :correct_user, only: [:edit, :update, :destroy]
 	#get the sidebar data from the session user id for the logged in methods like edit, update
-	before_filter :get_sidebar_info, only: [:edit, :update]
+	before_filter :get_sidebar_info, only: [:index, :edit, :update]
 	before_filter :set_projects_per_page
+	before_filter :only_admin_allowed, only: [:index]
 
 	def index
-		@page = Page.all
+		@users_count = User.count
+		@pages = Page.all
 	end
 
 	def new 

@@ -1,0 +1,26 @@
+<%= render 'layouts/opening_divs' %>
+<div class="hentry page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+    <h2 style="color:#777">Add a new tag name and picture to the db</h2>
+    <%= render 'shared/errors', :target => @tech_tags %>
+    <%= render 'shared/flash_messages' %>
+    <%= form_for(@tech_tags, :html => { :class => "form-horizontal" } ) do |f| %>
+    <div class="control-group">
+      <%= f.label :name, "Tag name", class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :name, class: "input-xlarge" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :picture, "picture name: (e.g. rails.jpg)", class: "control-label required" %>
+      <div class="controls">
+        <%= f.text_field :picture, class: "input-xlarge" %>
+      </div>
+    </div>
+
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<%= render 'layouts/closing_divs' %>

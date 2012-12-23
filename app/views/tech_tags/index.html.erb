@@ -1,3 +1,11 @@
-<% @tags.each do |f| %>
-	<%= f.name %><br/>
-<% end %>
+<%= render 'layouts/opening_divs' %>
+<div class="hentry page mycelial_page">
+  <%= render 'layouts/span8_well' %>
+  <%= render 'shared/flash_messages' %>
+    <h2 style="color:#777">All Tags</h2>
+		<% @tags.each do |f| %>
+			<%= f.name %><br/>
+		<% end %>
+	</div>
+</div>
+<%= render 'layouts/closing_divs' %>

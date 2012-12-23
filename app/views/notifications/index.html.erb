@@ -3,7 +3,7 @@
 	  <%= render 'layouts/span8_well' %>
 		  <div class="mycelial-page-header">
 			  <h2 class="mycelial-page-title">You have <% if @new_notifications.count >= 1 %>new<% else %> no new<% end %> notifications</h2>
-			  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+			  <span class="arrow mycelial_page_arrow"></span>
 		  </div>
 		  <div class="new_notifications">
 		  	<% @new_notifications.each do |f| %>

@@ -1,5 +1,5 @@
 class TechTag < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :picture
   has_many :tagowners
   #has_many :projects, through: :tagowners
 

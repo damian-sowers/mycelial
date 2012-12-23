@@ -3,7 +3,7 @@
   <%= render 'layouts/span8_well' %>
   <div class="mycelial-page-header">
   <h2 class="mycelial-page-title"><% if params[:new_user] %>Build Your Page<% else %>Edit Your Page<% end %></h2>
-  <span class="arrow" style="margin-left:700px; margin-top:60px;"></span>
+  <span class="arrow mycelial_page_arrow"></span>
   </div>
     <%= render 'shared/errors', :target => @page %>
     <%= render 'shared/flash_messages' %>
@@ -96,10 +96,10 @@
     <hr>
     <% if @projects.empty? %>
     <h2>You don't have any projects added yet. Add a project with the buttons below</h2>
-    <a href="/projects/new_project" class="btn btn-large btn-success" style="float:right; margin-bottom:20px;">Add a project to your page +</a>
+    <a href="/projects/new_project" class="btn btn-large btn-success" id="no_projects_button">Add a project to your page +</a>
     <% else %>
     <div class="row">
-    <div style="float:right">
+    <div class="float_right">
       <a href="/projects/new_project" class="btn btn-large btn-success">Add a new project +</a>
     </div>
     <div class="span6">
@@ -107,7 +107,7 @@
     <p>Add another project with the button to the right, or click on a project to edit</p>
     </div>
     </div>
-    <hr style="margin-top:0;">
+    <hr class="margin_top_0">
     <table class="table table-striped">
           <thead>
             <tr>

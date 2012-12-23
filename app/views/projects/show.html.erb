@@ -1,6 +1,6 @@
 <%= render 'layouts/opening_divs' %>
 	<div class="mycelial_page page">
-		<h1 class="entry-title" style="font-size:25px; color:#333"><%= @project.project_name %></h1>
+		<h1 class="entry-title" id="mycelial_project_title"><%= @project.project_name %></h1>
 		<div class="entry-content">
 			<% if @project.picture_url %>
 			<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
@@ -15,7 +15,7 @@
 			<div class="project_blocks">
 				<div id="short_description">
 				<% if @page_owner %>
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
 				<% end %>
 				<p>
 					<b>Summary:</b><br/><br/>
@@ -30,7 +30,7 @@
 			<div class="project_blocks">
 				<div id="long_description">
 				<% if @page_owner %>
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
 				<% end %>
 				<p>
 					<b>Project Description:</b><br/><br/>
@@ -44,16 +44,16 @@
 
 			<% unless @tech_tags.blank? %>
 			<div class="project_blocks">
-			<div class="prog_language" style="margin-bottom:20px;">
+			<div class="prog_language">
 				<% if @page_owner %>
-					<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
+					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
 				<% end %>
 				
 				<p><b><%= show_tag_language(@project) %></b><br/></p>
 
 				<% @tech_tags.each do |t| %>
 					<% if t.picture != nil %>
-						<%= link_to(image_tag("tech_tags/#{t.picture.to_s}", :title => t.name), feed_path(:tag => t.name), class: "picture_tags", :rel => "tooltip") %>
+						<%= link_to(image_tag("http://mycelial-images.s3.amazonaws.com/uploads/tags/#{t.picture.to_s}", :title => t.name), feed_path(:tag => t.name), class: "picture_tags", :rel => "tooltip") %>
 					<% else %>
 						<%= link_to "#{t.name}", feed_path(:tag => t.name), class: "feed_tags" %>
 					<% end %>
@@ -62,8 +62,8 @@
 			<div style="clear:both"></div>
 			</div>
 			<br/>
-			<a href="/sporeprint/<%= @project.id %>" style="font-weight:bold; font-size:14px; margin-bottom:5px">View this project's sporeprint</a><br/>
-			<span style="margin-top:15px">A sporeprint shows projects that are similar in genetic makeup. e.g. Made with similar technologies</span>
+			<a href="/sporeprint/<%= @project.id %>" id="sporeprint_link">View this project's sporeprint</a><br/>
+			<span>A sporeprint shows projects that are similar in genetic makeup. e.g. Made with similar technologies</span>
 			<% end %>
 
 			<% unless @project.other_interesting.blank? %>
@@ -71,7 +71,7 @@
 			<div class="project_blocks">
 				<div class="other_interesting">
 					<% if @page_owner %>
-						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
+						<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
 						</div>
 					<% end %>
 					<p><b>Other Interesting Things About This Project:</b><br/><br/>
@@ -86,7 +86,7 @@
 			<div class="project_blocks">
 				<div class="project_links">
 					<% if @page_owner %>
-						<div class="user_edit" style="display:none"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
+						<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
 						</div>
 					<% end %>
 					<% unless @project.url.blank? %>
