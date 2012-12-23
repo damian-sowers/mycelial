@@ -1,12 +1,12 @@
 <% @projects.each do |p| %>
   <% if p.project_type == 2 #blog %>
-    <% if p.picture.nil? or p.picture.blank? #text-widget %>
+    <% if p.picture.blank? #text-widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 1, :p => p } %>
     <% else #picture widget. Prepend blog to the title %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 2, :p => p } %>
     <% end %>
   <% else #programming or other widget %>
-    <% if p.picture.nil? or p.picture.blank?#text widget %>
+    <% if p.picture.blank?#text widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 3, :p => p } %>
     <% else #main picture widget %>
       <%= render :partial => 'pages/project_widget', :locals => { :widget_number => 4, :p => p } %>
