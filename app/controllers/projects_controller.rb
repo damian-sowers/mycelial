@@ -52,11 +52,15 @@ class ProjectsController < ApplicationController
 		#going to have to differentiate all the editable fields below. Maybe get the value of the param. 
 		#like edit_block = 'short_description'. try render :partial => '#{params[:edit_block]}'
 		if params[:edit_block]
-			if params[:edit_block] == "tech_tags"
-				render "tech_tags"
-			else 
-				#render partial doesn't load the head css data, etc...
-				render :partial => "#{params[:edit_block]}"
+			#run through switch to find out edit block to render. Need to do it this way for security. Can't pass param into render
+			edit_block = get_edit_block(params[:edit_block])
+			unless edit_block.nil?
+				if edit_block == "tech_tags"
+					render "tech_tags"
+				else 
+					#render partial doesn't load the head css data, etc...
+					render :partial => edit_block
+				end
 			end
 		end
 	end
@@ -140,12 +144,36 @@ class ProjectsController < ApplicationController
 		def turn_tag_ids_into_name_string(tech_tag_tokens)
 			#will be a csv string of tech_tag_ids. Need to get all of their names. 
 			#turn them into array and then perform map on each value in array to turn into integer.
-			tag_ids = tech_tag_tokens.split(",").map { |s| s.to_i }
-			#now query Tagowner for the name and put into an array. Then join the array into a string with commas separating them. 
 			tag_name_array = []
+			tech_tag_tokens.split(",").each do |x|
+				if x.include?("<<<")
+					tag_name_array << x.gsub(/[<>]/i, '')
+				end
+			end
+			#now see if there are any new tags in there (will be in format "<<<tag name>>>"). 
+			#the function below tests every value in the array to see if integer, if no it sets to nil and removes from the array.
+			tag_ids = tech_tag_tokens.split(",").map { |s| Integer(s) rescue nil }.compact
+			#now query Tagowner for the name and put into an array. Then join the array into a string with commas separating them. 
 			tag_ids.each do |t|
 				tag_name_array << TechTag.find(t).name
 			end
 			tag_list = tag_name_array.join(", ")
+		end
+
+		def get_edit_block(edit_block)
+			case edit_block
+				when "short_description"
+					return "short_description"
+				when "long_description"
+					return "long_description"
+				when "tech_tags"
+					return "tech_tags"
+				when "other_interesting"
+					return "other_interesting"
+				when "project_links"
+					return "project_links"
+				else 
+					return nil
+			end
 		end
 end

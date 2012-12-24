@@ -1,7 +1,7 @@
 class TechTagsController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :get_sidebar_info
-	before_filter :only_admin_allowed
+	before_filter :only_admin_allowed, only: [:new, :create]
 
 	def index
   	@tags = TechTag.order(:name)

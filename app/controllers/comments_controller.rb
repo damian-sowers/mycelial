@@ -5,10 +5,6 @@ class CommentsController < ApplicationController
 	before_filter :comment_destroy_privelidges?, only: [:destroy]
 	#before_filter :get_sidebar_info, except: [:index, :show]
 
-	#should I expand this comments show so people can make comments without the overlay? Would need to get the user of the project and put in page and user instance vars. Render sidebar in view.
-	def show
-	end
-
 	def new
 		@comment = Comment.new(:parent_id => params[:parent_id])
 		@project_id = params[:project_id]
@@ -48,7 +44,7 @@ class CommentsController < ApplicationController
 		@comment = Comment.find(params[:id])
 		if @comment.update_attributes(params[:comment])
       flash[:success] = "Your comment was updated"
-      redirect_to "/projects/#{@comment.project_id}", only_path: true
+      redirect_to project_path(:id => @comment.project_id), only_path: true
     else 
       render 'edit'
     end
@@ -77,14 +73,14 @@ class CommentsController < ApplicationController
 			@comment.comment = "Deleted"
 			if @comment.save
       	flash[:success] = "Your comment was updated"
-      	redirect_to "/projects/#{@comment.project_id}", only_path: true
+      	redirect_to project_path(:id => project_id), only_path: true
     	else 
     		flash[:error] = "Something went wrong"
-      	redirect_to "/projects/#{@comment.project_id}", only_path: true
+      	redirect_to project_path(:id => project_id), only_path: true
       end
 		else
     	@comment.destroy
-    	redirect_to "/projects/#{project_id}", only_path: true
+    	redirect_to project_path(:id => project_id), only_path: true
     end
 	end
 

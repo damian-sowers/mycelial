@@ -5,7 +5,10 @@
 	<% end %>
 	<strong class="dark_text">More Projects:</strong>
 	<br/><br/>
-	<%= raw show_more_projects(@user_projects, @project.id) %>
+	<% more_projects = get_more_projects(@user_projects, @project.id) %>
+	<% more_projects.each do |k, v| %>
+		<div class='right_sidebar_links'><a href="<%= project_path(:id => k) %>"><%= v %> </a></div><hr style='margin:2px'>
+	<% end %>
 	<br/>
 	<div class="like">
 	<% if user_signed_in? %>
