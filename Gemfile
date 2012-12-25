@@ -38,6 +38,7 @@ gem 'ancestry'
 gem 'pusher'
 gem 'resque', :require => "resque/server"
 gem 'acts-as-taggable-on'
+gem 'newrelic_rpm'
 
 group :test do
   gem 'capybara', '1.1.2'

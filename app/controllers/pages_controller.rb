@@ -113,7 +113,7 @@ class PagesController < ApplicationController
 	private
 
 		def set_projects_per_page
-			@projects_per_page = 10
+			@projects_per_page = 20
 		end
 		
 		def get_user 

@@ -1,6 +1,11 @@
 <%= render 'layouts/opening_divs' %>
 	<div class="mycelial_page page">
-		<h1 class="entry-title" id="mycelial_project_title"><%= @project.project_name %></h1>
+		<div class="project_blocks">
+			<h1 class="entry-title" id="mycelial_project_title" style="float:left; width:760px;"><%= @project.project_name %></h1>
+			<% if @page_owner %>
+				<div class="user_edit"><%= link_to "Edit Project", "/projects/#{params[:id]}/edit", class: "btn" %></div>
+			<% end %>
+		</div>
 		<div class="entry-content">
 			<% if @project.picture_url %>
 			<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">

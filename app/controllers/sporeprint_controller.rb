@@ -44,7 +44,7 @@ class SporeprintController < ApplicationController
 		end
 
 		def set_projects_per_page
-			@projects_per_page = 10
+			@projects_per_page = 20
 		end
 
 		def find_related_projects(project_id, limit_num, offset = 0)

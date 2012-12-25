@@ -38,11 +38,11 @@
       <% else %>
         <%= f.label :tech_tag_tokens, "Tags (e.g. Startups, Arduino, Potato Guns, Telescopes...)", class: "control-label" %>
       <% end %>
-      <div class="controls tech_tags">
-          <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags} %>
+      <div class="controls tech_tags noEnterSubmit">
+          <%= f.text_field :tech_tag_tokens, data: {load: @project.tech_tags}, class: "noEnterSubmit" %>
       </div>
     </div>
-
+    <br/><br/>
     <div class="control-group">
     <%= f.label :other_interesting, "Other interesting things about this #{@project.project_type.to_i == 2 ? "blog post" : "project"}", class: "control-label" %>
     <div class="controls">
@@ -87,6 +87,11 @@
 
     <%= render 'shared/loading_bar' %>
 
+    <script>
+      $('.noEnterSubmit').keypress(function(e){
+        if ( e.which == 13 ) return false;
+      });
+    </script>
     <div style="float:right">
     <%= link_to "Delete this project?", project_path(:id => @project.id), :data => { :confirm => "Are you sure you want to delete this project?" }, :method => :delete %>
     </div>

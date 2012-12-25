@@ -1,10 +1,10 @@
 jQuery(document).ready(function() {
 	$('.project_blocks').mouseenter(function () {
-    $(this).find('.user_edit').css('display', 'none').show();
+    $(this).find('.user_edit').show();
     //console.log(test);
   });
 	$('.project_blocks').mouseleave(function () {
-   $(this).find('.user_edit').css('display', 'none').hide();
+   $(this).find('.user_edit').hide();
  });
 
 	var current_width = $(window).width();
