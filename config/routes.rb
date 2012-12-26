@@ -41,6 +41,10 @@ CNN::Application.routes.draw do
 
   post 'pusher/auth'
 
+  get '/mu-2f5eccb1-0338f64d-6d88faad-74b81ac6' do
+    '42'
+  end
+
   mount Resque::Server, :at => '/resque'
 
   #match ':controller(/:action(/:id))'
