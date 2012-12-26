@@ -108,26 +108,9 @@
     </div>
     </div>
     <hr class="margin_top_0">
-    <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Project Name</th>
-              <th>Short Description</th>
-              <th>Date created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @projects.each do |p| %>
-            <% p.project_name.length >= 37 ? project_name = p.project_name.slice(0,37) + "..." : project_name = p.project_name %>
-            <% p.short_description.length >= 52 ? short_description = p.short_description.slice(0,52) + "..." : short_description = p.short_description %>
-              <tr>
-                <td><b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></a></b></td>
-                <td><b><%= link_to "#{short_description}", "/projects/#{p.id}/edit" %></a></b></td>
-                <td><b><%= link_to "#{time_ago_in_words(p.created_at)} ago", "/projects/#{p.id}/edit" %></b></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <div id="project_table">
+      <%= render "projects/project_table" %>
+    </div>
 
     <% end %>
     <% end %>

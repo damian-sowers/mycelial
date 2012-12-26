@@ -1,0 +1,24 @@
+<table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>Order</th>
+	    <th>Project Name</th>
+	    <th>Short Description</th>
+	    <th>Date created</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% i = 1 %>
+	  <% @projects.each do |p| %>
+	  <% p.project_name.length >= 37 ? project_name = p.project_name.slice(0,37) + "..." : project_name = p.project_name %>
+	  <% p.short_description.length >= 52 ? short_description = p.short_description.slice(0,52) + "..." : short_description = p.short_description %>
+	    <tr>
+	       <td><b><% if i > 1 %><%= link_to "", "/projects/change_order/#{p.id}?current_order=#{i}", class: "icon-arrow-up", title: "Move up one spot on your page", :remote => true %> <% else %> 1 <% end %></b></td>
+	      <td><b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></td>
+	      <td><b><%= link_to "#{short_description}", "/projects/#{p.id}/edit" %></b></td>
+	      <td><b><%= link_to "#{time_ago_in_words(p.created_at)} ago", "/projects/#{p.id}/edit" %></b></td>
+	    </tr>
+	  <% i += 1 %>
+	  <% end %>
+	</tbody>
+</table>

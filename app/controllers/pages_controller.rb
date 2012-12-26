@@ -32,7 +32,7 @@ class PagesController < ApplicationController
 			limit_num = @projects_per_page
 		end
 		@offset ||= 1
-		@projects = @page.projects.limit(limit_num)
+		@projects = @page.projects.order("page_order ASC").limit(limit_num)
 	end
 
 	def about
@@ -47,7 +47,7 @@ class PagesController < ApplicationController
 
 		@user = User.find_by_username(params[:author])
 		@page = @user.page
-		@projects = @page.projects.limit(@projects_per_page).offset(offset)
+		@projects = @page.projects.order("page_order ASC").limit(@projects_per_page).offset(offset)
 
 		respond_to do |format|
 			format.html { render :partial => 'more_projects' }
@@ -62,7 +62,7 @@ class PagesController < ApplicationController
 	end
 
 	def edit
-		@projects = Page.find(params[:id]).projects
+		@projects = Page.find(params[:id]).projects.order("page_order ASC")
 	end
 
 	def create 

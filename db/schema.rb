@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219021816) do
+ActiveRecord::Schema.define(:version => 20121226170909) do
+
+  create_table "beta_invites", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -75,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20121219021816) do
     t.integer  "image_width"
     t.integer  "image_height"
     t.integer  "likes_count",       :default => 0
+    t.integer  "page_order"
   end
 
   create_table "taggings", :force => true do |t|

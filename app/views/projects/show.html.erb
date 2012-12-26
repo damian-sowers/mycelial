@@ -1,10 +1,13 @@
 <%= render 'layouts/opening_divs' %>
 	<div class="mycelial_page page">
 		<div class="project_blocks">
+			<div id="edit_whole_projects">
 			<h1 class="entry-title" id="mycelial_project_title" style="float:left; width:760px;"><%= @project.project_name %></h1>
 			<% if @page_owner %>
-				<div class="user_edit"><%= link_to "Edit Project", "/projects/#{params[:id]}/edit", class: "btn" %></div>
+				<div class="user_edit"><%= link_to "Edit Project", "/projects/#{params[:id]}/edit", class: "btn" %>
+				</div>
 			<% end %>
+			</div>
 		</div>
 		<div class="entry-content">
 			<% if @project.picture_url %>
@@ -20,7 +23,7 @@
 			<div class="project_blocks">
 				<div id="short_description">
 				<% if @page_owner %>
-					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+					<div class="user_edit" style="margin-top:80px"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
 				<% end %>
 				<p>
 					<b>Summary:</b><br/><br/>

@@ -345,6 +345,8 @@ jQuery(document).ready(function() {
     $("#register_loader").show();
   });
 
-  
+  $(".icon-arrow-up").click(function() {
+    $(".icon-arrow-up").hide();
+  });
 
 });
