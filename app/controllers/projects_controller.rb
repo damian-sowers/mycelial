@@ -131,37 +131,19 @@ class ProjectsController < ApplicationController
 		@projects = current_user.page.projects.order("page_order ASC")
 		current_order = params[:current_order].to_i
 
-			project_above = Project.find_by_page_order(current_order - 1)
-			project_above.page_order = current_order
+		first_project = Project.find_by_page_order(current_order - 1)
+		first_project.page_order = current_order
 
-			project_below = Project.find(params[:id])
-			project_below.page_order = project_below.page_order - 1
+		second_project = Project.find(params[:id])
+		second_project.page_order = second_project.page_order - 1
 
+		if verify_order_of_projects(first_project.page_order, second_project.page_order)
 			Project.transaction do
-				project_above.save
-				project_below.save
-				render :toggle
+				if first_project.save && second_project.save
+					render :toggle
+				end
 			end
-
-		# if current_order > 1 
-		# 	project_above = Project.find_by_page_order(current_order - 1)
-		# 	project_above.page_order = current_order 
-
-		# 	if project_above.save
-		# 		project_below = Project.find(params[:id])
-		# 		if project_below.page_order > 1
-		# 			project_below.page_order = project_below.page_order - 1
-		# 			if project_below.save 
-		# 				render :toggle
-		# 			else 
-		# 				#rollback previous transaction
-		# 				rollback = Project.find(project_above.id)
-		# 				rollback.page_order = current_order - 1
-		# 				rollback.save
-		# 			end
-		# 		end
-		# 	end
-		# end
+		end
 	end
 
 	private
@@ -215,5 +197,9 @@ class ProjectsController < ApplicationController
 				else 
 					return nil
 			end
+		end
+
+		def verify_order_of_projects(first_page_order, second_page_order)
+			second_page_order > 0 && first_page_order > 1 && first_page_order != second_page_order
 		end
 end
