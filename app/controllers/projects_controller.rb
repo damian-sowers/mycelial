@@ -131,27 +131,16 @@ class ProjectsController < ApplicationController
 		# current_order = params[:current_order].to_i
 
 		Project.transaction do
-			begin
-				@second_project = Project.find(params[:id])
-				new_page_order = @second_project.page_order
-				@second_project.page_order = new_page_order - 1
+			@second_project = Project.find(params[:id])
+			new_page_order = @second_project.page_order
 
-				@first_project = Project.find_by_page_order(new_page_order - 1)
-				@first_project.page_order = new_page_order
+			@first_project = Project.find_by_page_order(new_page_order - 1)
 
-				@first_project.save!
-				@second_project.save!
-
-				if @first_project.page_order == @second_project.page_order
-					raise ActiveRecord:Rollback
-				end
-			rescue Exception => e
-				raise ActiveRecord:Rollback
-			end
+			@first_project.update_attributes!(:page_order => new_page_order)
+			@second_project.update_attributes!(:page_order => new_page_order - 1)
 		end
 
 		@projects = current_user.page.projects.order("page_order ASC")
-		
 		render :toggle
 	end
 

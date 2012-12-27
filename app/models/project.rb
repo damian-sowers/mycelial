@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :likes_count, :tag_list
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :likes_count, :tag_list, :page_order
 
   belongs_to :page
   has_many :tagowners
