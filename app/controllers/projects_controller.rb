@@ -141,12 +141,12 @@ class ProjectsController < ApplicationController
 					project_below.page_order = project_below.page_order - 1
 					if project_below.save 
 						render :toggle
+					else 
+						#rollback previous transaction
+						rollback = Project.find(project_above.id)
+						rollback.page_order = current_order - 1
+						rollback.save
 					end
-				else 
-					#rollback previous transaction
-					rollback = Project.find(project_above.id)
-					rollback.page_order = current_order - 1
-					rollback.save
 				end
 			end
 		end
