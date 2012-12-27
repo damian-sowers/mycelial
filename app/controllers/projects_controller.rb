@@ -128,7 +128,6 @@ class ProjectsController < ApplicationController
 
 	def change_order
 		#needs to update the projects table to change the order of the project above it and the project itself. Maybe I need to send the current order in a get var. Do this by the iteration of the loop
-		@projects = current_user.page.projects.order("page_order ASC")
 		current_order = params[:current_order].to_i
 
 		first_project = Project.find_by_page_order(current_order - 1)
@@ -139,11 +138,12 @@ class ProjectsController < ApplicationController
 
 		if verify_order_of_projects(first_project.page_order, second_project.page_order)
 			Project.transaction do
-				if first_project.save && second_project.save
-					render :toggle
-				end
+				first_project.save
+				second_project.save
 			end
 		end
+		@projects = current_user.page.projects.order("page_order ASC")
+		render :toggle
 	end
 
 	private
