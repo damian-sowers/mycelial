@@ -130,22 +130,24 @@ class ProjectsController < ApplicationController
 		#needs to update the projects table to change the order of the project above it and the project itself. Maybe I need to send the current order in a get var. Do this by the iteration of the loop
 		# current_order = params[:current_order].to_i
 
-		@second_project = Project.find(params[:id])
-		new_page_order = @second_project.page_order
-		@second_project.page_order = new_page_order - 1
-
-		@first_project = Project.find_by_page_order(new_page_order - 1)
-		@first_project.page_order = new_page_order
-
 		Project.transaction do
 			begin
+				@second_project = Project.find(params[:id])
+				new_page_order = @second_project.page_order
+				@second_project.page_order = new_page_order - 1
+
+				@first_project = Project.find_by_page_order(new_page_order - 1)
+				@first_project.page_order = new_page_order
+
 				@first_project.save!
 				@second_project.save!
+
+				if @first_project.page_order == @second_project.page_order
+					raise ActiveRecord:Rollback
+				end
 			rescue Exception => e
-				@error = true
-				render :toggle
+				raise ActiveRecord:Rollback
 			end
-			raise ActiveRecord:Rollback if @error
 		end
 
 		@projects = current_user.page.projects.order("page_order ASC")
