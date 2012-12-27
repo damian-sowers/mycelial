@@ -345,7 +345,7 @@ jQuery(document).ready(function() {
     $("#register_loader").show();
   });
 
-  $(".icon-arrow-up").click(function() {
+  $(".icon-arrow-up").live('click', function(){
     $(".icon-arrow-up").hide();
     $("#loading").show();
   });

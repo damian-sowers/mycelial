@@ -131,25 +131,37 @@ class ProjectsController < ApplicationController
 		@projects = current_user.page.projects.order("page_order ASC")
 		current_order = params[:current_order].to_i
 
-		if current_order > 1 
 			project_above = Project.find_by_page_order(current_order - 1)
-			project_above.page_order = current_order 
+			project_above.page_order = current_order
 
-			if project_above.save
-				project_below = Project.find(params[:id])
-				if project_below.page_order > 1
-					project_below.page_order = project_below.page_order - 1
-					if project_below.save 
-						render :toggle
-					else 
-						#rollback previous transaction
-						rollback = Project.find(project_above.id)
-						rollback.page_order = current_order - 1
-						rollback.save
-					end
-				end
+			project_below = Project.find(params[:id])
+			project_below.page_order = project_below.page_order - 1
+
+			Project.transaction do
+				project_above.save
+				project_below.save
+				render :toggle
 			end
-		end
+
+		# if current_order > 1 
+		# 	project_above = Project.find_by_page_order(current_order - 1)
+		# 	project_above.page_order = current_order 
+
+		# 	if project_above.save
+		# 		project_below = Project.find(params[:id])
+		# 		if project_below.page_order > 1
+		# 			project_below.page_order = project_below.page_order - 1
+		# 			if project_below.save 
+		# 				render :toggle
+		# 			else 
+		# 				#rollback previous transaction
+		# 				rollback = Project.find(project_above.id)
+		# 				rollback.page_order = current_order - 1
+		# 				rollback.save
+		# 			end
+		# 		end
+		# 	end
+		# end
 	end
 
 	private
