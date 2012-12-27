@@ -347,6 +347,7 @@ jQuery(document).ready(function() {
 
   $(".icon-arrow-up").click(function() {
     $(".icon-arrow-up").hide();
+    $("#loading").show();
   });
 
 });
