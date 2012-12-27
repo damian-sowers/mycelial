@@ -138,18 +138,19 @@ class ProjectsController < ApplicationController
 		@first_project.page_order = new_page_order
 
 		Project.transaction do
-			@success = @first_project.save
-			@success = @second_project.save && @success
+			begin
+				@first_project.save!
+				@second_project.save!
+			rescue Exception => e
+				@error = true
+				render :toggle
+			end
+			raise ActiveRecord:Rollback if @error
 		end
 
 		@projects = current_user.page.projects.order("page_order ASC")
-		if @success
-			render :toggle
- 		else
- 			#error
- 			@error = 1
-			render :toggle
-		end
+		
+		render :toggle
 	end
 
 	private
