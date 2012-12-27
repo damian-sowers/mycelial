@@ -147,6 +147,7 @@ class ProjectsController < ApplicationController
 			render :toggle
  		else
  			#error
+ 			@error = 1
 			render :toggle
 		end
 	end
