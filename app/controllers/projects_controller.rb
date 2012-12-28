@@ -127,8 +127,8 @@ class ProjectsController < ApplicationController
 	end
 
 	def change_order
-		#needs to update the projects table to change the order of the project above it and the project itself. Maybe I need to send the current order in a get var. Do this by the iteration of the loop
-		# current_order = params[:current_order].to_i
+		#needs to update the projects table to change the order of the project above it and the project itself. 
+		#put this transaction inside of a nested transaction to prevent it from using different db connection
 		Page.transaction do
 			Project.transaction do
 				@second_project = Project.find(params[:id])
@@ -197,9 +197,5 @@ class ProjectsController < ApplicationController
 				else 
 					return nil
 			end
-		end
-
-		def verify_order_of_projects(first_page_order, second_page_order)
-			second_page_order > 0 && first_page_order > 1 && first_page_order != second_page_order
 		end
 end

@@ -10,7 +10,7 @@
 	      <h1>
 	        One &nbsp;Place &nbsp;for &nbsp;All &nbsp;of &nbsp;your &nbsp;Projects
 	      </h1>
-	      <span style="font-size:18px">A Portfolio for a <span class="orange_text">Hacker's</span> Life</span>
+	      <span class="font_18">A Portfolio for a <span class="orange_text">Hacker's</span> Life</span>
 	    </header>
 	    <div id="browser_pic">
 	    	<%= image_tag "landing_page/browser-landing.png" %>
@@ -23,11 +23,11 @@
 	      <header class='page-header'>
 	        <h1>
 	          Post &nbsp;your &nbsp;Rails &nbsp;apps, &nbsp;blog &nbsp;posts, &nbsp;and &nbsp;home-made &nbsp;telescopes...
-	          <small>Any project that shows the real you</small>
 	        </h1>
+	        <span class="font_18">Any project that shows the real you</span>
 	      </header>
 	      <div class='row-fluid'>
-	        <div style="text-align:center">
+	        <div class="pull-center">
 	          <a class="btn btn-large btn-primary landing_buttons" href="/pages/dsowers" type="button">Check out the Demo Page</a>
 	          <a class="btn btn-large btn-warning landing_buttons" href="/users/sign_up" type="button">Build Your Page</a>
 	        </div>
@@ -37,45 +37,63 @@
 	      <br/>
 	      <div class='row-fluid'>
 	        <div class="well span12 landing_description">
-	        	<div style="text-align:center">
-	          <h4>Why &nbsp;use &nbsp;Mycelial?</h4>
+	        	<div class="pull-center margin_bottom_20">
+	          <b class="landing_subtitle">Mycelial is a project-based network for doers</b>
 	          </div>
-	          <p>There are plenty of sites which allow us to share our code, designs and writing, but there was nothing that consolidates all of a hacker's projects into one portfolio. You can now display all of your interests and accomplishments with a Mycelial page
-	(much better than a resume for people who get stuff done).</p>
+	          <p>There are plenty of sites which allow us to share our code, designs and writing, but there was nothing that consolidates all of a hacker's projects into one portfolio. You can now display all of your interests and accomplishments with a Mycelial page. This is much better than a resume for people who get stuff done.
+	          <br/><br/>
+	        	<span style="color:#FF8134">My&#183;ce&#183;li&#183;um:</span> The branching network of fungi found beneath a mushroom. A mycelial network is thought to be one of the largest, most interconnected organic networks in the world. </p>
 	        </div>
 	      </div>
 	    </div>
 	    <div class='bg-1'></div>
 	  </section>
-	  <section class='section' id='section-5'>
+	  <div id='content' role='main'>
+	  <section class='section' id='section-1'>
+	  <div class='container'>
+	    <header class='page-header'>
+	      <h1>
+	         Tag &nbsp;your &nbsp;projects &nbsp;to &nbsp;promote &nbsp;them
+	      </h1>
+	      <span class="font_18">Tag the DNA of your projects to connect them to similar projects</span>
+	      <br/><br/><br/><br/>
+	      <%= image_tag "landing_tags.png" %>
+	      
+	    </header>
+	    <div class="pull-center margin_top_20">
+	    	<div class="well bottom_spacer">
+	      <b class="landing_subtitle">The sporeprint algorithm will match your projects to other projects with similar DNA – a great way to discover new stuff and promote your own projects at the same time.</b>
+	    	</div>
+	    </div>
+	  </div>
+	    <div class='bg-1'></div>
+	    <div class='bg-2'></div>
+	</section>
+	  <section class='section top_grey_border' id='section-5'>
 	    <div class='container'>
 	      <header class='page-header'>
 	        <h1>
-	          Sign up for updates
-	          <small>I won't spam you</small>
+	          Build Your Page
+	          <small>It's Easy</small>
 	        </h1>
 	      </header>
-	      <form class='form-search pull-center'>
-	        <div class='input-append input-signup'>
-	          <input class='span3' id='email' placeholder='type your email' size='16' type='text' />
-	          <button class='btn' id='submitEmail' type='button'></button>
-	        </div>
-	      </form>
-	      <div id='messages'></div>
+	      <div style="text-align:center">
+	        <a class="btn btn-large btn-warning landing_buttons" href="/users/sign_up" type="button">Get Started</a>
+	      </div>
 	      <div class='row-fluid'>
 	        <ul class='social'>
 	          <li>
-	            <a href='#'>
+	            <a href='http://www.twitter.com/mycelial'>
 	            	<%= image_tag "landing_page/social-twitter.png" %>
 	            </a>
 	          </li>
 	          <li>
-	            <a href='#'>
+	            <a href='http://www.facebook.com/mycelial'>
 	            	<%= image_tag "landing_page/social-facebook.png" %>
 	            </a>
 	          </li>
 	          <li>
-	            <a href='#'>
+	            <a href='http://www.linkedin.com/pub/damian-sowers/22/a8b/178'>
 	            	<%= image_tag "landing_page/social-linked.png" %>
 	            </a>
 	          </li>

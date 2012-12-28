@@ -44,7 +44,7 @@
     </div>
     <br/><br/>
     <div class="control-group">
-    <%= f.label :other_interesting, "Other interesting things about this #{@project.project_type.to_i == 2 ? "blog post" : "project"}", class: "control-label" %>
+    <%= f.label :other_interesting, "Other interesting things about this #{@project.project_type.to_i == 2 ? "article" : "project"}", class: "control-label" %>
     <div class="controls">
       <%= f.text_area :other_interesting, class: "input-xlarge" %>
     </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :url, "#{@project.project_type.to_i == 2 ? "Blog article" : "Project"} URL", class: "control-label" %>
+      <%= f.label :url, "#{@project.project_type.to_i == 2 ? "Article" : "Project"} URL", class: "control-label" %>
       <div class="controls">
         <%= f.text_field :url, class: "input-xlarge" %>
       </div>
