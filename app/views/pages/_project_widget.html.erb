@@ -24,7 +24,7 @@
       <% if p.image_height && p.image_width %>
       <% new_height = calculate_height_from_aspect(p.image_height, p.image_width, 360) %>
       <% end %>
-      <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic", style: "height: #{new_height}px; width:360px;", width: 360), project_path(:id => p.id)) %>
+      <%= link_to(image_tag(p.picture_url(:cover).to_s, class: "cover_pic", style: "height: #{new_height}px; min-width:360px;"), project_path(:id => p.id)) %>
     </div>
     <div class="arrow"></div>
     <h2 class="entry-title"><%= link_to "#{p.project_name}", project_path(:id => p.id) %></h2>
