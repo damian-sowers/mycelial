@@ -126,28 +126,11 @@ class ProjectsController < ApplicationController
 	end
 
 	def change_order
-		#needs to update the projects table to change the order of the project above it and the project itself. 
-		#put this transaction inside of a nested transaction to prevent it from using different db connection
 		params[:project].each_with_index do |id, index|
 			Project.update_all({position: index+1}, {id: id})
 		end
 
-		render nothing: true
-		# Page.transaction do
-		# 	Project.transaction do
-		# 		@second_project = Project.find(params[:id])
-		# 		new_page_order = @second_project.page_order
-		# 		second_project_page_order = new_page_order - 1
-
-		# 		@first_project = Project.find_by_page_order(new_page_order - 1)
-
-		# 		@first_project.update_attributes!(:page_order => new_page_order)
-		# 		@second_project.update_attributes!(:page_order => second_project_page_order)
-		# 	end
-		# end
-
-		# @projects = current_user.page.projects.order("page_order ASC")
-		# render :toggle
+		render :nothing => true
 	end
 
 	private
