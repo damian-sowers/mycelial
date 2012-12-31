@@ -1,3 +1,6 @@
 class BetaInvite < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :email
+
+  validates :email, presence: 	true,
+  									uniqueness: { case_sensitive: false }
 end

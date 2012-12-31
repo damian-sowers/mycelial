@@ -38,6 +38,9 @@ CNN::Application.routes.draw do
   match "/sporeprint/load_more" => "sporeprint#load_more"
   match "/sporeprint/:id" => "sporeprint#show"
 
+  match "/beta_invites/thanks" => "beta_invites#thanks"
+  resources :beta_invites, only: [:new, :create]
+
 
   post 'pusher/auth'
 

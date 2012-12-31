@@ -1,0 +1,30 @@
+<div class="theme-orange">
+
+  <%= render 'home/shared/header' %>
+
+  <div id='content' role='main'>
+    <section class='section' id='section-inner'>
+      <div class='container'>
+        <header class='page-header margin_bottom_0'>
+          <h1>
+            Request &nbsp;An &nbsp; Invite
+          </h1>
+        </header>
+        <div class="pull-center">
+          <div class="well span5 offset3 shadow-box"> 
+            <% flash.each do |key, value| %>
+                <div class="well alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+						 <%= form_for(@beta_invite, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
+						  <div><%= f.label :email, "Email Address" %>
+						  <%= f.email_field :email %></div>
+              <br/>
+						  <div><%= f.submit "Submit", class: "btn btn-info" %></div>
+						<% end %>
+					</div>
+        </div>
+      </div>
+      <div class='bg-2'></div>
+    </section>
+  </div>
+</div>
