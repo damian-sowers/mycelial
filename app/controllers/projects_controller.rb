@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
 	before_filter :authenticate_user!, except: [:show, :index]
-	before_filter :correct_user, only: [:edit, :update, :destroy, :delete_picture, :change_order]
+	before_filter :correct_user, only: [:edit, :update, :destroy, :delete_picture]
 	before_filter :get_sidebar_info, except: [:index, :show]
 
 	def show
@@ -36,7 +36,6 @@ class ProjectsController < ApplicationController
 		@project = Project.new(params[:project])
 		@project.page_id = Page.find_by_user_id(current_user.id).id
 		#need to get a count of the total projects this user has. Then make the order of this project  = count + 1. 
-		@project.page_order = Page.find_by_user_id(current_user.id).projects.count + 1
 
 		tech_tag_tokens = params[:project][:tech_tag_tokens]
 		if tech_tag_tokens
@@ -129,21 +128,26 @@ class ProjectsController < ApplicationController
 	def change_order
 		#needs to update the projects table to change the order of the project above it and the project itself. 
 		#put this transaction inside of a nested transaction to prevent it from using different db connection
-		Page.transaction do
-			Project.transaction do
-				@second_project = Project.find(params[:id])
-				new_page_order = @second_project.page_order
-				second_project_page_order = new_page_order - 1
-
-				@first_project = Project.find_by_page_order(new_page_order - 1)
-
-				@first_project.update_attributes!(:page_order => new_page_order)
-				@second_project.update_attributes!(:page_order => second_project_page_order)
-			end
+		params[:project].each_with_index do |id, index|
+			Project.update_all({position: index+1}, {id: id})
 		end
 
-		@projects = current_user.page.projects.order("page_order ASC")
-		render :toggle
+		render nothing: true
+		# Page.transaction do
+		# 	Project.transaction do
+		# 		@second_project = Project.find(params[:id])
+		# 		new_page_order = @second_project.page_order
+		# 		second_project_page_order = new_page_order - 1
+
+		# 		@first_project = Project.find_by_page_order(new_page_order - 1)
+
+		# 		@first_project.update_attributes!(:page_order => new_page_order)
+		# 		@second_project.update_attributes!(:page_order => second_project_page_order)
+		# 	end
+		# end
+
+		# @projects = current_user.page.projects.order("page_order ASC")
+		# render :toggle
 	end
 
 	private

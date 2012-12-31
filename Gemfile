@@ -39,6 +39,7 @@ gem 'pusher'
 gem 'resque', :require => "resque/server"
 gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
+gem 'acts_as_list'
 
 group :test do
   gem 'capybara', '1.1.2'

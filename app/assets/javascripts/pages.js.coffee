@@ -2,6 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+
+	$('#project_list').sortable 
+		axis: 'y'
+		update: -> 
+			$.post($(this).data('update-url'), $(this).sortable('serialize'))
+
 	new AvatarCropper()
 
 class AvatarCropper

@@ -58,6 +58,13 @@
 		  });
 	  </script>
   <% end %>
+  <script>
+  	jQuery(document).ready(function($) {
+			if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
+				$(".mycelial_bottom_navbar").css("position", "static");
+			};
+		});
+  </script>
   <!--[if lt IE 9]>
     <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
   <![endif]-->

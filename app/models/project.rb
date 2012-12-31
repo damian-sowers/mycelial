@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :likes_count, :tag_list, :page_order
+  attr_accessible :project_name, :short_description, :long_description, :other_interesting, :picture, :url, :github_repo, :project_type, :crop_x, :crop_y, :crop_w, :crop_h, :tech_tag_tokens, :image_width, :image_height, :likes_count, :tag_list
 
   belongs_to :page
   has_many :tagowners
@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :likes
   attr_reader :tech_tag_tokens
   acts_as_taggable
+  acts_as_list
   #accepts_nested_attributes_for :tech_tags
   #carrierwave image uploader below
   mount_uploader :picture, PictureUploader

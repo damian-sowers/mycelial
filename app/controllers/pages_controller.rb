@@ -32,7 +32,7 @@ class PagesController < ApplicationController
 			limit_num = @projects_per_page
 		end
 		@offset ||= 1
-		@projects = @page.projects.order("page_order ASC").limit(limit_num)
+		@projects = @page.projects.order("position ASC").limit(limit_num)
 	end
 
 	def about
@@ -62,7 +62,7 @@ class PagesController < ApplicationController
 	end
 
 	def edit
-		@projects = Page.find(params[:id]).projects.order("page_order ASC")
+		@projects = Page.find(params[:id]).projects.order("position ASC")
 	end
 
 	def create 
