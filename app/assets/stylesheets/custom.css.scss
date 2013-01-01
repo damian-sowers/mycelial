@@ -1653,3 +1653,20 @@ p {
   float:left; 
   margin-right:30px;
 }
+#project_list {
+  margin-left:0;
+}
+#project_list li {
+margin: 0 3px 3px 0px;
+
+padding: 0.4em;
+padding-left: 0.5em;
+font-size: 1.4em;
+height: 18px;
+}
+.ui-state-default {
+  border: 1px solid lightGrey;
+  background: #E6E6E6 url(image_path('jquery_images_ui-bg_glass_75_e6e6e6_1x400.png')) 50% 50% repeat-x;
+  font-weight: normal;
+  color: #555
+}

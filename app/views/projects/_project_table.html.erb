@@ -1,7 +1,7 @@
 <% if @error %>
  <div class="alert alert-error">Error</div>
 <% end %>
-<table class="table table-striped">
+<!-- <table class="table table-striped">
 	<thead>
 	  <tr>
 	    <th>Order</th>
@@ -24,7 +24,13 @@
 	  <% i += 1 %>
 	  <% end %>
 	</tbody>
-</table>
+</table> -->
+<ul id="project_list" data-update-url="/projects/change_order">
+	<% @projects.each do |p| %>
+	  <% p.project_name.length >= 60 ? project_name = p.project_name.slice(0,60) + "..." : project_name = p.project_name %>
+		<li class="ui-state-default" id="project_<%= p.id %>"><i class="icon-move" style="cursor:move; margin-right:15px"></i> <b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></li>
+	<% end %>
+</ul>
 <div id="loading" style="display:none">
 	<%= image_tag "ajax-loader.gif" %>
 </div>
