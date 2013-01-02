@@ -311,9 +311,9 @@ jQuery(document).ready(function() {
 			var classes = jQuery(this).attr("class");
 			classes = classes.split(" ");
 			
-			if(classes[1] == "active") {
-				return false;
-			}
+			// if(classes[1] == "active") {
+			// 	return false;
+			// }
 			var classes = jQuery(this).addClass("active");
 			var id = jQuery(this).attr("id");
 			var user_id = jQuery(this).attr("data-user");

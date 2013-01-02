@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
 		end
 
 		if @project.save
+			expire_action(:controller => "/pages", :action => "show", :id => current_user.username)
 			flash[:success] = "Your project has been created."
 			redirect_to :controller => "pages", :action => "show", :id => current_user.username, only_path: true
 		end
@@ -77,6 +78,7 @@ class ProjectsController < ApplicationController
 
 		if @project.update_attributes(params[:project]) 
       flash[:success] = "Project updated"
+      expire_action(:controller => "/pages", :action => "show", :id => current_user.username)
       redirect_to :action => "edit", :id => params[:id], only_path: true
     else 
       render 'edit'
@@ -89,6 +91,7 @@ class ProjectsController < ApplicationController
 		project = Project.find(params[:id])
 		if project.destroy
 			flash[:success] = "Project Deleted"
+			expire_action(:controller => "/pages", :action => "show", :id => current_user.username)
       redirect_to :controller => "pages", :action => "edit", :id => @page_id, only_path: true
 		else
 			flash[:error] = "Something went wrong"
@@ -129,7 +132,7 @@ class ProjectsController < ApplicationController
 		params[:project].each_with_index do |id, index|
 			Project.update_all({position: index+1}, {id: id})
 		end
-
+		expire_action(:controller => "/pages", :action => "show", :id => current_user.username)
 		render :nothing => true
 	end
 

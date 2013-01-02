@@ -5,7 +5,8 @@ class PagesController < ApplicationController
 	#get the sidebar data from the session user id for the logged in methods like edit, update
 	before_filter :get_sidebar_info, only: [:index, :edit, :update]
 	before_filter :set_projects_per_page
-	before_filter :only_admin_allowed, only: [:index]
+	before_filter :only_admin_allowed, only: [:index, :destroy]
+	caches_action :show, :about, :layout => false, :cache_path => Proc.new { |c| c.params }
 
 	def index
 		@users_count = User.count
@@ -21,6 +22,7 @@ class PagesController < ApplicationController
 	end
 
 	def show 
+		sleep 2
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 		total_projects = @page.projects.count
@@ -36,6 +38,7 @@ class PagesController < ApplicationController
 	end
 
 	def about
+		sleep 2
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 	end
@@ -94,6 +97,8 @@ class PagesController < ApplicationController
     	flash[:error] = "Something went wrong"
       render 'edit'
     end
+    expire_action(:controller => "/pages", :action => "show", :id => @page.user.username)
+    expire_action(:controller => "/pages", :action => "about", :id => @page.user.username)
 	end
 
 	def delete_picture

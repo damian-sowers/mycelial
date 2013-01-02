@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
 			end
 
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
+			expire_action(:controller => "/pages", :action => "show", :id => User.find(@user_id).username)
 		else
 			flash[:error] = "Something went wrong."
 			redirect_to :controller => "projects", :action => "show", :id => @comment.project_id, only_path: true
@@ -67,6 +68,8 @@ class CommentsController < ApplicationController
 		#delete the notification associated with the comment
 		notification = @comment.notifications
 		notification.destroy
+
+		expire_action(:controller => "/pages", :action => "show", :id => Project.find(project_id).page.user.username)
 
 		#test to see if the comment has any children. If so, just rewrite the body to "deleted".
 		if @comment.has_children?

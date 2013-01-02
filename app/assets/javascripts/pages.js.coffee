@@ -8,6 +8,9 @@ $(document).ready ->
 		update: -> 
 			$.post($(this).data('update-url'), $(this).sortable('serialize'))
 
+	if $('#meta-caching-area').length
+    $.getScript('/users/current')
+
 	new AvatarCropper()
 
 class AvatarCropper

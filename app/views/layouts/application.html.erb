@@ -83,6 +83,15 @@
 	              <li <%= on_own_page?(params[:id]) && !action?('edit') ? "class=active" : "" %>><%= link_to "Profile", page_path(:id => current_user.username) %></li>
 	              <li <%= action?('edit') ? "class=active" : "" %>><%= link_to "Admin", edit_page_path(:id => current_user.page.id) %></li>
 	              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+	              <li id="notify" style="display:none;" class="active">
+	              	<i class="icon-star" style="float:left; margin-top:13px"></i>
+  								<%= link_to "New Messages", notifications_path %>
+								</li>
+								<% if has_new_notifications?(current_user.id) %>
+									<script>
+										$("#notify").show()
+									</script>
+								<% end %>
               <% else %>
 	              <li><%= link_to "Create Your Page", new_user_registration_path %></li>
 								<li><%= link_to "Login", new_user_session_path %></li>

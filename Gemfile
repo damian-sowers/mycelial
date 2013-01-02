@@ -40,6 +40,8 @@ gem 'resque', :require => "resque/server"
 gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
 gem 'acts_as_list'
+gem 'memcachier'
+gem 'dalli'
 
 group :test do
   gem 'capybara', '1.1.2'

@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
 	before_filter :authenticate
+	caches_action :index
 
 	def index
+		sleep 2
 	end
 
 	protected
