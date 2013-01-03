@@ -22,7 +22,6 @@ class PagesController < ApplicationController
 	end
 
 	def show 
-		sleep 2
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 		total_projects = @page.projects.count
@@ -38,7 +37,6 @@ class PagesController < ApplicationController
 	end
 
 	def about
-		sleep 2
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 	end
