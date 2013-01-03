@@ -22,6 +22,7 @@ class PagesController < ApplicationController
 	end
 
 	def show 
+		@page_caching = true
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 		total_projects = @page.projects.count
@@ -37,6 +38,7 @@ class PagesController < ApplicationController
 	end
 
 	def about
+		@page_caching = true
 		@user = User.find_by_username(params[:id])
 		@page = @user.page
 	end

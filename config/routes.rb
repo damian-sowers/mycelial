@@ -4,6 +4,8 @@ CNN::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root to: 'home#index'
+  match "/home/about" => "home#about"
+  match "/home/terms" => "home#terms"
 
   match "/pages/demo" => "pages#demo"
   match "/pages/load_more" => "pages#load_more"

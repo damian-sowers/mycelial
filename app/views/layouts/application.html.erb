@@ -7,7 +7,7 @@
   <%= javascript_include_tag "application" %>
   <script src="http://js.pusherapp.com/1.9/pusher.min.js"></script>
 
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags unless @page_caching %>
 
   <% if Rails.env.production? %>
   	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
