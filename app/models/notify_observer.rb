@@ -16,6 +16,16 @@ class NotifyObserver < ActiveRecord::Observer
       end
       r.viewed = 0
       r.save
+    else #liking or commenting on own project. Still need to increment.
+      unless model.methods.include?(:comment)
+        increment_likes_count(model)
+      end
+    end
+  end
+
+  def after_destroy(model)
+    unless model.methods.include?(:comment)
+      decrement_likes_count(model)
     end
   end
 
@@ -24,5 +34,13 @@ class NotifyObserver < ActiveRecord::Observer
     r.likes_count ||= 0
     r.likes_count = r.likes_count + 1
     r.save
+  end
+
+  def decrement_likes_count(model)
+    r = Project.find(model.project_id)
+    if r.likes_count >= 1 
+      r.likes_count = r.likes_count - 1
+      r.save
+    end
   end
 end
