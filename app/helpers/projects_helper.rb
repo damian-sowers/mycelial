@@ -22,10 +22,6 @@ module ProjectsHelper
 		case project.project_type
 			when 1
 				return "Main Languages and Technologies"
-			when 2
-				return "Blog Tags"
-			when 3
-				return "Tags"
 			else
 				return "Tags"
 		end 
