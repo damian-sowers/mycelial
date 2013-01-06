@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class WelcomeEmail
+	extend Resque::Plugins::Heroku
 	@queue = :welcome_email_queue
 
 	def self.perform(user_id)

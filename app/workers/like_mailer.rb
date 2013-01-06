@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class LikeMailer
+	extend Resque::Plugins::Heroku
 	@queue = :like_mailer_queue
 
 	def self.perform(like_id)

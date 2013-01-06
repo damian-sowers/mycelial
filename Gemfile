@@ -36,6 +36,7 @@ gem 'redis'
 gem 'client_side_validations'
 gem 'ancestry'
 gem 'resque', :require => "resque/server"
+gem 'resque-heroku'
 gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'
 gem 'acts_as_list'

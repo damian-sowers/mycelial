@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class LikeNotificationDestroyer
+	extend Resque::Plugins::Heroku
 	@queue = :like_notification_destroyer_queue
 
 	def self.perform(like_id)

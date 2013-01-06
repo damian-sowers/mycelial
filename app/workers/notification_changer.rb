@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class NotificationChanger
+	extend Resque::Plugins::Heroku
 	@queue = :notifications_queue
 
 	def self.perform(new_ids)

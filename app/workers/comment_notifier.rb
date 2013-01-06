@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class CommentNotifier
+	extend Resque::Plugins::Heroku
 	@queue = :comments_queue
 
 	def self.perform(user_id)

@@ -165,6 +165,7 @@ GEM
       redis-namespace (~> 1.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-heroku (0.1.0)
     rmagick (2.13.1)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
@@ -252,6 +253,7 @@ DEPENDENCIES
   rails (= 3.2.10)
   redis
   resque
+  resque-heroku
   rmagick
   rspec-rails (= 2.9.0)
   sass-rails (~> 3.2.3)

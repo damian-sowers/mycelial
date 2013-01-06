@@ -1,4 +1,7 @@
+require 'resque/plugins/heroku'
+
 class CommentMailer
+	extend Resque::Plugins::Heroku
 	@queue = :comment_mailer_queue
 
 	def self.perform(comment_id)
