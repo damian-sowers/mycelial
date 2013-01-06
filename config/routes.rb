@@ -43,9 +43,6 @@ CNN::Application.routes.draw do
   match "/beta_invites/thanks" => "beta_invites#thanks"
   resources :beta_invites, only: [:new, :create]
 
-
-  post 'pusher/auth'
-
   mount Resque::Server, :at => '/resque'
 
   #match ':controller(/:action(/:id))'

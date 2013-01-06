@@ -35,7 +35,6 @@ gem "fog", "~> 1.3.1"
 gem 'redis'
 gem 'client_side_validations'
 gem 'ancestry'
-gem 'pusher'
 gem 'resque', :require => "resque/server"
 gem 'acts-as-taggable-on'
 gem 'newrelic_rpm'

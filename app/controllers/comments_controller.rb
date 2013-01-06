@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
 	end
 
 	def create 
-		#need to get the user.id for pusher
 		@user_id = Project.find(params[:comment][:project_id]).page.user.id
 
 		@comment = Comment.new(params[:comment])
@@ -22,8 +21,6 @@ class CommentsController < ApplicationController
 		@comment.username = current_user.username
 		if @comment.save
 			if @user_id != @comment.user_id
-				# Send a Pusher notification via a background job
-				Resque.enqueue(CommentNotifier, @user_id)
 				send_comment_notification_email(@comment.id)
 			end
 

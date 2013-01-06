@@ -5,7 +5,6 @@
   <%= stylesheet_link_tag    "application", media: "all" %>
 
   <%= javascript_include_tag "application" %>
-  <script src="http://js.pusherapp.com/1.9/pusher.min.js"></script>
 
   <%= csrf_meta_tags unless @page_caching %>
 
@@ -29,35 +28,6 @@
 		</script>
   <% end %>
 
-  <% if signed_in? %>
-	  <script type="text/javascript" charset="utf-8">	
-
-	  	<% if Rails.env.development? %> 
-	    Pusher.log = function(message) {
-	      if (window.console && window.console.log) window.console.log(message);
-	    };
-	    <% end %>
-
-	    $(function() {
-	      var pusher = new Pusher('<%= Pusher.key %>'); 
-	      var channel = pusher.subscribe('private-'+<%= current_user ? current_user.id : 'null' %>);
-
-	      channel.bind('new_notification', function(data) {
-	  			msg = 'new messages';
-	  			dom_notify(msg);
-				});
-
-				function title_notify(msg) {
-	  			$.titleAlert(msg);
-				}
-
-				function dom_notify(msg) {
-				  $('#notify').fadeIn();
-				  title_notify('New Messages');
-				}
-		  });
-	  </script>
-  <% end %>
   <script>
   	jQuery(document).ready(function($) {
 			if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {

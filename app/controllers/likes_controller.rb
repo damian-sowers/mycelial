@@ -7,7 +7,6 @@ class LikesController < ApplicationController
     #send a delayed job push notification to the user. Get the owner user_id from project_id
     @user_id = Project.find(@project_id).page.user.id
     if @user_id != current_user.id
-      Resque.enqueue(LikeNotifier, @user_id)
       send_like_notification_email(@like.id)
     end
     expire_action(:controller => "/pages", :action => "show", :id => Project.find(@project_id).page.user.username)
@@ -27,7 +26,6 @@ class LikesController < ApplicationController
       if r.save
         @receiving_user_id = Project.find(params[:project_id]).page.user.id
         if @receiving_user_id != params[:user_id].to_i
-          Resque.enqueue(LikeNotifier, @receiving_user_id)
           send_like_notification_email(r.id)
         end
       end
