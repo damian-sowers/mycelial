@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	before_filter :authenticate
+	#before_filter :authenticate
 	caches_action :index, :about, :terms
 
 	def index
