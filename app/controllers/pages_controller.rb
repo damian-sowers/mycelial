@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 	before_filter :set_projects_per_page
 	before_filter :only_admin_allowed, only: [:index, :destroy]
 	caches_action :show, :about, :layout => false, :cache_path => Proc.new { |c| c.params }
+	after_filter :expire_cache_if_no_projects, :only => :show
 
 	def index
 		@users_count = User.count
@@ -148,5 +149,11 @@ class PagesController < ApplicationController
 	      name_format = length_class[4]
 	    end
 	    return name_format
+	  end
+
+	  def expire_cache_if_no_projects
+	  	if !@projects or @projects == []
+				expire_action(:controller => "/pages", :action => "show", :id => @page.user.username)
+			end
 	  end
 end
