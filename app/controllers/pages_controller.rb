@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
 	def index
 		@users_count = User.count
-		@pages = Page.all
+		@pages = Page.order("created_at DESC")
 	end
 
 	def new 

@@ -6,7 +6,7 @@
     <b>Total User Count: <%= @users_count %></b><br/>
 		<% @pages.each do |page| %>
 			<% if username = page.user.username %>
-      Full Name: <%= link_to page.name, page_path(:id => page.user.username) %> | Created <%= time_ago_in_words(page.created_at) %> ago<br/>
+      <%= link_to page.name, page_path(:id => page.user.username) %> | Created <%= time_ago_in_words(page.created_at) %> ago | <%= page.user.email %> | Projects Count: <%= page.projects.count %> <br/>
       <% end %>
     <% end %>
 	</div>
