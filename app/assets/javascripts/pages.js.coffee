@@ -9,7 +9,7 @@ $(document).ready ->
 			$.post($(this).data('update-url'), $(this).sortable('serialize'))
 
 	if $('#meta-caching-area').length
-    $.getScript('/users/current')
+    $.getScript('/pages/current')
 
 	new AvatarCropper()
 
