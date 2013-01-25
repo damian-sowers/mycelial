@@ -22,6 +22,9 @@
 		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary" %>
 	<% end %>
 	</div>
+	<div class="like_loader" style="display:none">
+    <%= image_tag "ajax-loader.gif" %>
+  </div>
 
 	<div class="likes_count">
 		<% if @likes_count >= 1 %>

@@ -21,13 +21,16 @@
 				<%= f.hidden_field :project_id %>
 				<%= f.hidden_field :user_id %>
 				<%= f.hidden_field :username, value: current_user.username %>
-				<%= f.submit "Like This Project", class: "btn btn-primary" %>
+				<%= f.submit "Like This Project", class: "btn btn-primary like_bar_submit" %>
 			<% end %>
 		<% end %>
 	<% else %>
 		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary margin_bottom_15" %>
 	<% end %>
 	</div>
+	<div class="like_loader" style="display:none">
+    <%= image_tag "ajax-loader.gif" %>
+  </div>
 
 	<div class="likes_count">
 		<% if @likes_count >= 1 %>

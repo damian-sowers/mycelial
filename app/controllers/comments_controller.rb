@@ -114,6 +114,11 @@ class CommentsController < ApplicationController
     end
 
     def send_comment_notification_email(comment_id)
-      Resque.enqueue(CommentMailer, comment_id)
+    	@comment = Comment.find(comment_id)
+			#need to get the email of the owner of the project
+			@user_email = Project.find(@comment.project_id).page.user.email
+			#send email
+			NotificationMailer.send_comment_notification(@comment, @user_email).deliver
+      #Resque.enqueue(CommentMailer, comment_id)
     end
 end

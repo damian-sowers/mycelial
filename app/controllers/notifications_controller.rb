@@ -35,7 +35,11 @@ class NotificationsController < ApplicationController
 			#now change the viewed column to 1 for these new notifications. Put this in a background worker. Build up array of ids to add to the worker.
 			@new_ids << f.id
 		end
-		Resque.enqueue(NotificationChanger, @new_ids)
+		#change the status of all these notifications to viewed. Used to be a background job. Saving money now. background job version found in worker fork.
+		@new_ids.each do |x|
+			notification = Notification.find(x)
+			notification.update_attribute(:viewed, 1)	
+		end
 
 	end
 

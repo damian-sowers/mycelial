@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
     end
 
     def send_welcome_email
-      Resque.enqueue(WelcomeEmail, self.id)
+      user_email = User.find(self.id).email
+      Welcome.send_welcome_email(user_email).deliver
     end
 end
 # == Schema Information

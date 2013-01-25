@@ -345,6 +345,11 @@ jQuery(document).ready(function() {
     $("#register_loader").show();
   });
 
+  $('.like_bar_submit').click(function() {
+    $(".like_bar_submit").hide();
+    $(".like_loader").show();
+  });
+
   $(".icon-arrow-up").live('click', function(){
     $(".icon-arrow-up").hide();
     $("#loading").show();

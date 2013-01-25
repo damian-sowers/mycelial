@@ -14,3 +14,9 @@
 <% else %>
 		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary margin_bottom_15" %>
 <% end %>
+<div class="like_loader" style="display:none">
+  <%= image_tag "ajax-loader.gif" %>
+</div>
+<script>
+   $(".like_loader").hide();
+</script>

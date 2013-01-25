@@ -36,8 +36,14 @@ class LikesController < ApplicationController
   def destroy
     like = Like.find(params[:id]).destroy
     @project_id = like.project_id
+    
     #delete the like notification with background job.
-    Resque.enqueue(LikeNotificationDestroyer, params[:id])
+    #Resque.enqueue(LikeNotificationDestroyer, params[:id])
+    r = Notification.find_by_notification_id(params[:id])
+    if r 
+      r.destroy 
+    end
+
     expire_action(:controller => "/pages", :action => "show", :id => Project.find(@project_id).page.user.username)
     render :toggle
   end
@@ -67,6 +73,11 @@ class LikesController < ApplicationController
     end
 
     def send_like_notification_email(like_id)
-      Resque.enqueue(LikeMailer, like_id)
+      @like = Like.find(like_id)
+      #need to get the email of the owner of the project
+      @user_email = Project.find(@like.project_id).page.user.email
+      #send email
+      NotificationMailer.send_like_notification(@like, @user_email).deliver
+      # Resque.enqueue(LikeMailer, like_id)
     end
 end
