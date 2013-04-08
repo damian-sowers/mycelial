@@ -1,7 +1,7 @@
 Mycelial: A Rails app for a portfolio-based social network. 
 =========
 
-This is great for a visual CV social network and or a portfolio social network. The pages are linked together via a tagging system. There is a main feed and tag-specific feeds. Each users posts are also related to similar posts via the sporeprint algorithm, which matches it to other posts based on correlation (number of tag matches). Mycelial has nested comments, a like system, notifications, amazon s3 uploads and picture cropping, and much more. 
+This is great for a visual CV social network and or a portfolio social network. The pages are linked together via a tagging system. There is a main feed and tag-specific feeds. Each user's posts are related to similar posts via the sporeprint algorithm, which matches it to other posts based on correlation (number of tag matches). Mycelial has nested comments, a like system, notifications, amazon s3 uploads and picture cropping, feeds, and much more. 
 
 See the demo: [http://www.mycelial.com/](http://www.mycelial.com/) 
 
@@ -14,7 +14,8 @@ An example user profile page. Great for a visual CV/Portfolio.
 * Page caching with memcachier, dalli and redis
 * Devise user management
 * Uploads to s3 with carrierwave and fog
-* Tags associated with each post. JQuery enabled tagging system with acts-as-taggable on gem. 
+* Pinterest layout with the masonry plugin. Posts without pictures are given a nice random colored header. 
+* Tags associated with each post. JQuery enabled tagging system with acts-as-taggable on gem. Tags can be given pictures on the backend so user pages look really nice with the tags. 
 * Hot Feed, and individual category feeds for each tag (ordered by popularity)
 * Nested Comments with a JQuery comment overlay popup
 * Notification system for new likes and new comments. 
