@@ -19,20 +19,20 @@ class ApplicationController < ActionController::Base
       end
     end
 
-		def current_user?(user)
-			if user_signed_in?
-				user.id == current_user.id
+    def current_user?(user)
+      if user_signed_in?
+        user.id == current_user.id
       else 
         return false
       end
-		end
+    end
 
     def correct_user
-    	@user = get_user()
-    	if @user
-      	redirect_to(root_path) unless current_user?(@user) or current_user.email == "damian.sowers@gmail.com"
+      @user = get_user()
+      if @user
+        redirect_to(root_path) unless current_user?(@user) or current_user.email == "damian.sowers@gmail.com"
       else 
-      	redirect_to(root_path)
+        redirect_to(root_path)
       end
     end
 
@@ -48,11 +48,11 @@ class ApplicationController < ActionController::Base
     end
 
     def get_sidebar_info
-			if user_signed_in?
-				@page = Page.find_by_user_id(current_user.id)
+      if user_signed_in?
+        @page = Page.find_by_user_id(current_user.id)
         @user = current_user
-			end
-		end
+      end
+    end
 
     def only_admin_allowed
       #do it by user email
