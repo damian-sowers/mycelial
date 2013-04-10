@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
     self.tech_tag_ids = TechTag.ids_from_tokens(tokens)
   end
 
-  validates :project_name, presence: 	true,
+  validates :project_name, presence:  true,
                            :length => { :maximum => 50 }
   validates :short_description, :length => { :maximum => 500 }
    

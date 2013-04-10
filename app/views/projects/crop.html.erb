@@ -1,24 +1,24 @@
 <%= render 'layouts/opening_divs' %>
 <div class="hentry page mycelial_page">
-	<%= render 'layouts/span8_well' %>
-		<h1>Crop Your Image</h1>
-		<p>Select the area below</p>
+  <%= render 'layouts/span8_well' %>
+    <h1>Crop Your Image</h1>
+    <p>Select the area below</p>
 
-		<%= image_tag @project.picture_url(:large), id: "cropbox2" %>
+    <%= image_tag @project.picture_url(:large), id: "cropbox2" %>
 
-		<h4>Preview</h4>
-		<div class="jcrop" style="width:100px; height:100px; overflow:hidden">
-			<%= image_tag @project.picture_url(:large), :id => "preview2" %>
-		</div>
+    <h4>Preview</h4>
+    <div class="jcrop" style="width:100px; height:100px; overflow:hidden">
+      <%= image_tag @project.picture_url(:large), :id => "preview2" %>
+    </div>
 
-		<%= form_for @project do |f| %>
-			<% %w[x y w h].each do |attribute| %>
-				<%= f.hidden_field "crop_#{attribute}" %><br/>
-			<% end %>
-			<div class="actions">
-				<%= f.submit "Crop" %>
-			</div>
-		<% end %>
-	</div>
+    <%= form_for @project do |f| %>
+      <% %w[x y w h].each do |attribute| %>
+        <%= f.hidden_field "crop_#{attribute}" %><br/>
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Crop" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 <%= render 'layouts/closing_divs' %>

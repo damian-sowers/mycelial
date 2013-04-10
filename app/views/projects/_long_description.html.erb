@@ -5,10 +5,10 @@
 <%= form_for(@project, :html => { :class => "form-horizontal" }, :validate => true) do |f| %>
 
 <div class="control-group">
-	<%= f.label :long_description, "Project Description", class: "control-label required" %>
-	<div class="controls">
-		<%= f.text_area :long_description, :cols => 80, :rows => 5, class: "input-xlarge"  %>
-	</div>
+  <%= f.label :long_description, "Project Description", class: "control-label required" %>
+  <div class="controls">
+    <%= f.text_area :long_description, :cols => 80, :rows => 5, class: "input-xlarge"  %>
+  </div>
 </div>
 <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

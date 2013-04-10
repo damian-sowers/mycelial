@@ -4,16 +4,16 @@ class TechTag < ActiveRecord::Base
   #has_many :projects, through: :tagowners
 
 
-	def self.tokens(query)
-		tech_tags = where("name like ?", "%#{query}%")
-		if tech_tags.empty?
-		  [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
-		else
-		  tech_tags
-		end
-	end
+  def self.tokens(query)
+    tech_tags = where("name like ?", "%#{query}%")
+    if tech_tags.empty?
+      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+    else
+      tech_tags
+    end
+  end
 
-	def self.ids_from_tokens(tokens)
+  def self.ids_from_tokens(tokens)
     tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
     tokens.split(',')
   end

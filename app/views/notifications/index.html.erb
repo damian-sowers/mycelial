@@ -1,29 +1,29 @@
 <%= render 'layouts/opening_divs' %>
   <div class="page mycelial_page">
-	  <%= render 'layouts/span8_well' %>
-		  <div class="mycelial-page-header">
-			  <h2 class="mycelial-page-title">You have <% if @new_notifications.count >= 1 %>new<% else %> no new<% end %> notifications</h2>
-			  <span class="arrow mycelial_page_arrow"></span>
-		  </div>
-		  <div class="new_notifications">
-		  	<% @new_notifications.each do |f| %>
-		  		<% if f[:comment] %>
-		  			<span class="notifications_meta">
-		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
-		  			</span>
-		  			<div class="well">
-		  				<span class="notifications_body">"<%= f.comment %>"</span>
-		  			</div>
-		  		<% else %>
-		  			<span class="notifications_meta">
-		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> liked your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
-		  			</span>
-		  		<% end %>
-		  		<hr>
-		  	<% end %>
-		  	<a href="/notifications/old" class="btn btn-large btn-warning">View all of your old notifications</a>
-			</div>
-		</div>
-	</div>
-	</div>
+    <%= render 'layouts/span8_well' %>
+      <div class="mycelial-page-header">
+        <h2 class="mycelial-page-title">You have <% if @new_notifications.count >= 1 %>new<% else %> no new<% end %> notifications</h2>
+        <span class="arrow mycelial_page_arrow"></span>
+      </div>
+      <div class="new_notifications">
+        <% @new_notifications.each do |f| %>
+          <% if f[:comment] %>
+            <span class="notifications_meta">
+              <a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
+            </span>
+            <div class="well">
+              <span class="notifications_body">"<%= f.comment %>"</span>
+            </div>
+          <% else %>
+            <span class="notifications_meta">
+              <a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> liked your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
+            </span>
+          <% end %>
+          <hr>
+        <% end %>
+        <a href="/notifications/old" class="btn btn-large btn-warning">View all of your old notifications</a>
+      </div>
+    </div>
+  </div>
+  </div>
 <%= render 'layouts/closing_divs' %>

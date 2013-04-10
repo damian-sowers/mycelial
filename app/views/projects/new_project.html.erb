@@ -1,37 +1,37 @@
 <%= render 'layouts/opening_divs' %>
 <div id="project_area">
-	<div class="page mycelial_page">
-		<%= render 'layouts/span8_well' %>
-		<div class="mycelial-page-header">
-			<h2 class="mycelial-page-title"><% if params[:new_user] %>Next step: Add a project to your page. Select a project type.<% else %>Select a project type<% end %></h2>
-			<span class="arrow mycelial_page_arrow"></span>
-		</div>
-		<!--BEGIN .entry-content -->
-		<div class="entry-content">
-			<div class="row new_project_row">
-				<%= link_to(image_tag("code.png"), new_project_path(:project_type => 1), class: 
-				"thumbnail new_project_thumb")
-				%> 
-				<h2><%= link_to "Programming Project", new_project_path(:project_type => 1) %></h2>
-				<p>Web app, desktop software, open source, or anything programming related</p>
-			</div>
+  <div class="page mycelial_page">
+    <%= render 'layouts/span8_well' %>
+    <div class="mycelial-page-header">
+      <h2 class="mycelial-page-title"><% if params[:new_user] %>Next step: Add a project to your page. Select a project type.<% else %>Select a project type<% end %></h2>
+      <span class="arrow mycelial_page_arrow"></span>
+    </div>
+    <!--BEGIN .entry-content -->
+    <div class="entry-content">
+      <div class="row new_project_row">
+        <%= link_to(image_tag("code.png"), new_project_path(:project_type => 1), class: 
+        "thumbnail new_project_thumb")
+        %> 
+        <h2><%= link_to "Programming Project", new_project_path(:project_type => 1) %></h2>
+        <p>Web app, desktop software, open source, or anything programming related</p>
+      </div>
 
-			<div class="row new_project_row">
-				<%= link_to(image_tag("blog.png"), new_project_path(:project_type => 2), class: 
-				"thumbnail new_project_thumb")
-				%> 
-				<h2><%= link_to "Blog Post or Article", new_project_path(:project_type => 2) %></h2>
-				<p>Any blog post or online article under the sun.</p>
-			</div>
+      <div class="row new_project_row">
+        <%= link_to(image_tag("blog.png"), new_project_path(:project_type => 2), class: 
+        "thumbnail new_project_thumb")
+        %> 
+        <h2><%= link_to "Blog Post or Article", new_project_path(:project_type => 2) %></h2>
+        <p>Any blog post or online article under the sun.</p>
+      </div>
 
-			<div class="row new_project_row">
-				<%= link_to(image_tag("other.png"), new_project_path(:project_type => 3), class: 
-				"thumbnail new_project_thumb")
-				%> 
-				<h2><%= link_to "Other", new_project_path(:project_type => 3) %></h2>
-				<p>Scientific research project, home-made telescope, illustrations and designs, or any other project.</p>
-			</div>
-		</div>
-	</div>
+      <div class="row new_project_row">
+        <%= link_to(image_tag("other.png"), new_project_path(:project_type => 3), class: 
+        "thumbnail new_project_thumb")
+        %> 
+        <h2><%= link_to "Other", new_project_path(:project_type => 3) %></h2>
+        <p>Scientific research project, home-made telescope, illustrations and designs, or any other project.</p>
+      </div>
+    </div>
+  </div>
 </div>
 <%= render 'layouts/closing_divs' %>

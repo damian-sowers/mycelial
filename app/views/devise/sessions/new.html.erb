@@ -15,22 +15,22 @@
             <% flash.each do |key, value| %>
                 <div class="well alert alert-<%= key %>"><%= value %></div>
             <% end %>
-						<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-						  <div><%= f.label :email %>
-						  <%= f.email_field :email %></div>
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <div><%= f.label :email %>
+              <%= f.email_field :email %></div>
 
-						  <div><%= f.label :password %>
-						  <%= f.password_field :password %></div>
+              <div><%= f.label :password %>
+              <%= f.password_field :password %></div>
 
-						  <% if devise_mapping.rememberable? -%>
-						    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-						  <% end -%>
+              <% if devise_mapping.rememberable? -%>
+                <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+              <% end -%>
 
-						  <div><%= f.submit "Sign in", class: "btn btn-info" %></div>
-						<% end %>
+              <div><%= f.submit "Sign in", class: "btn btn-info" %></div>
+            <% end %>
 
-						<%= render "devise/shared/links" %>
-					</div>
+            <%= render "devise/shared/links" %>
+          </div>
         </div>
       </div>
       <div class='bg-2'></div>

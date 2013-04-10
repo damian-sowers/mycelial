@@ -4,7 +4,7 @@ class Notification < ActiveRecord::Base
   belongs_to :user, :foreign_key => :receiver_id
 
   def self.get_new_notifications(receiver_id)
-  	new_notifications = self.where("receiver_id = ? AND viewed = 0", receiver_id)
+    new_notifications = self.where("receiver_id = ? AND viewed = 0", receiver_id)
   end
 end
 # == Schema Information

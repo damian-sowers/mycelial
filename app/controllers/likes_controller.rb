@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
-	before_filter :authenticate_user!, except: [:show]
+  before_filter :authenticate_user!, except: [:show]
 
-	def create
+  def create
     @like = Like.create(params[:like])
     @project_id = params[:like][:project_id]
     #send a delayed job push notification to the user. Get the owner user_id from project_id

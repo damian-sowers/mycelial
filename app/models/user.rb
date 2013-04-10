@@ -22,8 +22,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false },
                     length: { within: 4..18 }
   def to_param
-  	id || username	
-	end
+    id || username  
+  end
 
   private
 

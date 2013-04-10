@@ -1,131 +1,131 @@
 <%= render 'layouts/opening_divs' %>
-	<div class="mycelial_page page">
-		<div class="project_blocks">
-			<div id="edit_whole_projects">
-			<h1 class="entry-title" id="mycelial_project_title" style="float:left; width:760px;"><%= @project.project_name %></h1>
-			<% if @page_owner %>
-				<div class="user_edit"><%= link_to "Edit Project", "/projects/#{params[:id]}/edit", class: "btn" %>
-				</div>
-			<% end %>
-			</div>
-		</div>
-		<div class="entry-content">
-			<% if @project.picture_url %>
-			<a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
-				<span class="overlay" style="display:none;">
-					<span class="icon"></span>
-				</span>
-				<%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
-			</a>
-			<% end %>
-			
-			<% unless @project.short_description.blank? %>
-			<div class="project_blocks">
-				<div id="short_description">
-				<% if @page_owner %>
-					<div class="user_edit" style="margin-top:80px"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
-				<% end %>
-				<p>
-					<b>Summary:</b><br/><br/>
-					<%= @project.short_description %>
-				</p>
-				</div>
-			</div>
-			<br/>
-			<% end %>
+  <div class="mycelial_page page">
+    <div class="project_blocks">
+      <div id="edit_whole_projects">
+      <h1 class="entry-title" id="mycelial_project_title" style="float:left; width:760px;"><%= @project.project_name %></h1>
+      <% if @page_owner %>
+        <div class="user_edit"><%= link_to "Edit Project", "/projects/#{params[:id]}/edit", class: "btn" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="entry-content">
+      <% if @project.picture_url %>
+      <a class="lightbox mycelial_large_image" title="Project Image" href="<%= @project.picture_url(:large).to_s %>">
+        <span class="overlay" style="display:none;">
+          <span class="icon"></span>
+        </span>
+        <%= image_tag @project.picture_url(:cover).to_s, class: "project_detail_image" %>
+      </a>
+      <% end %>
+      
+      <% unless @project.short_description.blank? %>
+      <div class="project_blocks">
+        <div id="short_description">
+        <% if @page_owner %>
+          <div class="user_edit" style="margin-top:80px"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=short_description", class: "lightbox btn", :remote => true %></div>
+        <% end %>
+        <p>
+          <b>Summary:</b><br/><br/>
+          <%= @project.short_description %>
+        </p>
+        </div>
+      </div>
+      <br/>
+      <% end %>
 
-			<% unless @project.long_description.blank? %>
-			<div class="project_blocks">
-				<div id="long_description">
-				<% if @page_owner %>
-					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
-				<% end %>
-				<p>
-					<b>Project Description:</b><br/><br/>
-					<%= @project.long_description %>
-				</p>
-				</div>
-			</div>
-			<% end %>
+      <% unless @project.long_description.blank? %>
+      <div class="project_blocks">
+        <div id="long_description">
+        <% if @page_owner %>
+          <div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=long_description", class: "lightbox btn", :remote => true %></div>
+        <% end %>
+        <p>
+          <b>Project Description:</b><br/><br/>
+          <%= @project.long_description %>
+        </p>
+        </div>
+      </div>
+      <% end %>
 
-			<div style="clear:both"></div>
+      <div style="clear:both"></div>
 
-			<% unless @tech_tags.blank? %>
-			<div class="project_blocks">
-			<div class="prog_language">
-				<% if @page_owner %>
-					<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
-				<% end %>
-				
-				<p><b><%= show_tag_language(@project) %></b><br/></p>
+      <% unless @tech_tags.blank? %>
+      <div class="project_blocks">
+      <div class="prog_language">
+        <% if @page_owner %>
+          <div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=tech_tags", class: "btn" %></div>
+        <% end %>
+        
+        <p><b><%= show_tag_language(@project) %></b><br/></p>
 
-				<% @tech_tags.each do |t| %>
-					<% if t.picture != nil %>
-						<%= link_to(image_tag("http://mycelial-images.s3.amazonaws.com/uploads/tags/#{t.picture.to_s}", :title => t.name), feed_path(:tag => t.name), class: "picture_tags", :rel => "tooltip") %>
-					<% else %>
-						<%= link_to "#{t.name}", feed_path(:tag => t.name), class: "feed_tags" %>
-					<% end %>
-				<% end %>
-			</div>
-			<div style="clear:both"></div>
-			</div>
-			<br/>
-			<a href="/sporeprint/<%= @project.id %>" id="sporeprint_link">View this project's sporeprint</a><br/>
-			<span>A sporeprint shows projects that are similar in genetic makeup. e.g. Made with similar technologies</span>
-			<% end %>
+        <% @tech_tags.each do |t| %>
+          <% if t.picture != nil %>
+            <%= link_to(image_tag("http://mycelial-images.s3.amazonaws.com/uploads/tags/#{t.picture.to_s}", :title => t.name), feed_path(:tag => t.name), class: "picture_tags", :rel => "tooltip") %>
+          <% else %>
+            <%= link_to "#{t.name}", feed_path(:tag => t.name), class: "feed_tags" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div style="clear:both"></div>
+      </div>
+      <br/>
+      <a href="/sporeprint/<%= @project.id %>" id="sporeprint_link">View this project's sporeprint</a><br/>
+      <span>A sporeprint shows projects that are similar in genetic makeup. e.g. Made with similar technologies</span>
+      <% end %>
 
-			<% unless @project.other_interesting.blank? %>
-			<hr>
-			<div class="project_blocks">
-				<div class="other_interesting">
-					<% if @page_owner %>
-						<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
-						</div>
-					<% end %>
-					<p><b>Other Interesting Things About This Project:</b><br/><br/>
-						<%= @project.other_interesting %>
-					</p>
-				</div>
-			</div>
-			<% end %>
+      <% unless @project.other_interesting.blank? %>
+      <hr>
+      <div class="project_blocks">
+        <div class="other_interesting">
+          <% if @page_owner %>
+            <div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=other_interesting", class: "lightbox btn", :remote => true %>
+            </div>
+          <% end %>
+          <p><b>Other Interesting Things About This Project:</b><br/><br/>
+            <%= @project.other_interesting %>
+          </p>
+        </div>
+      </div>
+      <% end %>
 
-			<% unless @project.url.blank? and @project.github_repo.blank? %>
-			<hr>
-			<div class="project_blocks">
-				<div class="project_links">
-					<% if @page_owner %>
-						<div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
-						</div>
-					<% end %>
-					<% unless @project.url.blank? %>
-						<div class="project_url">
-							<p><b>Visit This Project:</b> <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></p>
-						</div>
-					<% end %>
-					<% unless @project.github_repo.blank? %>
-						<div class="github_link">
-							<%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><p><b>Check it out on Github:</b><br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></p>
-						</div>
-					<% end %>
-				</div>
-			</div>
-			<% end %>
-		</div>
-	</div>
-	<br/>	
+      <% unless @project.url.blank? and @project.github_repo.blank? %>
+      <hr>
+      <div class="project_blocks">
+        <div class="project_links">
+          <% if @page_owner %>
+            <div class="user_edit"><%= link_to "Edit", "/projects/#{params[:id]}/edit?edit_block=project_links", class: "lightbox btn", :remote => true %>
+            </div>
+          <% end %>
+          <% unless @project.url.blank? %>
+            <div class="project_url">
+              <p><b>Visit This Project:</b> <a href="<%= @project.url.to_s %>"><%= @project.url.slice(0, 80) %></a></p>
+            </div>
+          <% end %>
+          <% unless @project.github_repo.blank? %>
+            <div class="github_link">
+              <%= image_tag "github.jpg", style: "float:left; margin-right:15px;" %><p><b>Check it out on Github:</b><br/><a href="<%= @project.github_repo.to_s %>"><%= @project.github_repo.slice(0, 80) %></a></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <br/> 
 
-	<%= render 'layouts/right_sidebar' %>
-	<%= render 'layouts/bottom_like_bar' %>
+  <%= render 'layouts/right_sidebar' %>
+  <%= render 'layouts/bottom_like_bar' %>
 
-	<div class="comments_area">
+  <div class="comments_area">
 
-		<% if @comments %>
-			<div class="center_column_area">
-				<a href="#" name="comments"></a>
-				<%= nested_comments(@comments) %>
-			</div>
-		<% end %>
-	</div>
+    <% if @comments %>
+      <div class="center_column_area">
+        <a href="#" name="comments"></a>
+        <%= nested_comments(@comments) %>
+      </div>
+    <% end %>
+  </div>
 
 
 <%= render 'layouts/closing_divs' %>

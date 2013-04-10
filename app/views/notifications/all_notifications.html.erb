@@ -1,43 +1,43 @@
 <%= render 'layouts/opening_divs' %>
   <div class="page mycelial_page">
-	  <%= render 'layouts/span8_well' %>
-		  <div class="mycelial-page-header">
-			  <h2 class="mycelial-page-title">Your Notifications</h2>
-			  <span class="arrow mycelial_page_arrow"></span>
-		  </div>
-		  <div class="new_notifications">
-		  	<% @old_notifications.each do |f| %>
-		  		<% if f[:comment] %>
-		  			<span class="notifications_meta">
-		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
-		  			</span>
-		  			<div class="well">
-		  				<span class="notifications_body">"<%= f.comment %>"</span>
-		  			</div>
-		  		<% else %>
-		  			<span class="notifications_meta">
-		  				<a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> liked your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
-		  			</span>
-		  		<% end %>
-		  		<hr>
-		  	<% end %>
-		  	<% if @total_pages > 1 %>
-		  	<div class="pagination">
-	        <ul>
-	        	<% unless params[:page].to_i == 1 %>
-	          	<li><a href="/notifications/old?page=<%= params[:page].to_i - 1 %>">«</a></li>
-	          <% end %>
-	          <% 1.upto(@total_pages) do |i| %>
-	           <li <%= 'class=active' if params[:page].to_i == i %>><a href="/notifications/old?page=<%= i %>"><%= i %></a></li>
-	          <% end %>
-	          <% unless params[:page].to_i == @total_pages %>
-	          	<li><a href="/notifications/old?page=<%= params[:page].to_i + 1 %>">&raquo;</a></li>
-	          <% end %>
-	        </ul>
-	      </div>
-	      <% end %>
-			</div>
-		</div>
-	</div>
-	</div>
+    <%= render 'layouts/span8_well' %>
+      <div class="mycelial-page-header">
+        <h2 class="mycelial-page-title">Your Notifications</h2>
+        <span class="arrow mycelial_page_arrow"></span>
+      </div>
+      <div class="new_notifications">
+        <% @old_notifications.each do |f| %>
+          <% if f[:comment] %>
+            <span class="notifications_meta">
+              <a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> wrote a comment about your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
+            </span>
+            <div class="well">
+              <span class="notifications_body">"<%= f.comment %>"</span>
+            </div>
+          <% else %>
+            <span class="notifications_meta">
+              <a href="/pages/<%= f.username.to_s %>"><%= f.username %></a> liked your <a href="/projects/<%= f.project_id %>">project</a>. | <%= time_ago_in_words(f.created_at) %> ago
+            </span>
+          <% end %>
+          <hr>
+        <% end %>
+        <% if @total_pages > 1 %>
+        <div class="pagination">
+          <ul>
+            <% unless params[:page].to_i == 1 %>
+              <li><a href="/notifications/old?page=<%= params[:page].to_i - 1 %>">«</a></li>
+            <% end %>
+            <% 1.upto(@total_pages) do |i| %>
+             <li <%= 'class=active' if params[:page].to_i == i %>><a href="/notifications/old?page=<%= i %>"><%= i %></a></li>
+            <% end %>
+            <% unless params[:page].to_i == @total_pages %>
+              <li><a href="/notifications/old?page=<%= params[:page].to_i + 1 %>">&raquo;</a></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
 <%= render 'layouts/closing_divs' %>

@@ -9,31 +9,31 @@
   <%= csrf_meta_tags unless @page_caching %>
 
   <% if Rails.env.production? %>
-  	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
-  	<script type="text/javascript">
+    <script type="text/javascript">
 
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-37234083-1']);
-		  _gaq.push(['_setDomainName', 'mycelial.com']);
-		  _gaq.push(['_setAllowLinker', true]);
-		  _gaq.push(['_trackPageview']);
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37234083-1']);
+      _gaq.push(['_setDomainName', 'mycelial.com']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
 
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
-		</script>
+    </script>
   <% end %>
 
   <script>
-  	jQuery(document).ready(function($) {
-			if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
-				$("#mycelial_menu_bar").attr("class", "navbar navbar-fixed-top mycelial_bottom_navbar");
-			};
-		});
+    jQuery(document).ready(function($) {
+      if(navigator.platform == 'iPad' || navigator.platform == 'iPhone' || navigator.platform == 'iPod') {
+        $("#mycelial_menu_bar").attr("class", "navbar navbar-fixed-top mycelial_bottom_navbar");
+      };
+    });
   </script>
   <!--[if lt IE 9]>
     <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
@@ -44,27 +44,27 @@
     <% unless controller?('home') or @no_bottom_navbar %>
     <div id="mycelial_menu_bar" class="navbar navbar-fixed-bottom mycelial_bottom_navbar">
       <div class="navbar-inner mycelial_inner">
-      	<div class="align_center mycelial_nav">
+        <div class="align_center mycelial_nav">
           <div class="nav">
             <ul class="nav mycelial_nav">
-            	<li><a href="/">mycelial</a></li>
+              <li><a href="/">mycelial</a></li>
               <li <%= controller?('feed') ? "class=active" : "" %>><%= link_to "Feed", feed_path %></li>
               <% if user_signed_in? %>
-	              <li <%= on_own_page?(params[:id]) && !action?('edit') ? "class=active" : "" %>><%= link_to "Profile", page_path(:id => current_user.username) %></li>
-	              <li <%= action?('edit') ? "class=active" : "" %>><%= link_to "Admin", edit_page_path(:id => current_user.page.id) %></li>
-	              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-	              <li id="notify" style="display:none;" class="active">
-	              	<i class="icon-star" style="float:left; margin-top:13px"></i>
-  								<%= link_to "New Messages", notifications_path %>
-								</li>
-								<% if has_new_notifications?(current_user.id) %>
-									<script>
-										$("#notify").show()
-									</script>
-								<% end %>
+                <li <%= on_own_page?(params[:id]) && !action?('edit') ? "class=active" : "" %>><%= link_to "Profile", page_path(:id => current_user.username) %></li>
+                <li <%= action?('edit') ? "class=active" : "" %>><%= link_to "Admin", edit_page_path(:id => current_user.page.id) %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+                <li id="notify" style="display:none;" class="active">
+                  <i class="icon-star" style="float:left; margin-top:13px"></i>
+                  <%= link_to "New Messages", notifications_path %>
+                </li>
+                <% if has_new_notifications?(current_user.id) %>
+                  <script>
+                    $("#notify").show()
+                  </script>
+                <% end %>
               <% else %>
-	              <li><%= link_to "Create Your Page", new_user_registration_path %></li>
-								<li><%= link_to "Login", new_user_session_path %></li>
+                <li><%= link_to "Create Your Page", new_user_registration_path %></li>
+                <li><%= link_to "Login", new_user_session_path %></li>
               <% end %>
             </ul>
           </div>
@@ -73,24 +73,24 @@
     </div>
     <% end %>
     <% if Rails.env.production? %>
-    	<script type="text/javascript">
-			  var _sf_async_config = { uid: 35198, domain: 'mycelial.com' };
-			  (function() {
-			    function loadChartbeat() {
-			      window._sf_endpt = (new Date()).getTime();
-			      var e = document.createElement('script');
-			      e.setAttribute('language', 'javascript');
-			      e.setAttribute('type', 'text/javascript');
-			      e.setAttribute('src',
-			        (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
-			        "js/chartbeat.js");
-			      document.body.appendChild(e);
-			    };
-			    var oldonload = window.onload;
-			    window.onload = (typeof window.onload != 'function') ?
-			      loadChartbeat : function() { oldonload(); loadChartbeat(); };
-			  })();
-			</script>
+      <script type="text/javascript">
+        var _sf_async_config = { uid: 35198, domain: 'mycelial.com' };
+        (function() {
+          function loadChartbeat() {
+            window._sf_endpt = (new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src',
+              (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+              "js/chartbeat.js");
+            document.body.appendChild(e);
+          };
+          var oldonload = window.onload;
+          window.onload = (typeof window.onload != 'function') ?
+            loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+      </script>
     <% end %>
 </body>
 </html>

@@ -1,26 +1,26 @@
 <div class="comment_box">
-	<div style="padding:15px">
+  <div style="padding:15px">
 
-		<div class="comment-top-data">
-			<strong>
-			<%= link_to comment.username, "/pages/#{comment.username}", class: "comment_links" %> · <%= time_ago_in_words(comment.created_at) + " ago" %>		 · 
-				<% if user_signed_in? %>
-					<%= link_to "reply", "/comments/new?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox comment_links", :remote => true %>
-				<% else %>
-					<%= link_to "Reply", new_user_session_path, class: "comment_links" %>
-				<% end %>
-			</strong>
-			<% if user_signed_in? %>
-				<div style="float:right">
-				<% if comment.user_id == current_user.id or @page_owner %>
-					<%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
-				<% end %>
-				</div>
-			<% end %>
-		</div>
+    <div class="comment-top-data">
+      <strong>
+      <%= link_to comment.username, "/pages/#{comment.username}", class: "comment_links" %> · <%= time_ago_in_words(comment.created_at) + " ago" %>    · 
+        <% if user_signed_in? %>
+          <%= link_to "reply", "/comments/new?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox comment_links", :remote => true %>
+        <% else %>
+          <%= link_to "Reply", new_user_session_path, class: "comment_links" %>
+        <% end %>
+      </strong>
+      <% if user_signed_in? %>
+        <div style="float:right">
+        <% if comment.user_id == current_user.id or @page_owner %>
+          <%= link_to image_tag("pencil.png", :class => "pencil_icon"), "/comments/#{comment.id}/edit?project_id=#{@project.id}&parent_id=#{comment.id}", class: "lightbox", :remote => true %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
 
-		<div class="comment_body">
-			<p><%= comment.comment %></p>
-		</div>
-	</div>
+    <div class="comment_body">
+      <p><%= comment.comment %></p>
+    </div>
+  </div>
 </div>

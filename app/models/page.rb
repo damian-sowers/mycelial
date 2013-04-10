@@ -13,10 +13,10 @@ class Page < ActiveRecord::Base
 
   #after_update :crop_avatar
   
-  validates :name, presence: 	true
+  validates :name, presence:  true
 
   def crop_avatar
-  	image.recreate_versions! if crop_x.present?
+    image.recreate_versions! if crop_x.present?
   end
 end
 # == Schema Information

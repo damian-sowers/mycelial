@@ -1,10 +1,10 @@
 <li class="like-count">
-	<% if user_signed_in? %>
-	<a href="#" <%= current_user.likes.find_by_project_id(p.id) ? "class=active" : "class=likeThis" %> id="like-<%= p.id %>" data-user="<%= current_user.id %>"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a>    
-	<% else %>
-	<a href="/users/sign_in"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a> 
-	<% end %>
+  <% if user_signed_in? %>
+  <a href="#" <%= current_user.likes.find_by_project_id(p.id) ? "class=active" : "class=likeThis" %> id="like-<%= p.id %>" data-user="<%= current_user.id %>"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a>    
+  <% else %>
+  <a href="/users/sign_in"><span class="icon"></span><span class="count"><%= p.likes.count %></span></a> 
+  <% end %>
 </li>
 <li class="comment-count">
-	<a href="/projects/<%= p.id %>#comments"><span class="icon"></span><%= p.comments.count %></a>
+  <a href="/projects/<%= p.id %>#comments"><span class="icon"></span><%= p.comments.count %></a>
 </li>

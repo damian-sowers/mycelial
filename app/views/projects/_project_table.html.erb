@@ -2,35 +2,35 @@
  <div class="alert alert-error">Error</div>
 <% end %>
 <!-- <table class="table table-striped">
-	<thead>
-	  <tr>
-	    <th>Order</th>
-	    <th>Project Name</th>
-	    <th>Short Description</th>
-	    <th>Date created</th>
-	  </tr>
-	</thead>
-	<tbody id="project_list" data-update-url="/projects/change_order">
-	  <% i = 1 %>
-	  <% @projects.each do |p| %>
-	  <% p.project_name.length >= 37 ? project_name = p.project_name.slice(0,37) + "..." : project_name = p.project_name %>
-	  <% p.short_description.length >= 52 ? short_description = p.short_description.slice(0,52) + "..." : short_description = p.short_description %>
-	    <tr id="project_<%= p.id %>">
-	      <td><a href="#" style="cursor:move" class="icon-move"></a></td>
-	      <td><b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></td>
-	      <td><b><%= link_to "#{short_description}", "/projects/#{p.id}/edit" %></b></td>
-	      <td><b><%= link_to "#{time_ago_in_words(p.created_at)} ago", "/projects/#{p.id}/edit" %></b></td>
-	    </tr>
-	  <% i += 1 %>
-	  <% end %>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Project Name</th>
+      <th>Short Description</th>
+      <th>Date created</th>
+    </tr>
+  </thead>
+  <tbody id="project_list" data-update-url="/projects/change_order">
+    <% i = 1 %>
+    <% @projects.each do |p| %>
+    <% p.project_name.length >= 37 ? project_name = p.project_name.slice(0,37) + "..." : project_name = p.project_name %>
+    <% p.short_description.length >= 52 ? short_description = p.short_description.slice(0,52) + "..." : short_description = p.short_description %>
+      <tr id="project_<%= p.id %>">
+        <td><a href="#" style="cursor:move" class="icon-move"></a></td>
+        <td><b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></td>
+        <td><b><%= link_to "#{short_description}", "/projects/#{p.id}/edit" %></b></td>
+        <td><b><%= link_to "#{time_ago_in_words(p.created_at)} ago", "/projects/#{p.id}/edit" %></b></td>
+      </tr>
+    <% i += 1 %>
+    <% end %>
+  </tbody>
 </table> -->
 <ul id="project_list" data-update-url="/projects/change_order">
-	<% @projects.each do |p| %>
-	  <% p.project_name.length >= 60 ? project_name = p.project_name.slice(0,60) + "..." : project_name = p.project_name %>
-		<li class="ui-state-default" id="project_<%= p.id %>"><i class="icon-move" style="cursor:move; margin-right:15px"></i> <b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></li>
-	<% end %>
+  <% @projects.each do |p| %>
+    <% p.project_name.length >= 60 ? project_name = p.project_name.slice(0,60) + "..." : project_name = p.project_name %>
+    <li class="ui-state-default" id="project_<%= p.id %>"><i class="icon-move" style="cursor:move; margin-right:15px"></i> <b><%= link_to "#{project_name}", "/projects/#{p.id}/edit" %></b></li>
+  <% end %>
 </ul>
 <div id="loading" style="display:none">
-	<%= image_tag "ajax-loader.gif" %>
+  <%= image_tag "ajax-loader.gif" %>
 </div>

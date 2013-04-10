@@ -1,18 +1,18 @@
 <% if user_signed_in? %>
 <% if like = current_user.likes.find_by_project_id(@project_id) %>
-	<%= form_for like, :html => { :method => :delete }, :remote => true do |f| %>
-	<%= f.submit "Unlike", class: "btn btn-primary" %>
+  <%= form_for like, :html => { :method => :delete }, :remote => true do |f| %>
+  <%= f.submit "Unlike", class: "btn btn-primary" %>
 <% end %>
 <% else %>
-	<%= form_for current_user.likes.build(:project_id => @project_id), :remote => true do |f| %>
-		<%= f.hidden_field :project_id %>
-		<%= f.hidden_field :user_id %>
-		<%= f.hidden_field :username, value: current_user.username %>
-		<%= f.submit "Like this project", class: "btn btn-info" %>
-	<% end %>
+  <%= form_for current_user.likes.build(:project_id => @project_id), :remote => true do |f| %>
+    <%= f.hidden_field :project_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :username, value: current_user.username %>
+    <%= f.submit "Like this project", class: "btn btn-info" %>
+  <% end %>
 <% end %>
 <% else %>
-		<%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary margin_bottom_15" %>
+    <%= link_to "Like This Project", new_user_session_path, class: "btn btn-primary margin_bottom_15" %>
 <% end %>
 <div class="like_loader" style="display:none">
   <%= image_tag "ajax-loader.gif" %>
