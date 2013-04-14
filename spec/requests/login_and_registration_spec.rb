@@ -59,10 +59,8 @@ describe "user login, logout, and registration" do
   describe "user logout" do 
 
     before do
-      visit new_user_session_path
-      fill_in "user_email",    with: user.email
-      fill_in "user_password", with: user.password
-      click_button "Sign in"
+      #this function is in support/utilities
+      sign_in(user)
     end
 
     it "should log them out" do
