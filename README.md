@@ -24,7 +24,7 @@ An example user profile page. Great for a visual CV/Portfolio.
 * Unicorn and postgres are used for production server environment
 * Pry-remote gem is included for debugging. 
 
-Note: It's been designed to run on Heroku. Also, it's got rspec installed but there are no tests with this app. Please forgive me. This was my first major Ruby on Rails project and I just wanted to ship something.
+Note: It's been designed to run on Heroku. 
 
 ### License:
 
