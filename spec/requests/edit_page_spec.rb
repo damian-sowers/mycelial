@@ -48,3 +48,33 @@ describe "user editing page" do
     specify { user.page.reload.name.should_not  == new_name }
   end
 end
+
+describe "should be authorized" do
+  let(:user) { FactoryGirl.create(:user) }
+  subject { page }
+
+  describe "must be signed in" do
+    before { visit edit_page_path(user.username) }
+    it { should have_content('sign in') }
+  end
+
+  describe "logged out user submiting update action" do
+    before { put page_path(user) }
+    specify { response.should redirect_to(new_user_session_path) }
+  end
+
+  describe "as the wrong user" do 
+    let(:wrong_user) { FactoryGirl.create(:user, username: "zorg", email: "zorg@zorg.com") }
+    before { sign_in(user) }
+      
+    describe "visiting the edit page path" do
+      before { visit edit_page_path(wrong_user) }
+      it { should have_content('Login') } #redirected to the homepage
+    end
+
+    describe "submitting a put request to edit page path" do 
+      before { put page_path(wrong_user) }
+      specify { response.should redirect_to(new_user_session_path) }
+    end
+  end
+end
