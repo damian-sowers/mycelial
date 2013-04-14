@@ -14,6 +14,8 @@ group :development, :test do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'pry'
   gem 'pry-remote'
+  gem 'growl'
+  gem 'rb-fsevent', '~> 0.9'
 end
 
 
@@ -46,6 +48,7 @@ gem 'dalli'
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '1.4.0'
+  gem 'guard-rspec'
 end
 
 group :production do

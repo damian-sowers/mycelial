@@ -16,11 +16,17 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: true
   VALID_USERNAME_REGEX = /^[a-z0-9\-_]+$/i
   validates :username, presence:   true,
                     format:     { with: VALID_USERNAME_REGEX },
                     uniqueness: { case_sensitive: false },
                     length: { within: 4..18 }
+
+
   def to_param
     id || username  
   end
