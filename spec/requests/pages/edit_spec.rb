@@ -47,6 +47,11 @@ describe "user editing page" do
     it { should have_content("can't be blank") } 
     specify { user.page.reload.name.should_not  == new_name }
   end
+
+  describe "should display sidebar info" do
+    it { should have_selector('a', :text => "Projects") }
+    it { should have_selector('a', :text => "About Me") }
+  end
 end
 
 describe "should be authorized" do

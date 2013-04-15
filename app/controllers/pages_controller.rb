@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def new 
+    #new page is made for the user in the user_observer. (after they sign up a page with name "Your Name" is created)
     @page = Page.new
     #need to check if the user already has a page. if they do then redirect to edit
     if @check = User.find(current_user.id).page
@@ -46,7 +47,6 @@ class PagesController < ApplicationController
   end
 
   def load_more
-
     offset_num = Integer(params[:offset])
     offset = @projects_per_page * offset_num
 
