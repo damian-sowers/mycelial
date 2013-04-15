@@ -28,11 +28,11 @@ describe "new project" do
         fill_in "Project name", with: "Test Project"
         fill_in "Short description", with: "A little Text"
         fill_in "Long Description", with: "More text"
-        # fill_in "Main Languages and Technologies (e.g Ruby, Rails, Python)", with: "rails"
+        # fill_in "Main Languages and Technologies (e.g Ruby, Rails, Python)", with: "rails" -- need to figure out how to test
         fill_in "Other interesting things about this project", with: "some stuff"
         fill_in "Project URL", with: "http://www.google.com"
         fill_in "Github Repo", with: "http://www.github.com/damian-sowers/mycelial"
-        # attach_file 'Upload a Profile Picture', "#{Rails.root}/spec/fixtures/images/code.png"
+        # attach_file 'Upload a Picture', "#{Rails.root}/spec/fixtures/images/code.png"
         click_button "Submit"
       end
 
@@ -41,6 +41,26 @@ describe "new project" do
       end
       it { should have_content("Projects") } 
       it { should have_content("Test Project") } 
+    end
+
+    describe "user fills in new project form with invalid information" do
+      before do
+        visit new_project_path(:project_type => 1)
+        fill_in "Project name", with: " "
+        fill_in "Short description", with: "A"*501
+        fill_in "Long Description", with: "More text"
+        # fill_in "Main Languages and Technologies (e.g Ruby, Rails, Python)", with: "rails"
+        fill_in "Other interesting things about this project", with: "some stuff"
+        fill_in "Project URL", with: "http://www.google.com"
+        fill_in "Github Repo", with: "http://www.github.com/damian-sowers/mycelial"
+        # attach_file 'Upload a Picture', "#{Rails.root}/spec/fixtures/images/code.png"
+        click_button "Submit"
+      end
+
+      it "should redirect user to show page" do
+        current_path.should_not == page_path(user.username)
+      end
+      it { should have_content("can't be blank") } 
     end
   end
 end
