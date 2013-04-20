@@ -7,6 +7,9 @@ describe User do
 
   it { should respond_to(:username) }
   it { should respond_to(:email) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_me) }
 
   it { should be_valid }
 
@@ -77,6 +80,40 @@ describe User do
     end
 
     it { should_not be_valid }
+  end
+
+  describe "#transform_username_to_lowercase" do
+    before do
+      @user.username = "UPPERCASE"
+      @user.save
+    end
+
+    its(:username) { should eq "uppercase" }
+  end
+
+  describe "#send_welcome_email" do
+    before { create(:user) }
+
+    it "triggers the Welcome mailer" do
+      delivery = ActionMailer::Base.deliveries.last
+      delivery.subject.should eq "Damian from Mycelial. Thanks for trying it out!"
+    end
+  end
+
+  describe "#to_param" do
+    context "when id is nil" do
+      it "returns the user's username" do
+        @user.to_param.should eq @user.username
+      end
+    end
+
+    context "when id exists" do
+      before { @user.save }
+
+      it "returns the user's id" do
+        @user.to_param.should eq @user.id
+      end
+    end
   end
 end
 # == Schema Information
