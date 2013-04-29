@@ -40,4 +40,8 @@ FactoryGirl.define do
     comment nil
     username nil
   end
+
+  factory :tech_tag do
+    name "rails"
+  end
 end
